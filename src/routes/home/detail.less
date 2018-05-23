@@ -1,0 +1,320 @@
+@import "../../assets/styles/base.less";
+
+body{
+  background-color: #fff !important;
+  background: #fff !important;
+}
+
+.detailWrap {
+    font-size: 14px;
+    background: #fff;
+    margin-top: 45px;
+    margin-bottom:-45px;
+    min-height: 500px;
+
+    .item {
+        text-align: left;
+        padding: 15px 10px;
+        line-height: 30px;
+        .head {
+            .img {
+                float: left;
+                display: block;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #ddd;
+                border-radius: 50%;
+                margin: 0 auto;
+                overflow: hidden;
+                img {
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    color: #999;
+                }
+            }
+            .name {
+                display: block;
+                line-height: 20px;
+                margin-left: 10px;
+                text-indent: 10px;
+            }
+            .time {
+                display: block;
+                text-indent: 10px;
+                color: #999;
+            }
+        }
+        .itemContent {
+            display: block; //margin-left: 50px;
+            .title {
+                font-size: 16px;
+                line-height: 20px;
+                color: #333;
+                font-weight: bold;
+                margin: 3px 0;
+                padding: 5px; //text-align:center;
+            }
+            .des {
+                font-size: 14px;
+                line-height: 20px;
+                word-wrap: break-word;
+                padding: 0 5px;
+                /* display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden; */
+                pre {
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    margin: 0;
+                }
+            }
+            .imgs{
+              img{
+                width:100%;
+                margin:10px 0;
+              }
+            }
+        }
+        .icons {
+            height: 35px;
+            line-height: 35px;
+            color: #bfbfbf;
+            text-align: center;
+            margin: 10px 0 0 0;
+            span {
+                position: relative;
+                float: left;
+                display: block;
+                width: 33%;
+                height: 30px;
+                i {
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+                    vertical-align: top;
+                }
+                label {
+                    display: inline-block;
+                    height: 30px;
+                    min-width: 30px;
+                    vertical-align: top;
+                    text-align: left;
+                }
+            }
+            .review {
+                color: #1296db;
+            }
+            .review::after {
+                content: ' ';
+                display: block;
+                height: 1px;
+                width: 80px;
+                background: #1296db;
+                margin: 0 auto;
+            }
+        }
+    }
+    .reviewList {
+        border-top: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 50px;
+        .reviewItem {
+            position: relative;
+            text-align: left;
+            padding: 5px 0px 5px 10px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            .head {
+                .img {
+                    float: left;
+                    display: block;
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid #ddd;
+                    border-radius: 50%;
+                    margin: 0 auto;
+                    background: #fff;
+                    overflow: hidden;
+                    img {
+                        display: block;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: center;
+                        color: #999;
+                    }
+                }
+                .name {
+                    display: block;
+                    line-height: 20px;
+                    margin-left: 10px;
+                    text-indent: 10px;
+                }
+            }
+            .itemContent {
+                display: block;
+                margin-left: 40px;
+                font-size: 14px;
+                line-height: 20px;
+                .cnWrap {
+                    padding: 5px;
+                    background-color: rgb(240, 240, 240);
+                    border-radius: 3px;
+                }
+                .des {
+                    line-height: 20px;
+                    padding: 0;
+                }
+                .time {
+                    display: block;
+                    font-size: 10px;
+                    color: #999;
+                }
+            }
+        }
+        .reviewItem::after {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            content: ' ';
+            display: block;
+            width: 87%;
+            height: 1px;
+            background: #eee;
+        }
+        .reviewItem:last-child::after {
+            display: none;
+        }
+        .reviewItemList {
+            margin: 0px 0 -5px 40px;
+            padding-top: 5px;
+            .reviewItem2 {
+                position: relative;
+                padding: 5px;
+                .name {
+                    //float: left;
+                    //margin: 0;
+                    color: #1296db;
+                }
+                .uname {
+                    display: inline-block;
+                    font-weight: bold;
+                }
+                .itemContent {
+                    margin-left: 0;
+                    .des {
+                        padding: 5px;
+                        background-color: rgb(240, 240, 240);
+                        border-radius: 3px;
+                    }
+                }
+            }
+            .reviewItem2::after {
+                position: absolute;
+                right: 0;
+                bottom: 5px;
+                content: ' ';
+                display: none;
+                width: 100%;
+                height: 1px;
+                background: #eee;
+            }
+            .reviewItem2:last-child::after {
+                //display: none;
+            }
+        }
+    }
+
+    .more{
+      margin-left:15px;
+      padding:2px 0;
+      color:#333;
+    }
+}
+
+.reviewText {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    padding: 5px;
+    text-align: center;
+    .rtLeft {
+        float: left;
+        width: 85%;
+        height: 40px;
+        overflow: hidden;
+        padding: 0px;
+        input {
+            display: block;
+            text-indent: 10px;
+            width: 100%;
+            height: 30px;
+            background: #eee;
+            border-radius: 5px;
+            border: none;
+        }
+    }
+    .rtRight {
+        float: left;
+        width: 15%;
+        height: 40px;
+        line-height: 35px;
+        i.iconfontBlue {
+            display: inline-block;
+            font-size: 26px;
+            margin-left: -5px;
+        }
+    }
+}
+
+.reviewTextArea {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 60px;
+    border-top: 1px solid #eee;
+    padding-bottom: 5px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    .l {
+        width: 85%;
+        float: left
+    }
+    .r {
+        width: 15%;
+        float: left;
+        text-align: center;
+        padding: 10px 0;
+        i{
+          font-size:28px;
+        }:active{
+          color:#87d4fd;
+        }
+    }
+}
+
+
+/* .social-share-icon:hover{
+  background:#fff !important;
+}
+
+.icon-weibo{
+
+}::before{
+  content:'';
+  display:none;
+}
+
+.icon-wechat:hover{
+  background:#fff !important;
+}
+ */

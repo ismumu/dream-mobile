@@ -1,0 +1,55 @@
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+.clear {
+    zoom: 1
+}
+
+.clear:after {
+    content: "";
+    display: block;
+    height: 0;
+    visibility: visible;
+    clear: both
+}
+
+.chatWrap {
+    .item {
+        text-align: left;
+        padding: 15px 10px;
+        line-height: 30px;
+        .itemL {
+            float: left;
+            img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        .itemR {
+            display: block;
+            text-indent: 10px;
+            .time {
+                float: right;
+                font-size: 12px;
+                color: #999;
+            }
+            .des {
+                height: 30px;
+                overflow: hidden;
+                font-size: 12px;
+                color: #999;
+                word-break: break-all
+            }
+        }
+    }
+}
+
+.headImg {
+    width: 40px !important;
+    height: 40px !important;
+}

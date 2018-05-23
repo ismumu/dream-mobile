@@ -1,0 +1,123 @@
+@import "../assets/styles/base.less";
+.chatWrap {
+    .item {
+        text-align: left;
+        padding: 15px 10px;
+        line-height: 30px;
+        margin-top: -1px;
+        .head {
+            .img {
+                float: left;
+                display: block;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #ddd;
+                border-radius: 50%;
+                margin: 0 auto;
+                overflow: hidden;
+                img {
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    color: #999;
+                }
+            }
+            .name {
+                display: block;
+                line-height: 20px;
+                margin-left: 10px;
+                text-indent: 10px;
+            }
+            .time {
+                display: block;
+                text-indent: 10px;
+                color: #999;
+            }
+        }
+        .itemContent {
+            display: block;
+            margin-left: 50px;
+            .title {
+                font-size: 16px;
+                color: #333;
+                font-weight: bold;
+                margin: 3px 0;
+                i.iconfont {
+                    font-size: 18px;
+                    margin: 0 5px;
+                }
+            }
+            .des {
+                line-height: 20px;
+                color: #999;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+                word-break: break-all
+            }
+            .imgs{
+              height: 100px;
+              margin-top:10px;
+
+              .imgbox{
+                float:left;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width:30%;
+                height:80px;
+                overflow: hidden;
+                border: 1px solid #eee;
+                margin-right: 1%;
+
+                img{
+                  width:100%;
+                  margin:0;
+                  padding:0;
+                }
+              }
+            }
+        }
+        .icons {
+            height: 40px;
+            border-top: 1px solid #eee;
+            font-size:14px;
+            margin: 10px -10px -15px -10px;
+            margin-bottom: -15px;
+            line-height: 40px;
+            color: #bfbfbf;
+            text-align: center;
+            span {
+                position: relative;
+                float: left;
+                display: block;
+                width: 33%;
+                height: 40px;
+                i {
+                    margin-right:5px;
+                }
+                label {
+                    display: inline-block;
+                    height: 40px;
+                    vertical-align: top;
+                    color: #bfbfbf;
+                }
+            }
+            .review {
+                /* i {
+                    background: ~"url(../../assets/images/message.png) center center / 22px 22px no-repeat";
+                    background-position-y: 8px;
+                } */
+            }
+            .praise {
+                /* i {
+                    background: ~"url(../../assets/images/praise.png) center center / 22px 22px no-repeat";
+                    background-position-y: 8px;
+                } */
+            }
+        }
+    }
+}

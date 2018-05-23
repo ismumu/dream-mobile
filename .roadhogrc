@@ -1,0 +1,39 @@
+{
+	"entry": "src/index.js",
+	"env": {
+		"development": {
+			"extraBabelPlugins": [
+				"dva-hmr",
+				"transform-runtime",
+				[
+					"import",
+					{
+						"libraryName": "antd-mobile",
+						"style": true
+					}
+				]
+			]
+		},
+		"production": {
+			"extraBabelPlugins": [
+				"transform-runtime",
+				[
+					"import",
+					{
+						"libraryName": "antd-mobile",
+						"style": true
+					}
+				]
+			]
+		}
+	},
+	"proxy": {
+		"/api": {
+			"target": "http://h5.xiaoyiwo.net/index.php?r=",
+			"changeOrigin": true,
+			"pathRewrite": {
+				"^/api": ""
+			}
+		}
+	}
+}
