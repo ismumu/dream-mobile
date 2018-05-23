@@ -188,7 +188,7 @@ class Edit extends React.Component {
 		return (
 			<div className={styles.editWrap}>
 				<NavBarPage iconType="back" isFly='false' title="编辑个人信息" isFixed="true"/>
-
+				{/* 123123 */}
 				<div className={styles.head}>
 					<div className={styles.img}>
 						<img src={this.state.img_url == null ? (this.props.user.avatar ? this.props.user.avatar : Util.defaultImg) : this.state.img_url} onClick={this.onUpdateImg} />
