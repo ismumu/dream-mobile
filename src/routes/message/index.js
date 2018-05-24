@@ -142,7 +142,25 @@ class Index extends React.Component {
 			<div className={styles.chatWrap}>
 				<NavBarPage isFly="true" />
 				<StickyContainer>
-					<Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
+					<ListView
+						ref={el => this.lv = el}
+						dataSource={this.state.dataSource}
+						renderFooter={() => (<div style={{ padding: 5, textAlign: 'center' }}>
+							{this.state.isLoading ? "加载中..." : ''}
+						</div>)}
+						renderRow={this.row}
+						renderSeparator={separator}
+						style={{
+							height: this.state.height,
+							overflow: 'auto',
+						}}
+						pageSize={4}
+						// onScroll={() => { console.log('scroll'); }}
+						scrollRenderAheadDistance={500}
+						onEndReached={this.onEndReached}
+						onEndReachedThreshold={10}
+					/>
+					{/* <Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
 						{
 							//this.state.msgList && this.state.msgList.length > 0 ?
 							<ListView
@@ -158,7 +176,7 @@ class Index extends React.Component {
 									overflow: 'auto',
 								}}
 								pageSize={4}
-								onScroll={() => { console.log('scroll'); }}
+								// onScroll={() => { console.log('scroll'); }}
 								scrollRenderAheadDistance={500}
 								onEndReached={this.onEndReached}
 								onEndReachedThreshold={10}
@@ -166,10 +184,10 @@ class Index extends React.Component {
 						}
 
 
-						{/*
+
 						<div>点赞</div>
-						<div>艾特</div> */}
-					</Tabs>
+						<div>艾特</div>
+					</Tabs> */}
 				</StickyContainer>
 			</div>
 		)

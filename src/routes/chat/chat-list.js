@@ -36,9 +36,9 @@ class ChatList extends React.Component {
     /* this.props.dispatch({ type: 'chat/fetch' }); */
   }
 
-  componentWillReceiveProps(nextProps) { 
+  componentWillReceiveProps(nextProps) {
 
-    const hei = document.documentElement.clientHeight; 
+    const hei = document.documentElement.clientHeight;
     if (this.state.list !== nextProps.list) {
 
       this.setState({
@@ -56,9 +56,9 @@ class ChatList extends React.Component {
     }
   }
 
-  
+
   row = (rowData, sectionID, rowID) => {
-    const obj = rowData; 
+    const obj = rowData;
     return (
         <div className={styles.item}>
           <div className={styles.itemL}><img src={obj.img_url} /></div>
@@ -82,7 +82,7 @@ class ChatList extends React.Component {
 
 
   render() {
-    
+
     const separator = (sectionID, rowID) => (
       <div
         key={`${sectionID}-${rowID}`}
@@ -110,7 +110,7 @@ class ChatList extends React.Component {
             overflow: 'auto',
           }}
           pageSize={4}
-          onScroll={() => { console.log('scroll'); }}
+        //   onScroll={() => { console.log('scroll'); }}
           scrollRenderAheadDistance={500}
           onEndReached={this.onEndReached}
           onEndReachedThreshold={10}

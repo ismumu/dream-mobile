@@ -104,7 +104,7 @@ export default modelExtend(model, {
 		*setBlack({ payload }, { call, put }) {
 			Toast.loading('拉黑中...');
 			const { data, code, msg } = yield call(setBlack, payload);
-			console.log(payload);
+			// console.log(payload);
 			if (code == 200) {
 				Toast.success(msg);
 
