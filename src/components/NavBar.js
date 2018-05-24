@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, hashHistory } from 'dva/router'
+import { Link, browserHistory } from 'dva/router'
 import { NavBar, Icon, ActionSheet } from 'antd-mobile'
 import styles from '../assets/styles/base.less'
 
@@ -17,10 +17,10 @@ class NavBarPage extends React.Component {
 		},
 		(buttonIndex) => {
 			if ( buttonIndex == 0 ) {
-				hashHistory.push('/my/edit');
+				browserHistory.push('/my/edit');
 			}
 			if ( buttonIndex == 1 ) {
-				hashHistory.push('/search?isMe=true');
+				browserHistory.push('/search?isMe=true');
 			}
 		});
 

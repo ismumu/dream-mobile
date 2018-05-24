@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Router, Route } from 'dva/router';
+
 import IndexPage from './routes/IndexPage';
 import DetailPage from './routes/home/detail';
 import LoginPage from './routes/login/login';

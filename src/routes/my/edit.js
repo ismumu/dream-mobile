@@ -185,35 +185,43 @@ class Edit extends React.Component {
 
 		const { files } = this.state;
 
+
+		let _user = {
+			...this.props.user
+		}
+
 		return (
 			<div className={styles.editWrap}>
 				<NavBarPage iconType="back" isFly='false' title="编辑个人信息" isFixed="true"/>
-				{/* 123123 */}
+
+
 				<div className={styles.head}>
 					<div className={styles.img}>
-						<img src={this.state.img_url == null ? (this.props.user.avatar ? this.props.user.avatar : Util.defaultImg) : this.state.img_url} onClick={this.onUpdateImg} />
+						<img src={this.state.img_url == null ? (_user.avatar || Util.defaultImg) : this.state.img_url} onClick={this.onUpdateImg} />
 					</div>
-					<input type="file" id="fileId" onChange={this.fileChange.bind(this)} />
+					<InputItem type="file" id="fileId" onChange={this.fileChange.bind(this)} />
 				</div>
+
+
 				<List>
 					<InputItem
 						id="inputUsername"
 						clear
-						defaultValue={this.props.user ? this.props.user.uname : null}
+						defaultValue={_user.uname}
 						placeholder="用户名">
 						<i className={styles.iconfont}>&#xe80d;</i>
 					</InputItem>
 					<InputItem
 						id="inputAddress"
 						clear
-						defaultValue={this.props.user ? this.props.user.location : null}
+						defaultValue={_user.location}
 						placeholder="填写地址">
 						<i className={styles.iconfont}>&#xe806;</i>
 					</InputItem>
 					<InputItem
 						id="inputProfession"
 						clear
-						defaultValue={this.props.user ? this.props.user.job : null}
+						defaultValue={_user.job}
 						placeholder="填写职业(职业习惯影响梦境)">
 						<i className={styles.iconfont}>&#xf32d;</i>
 					</InputItem>
@@ -222,25 +230,10 @@ class Edit extends React.Component {
 						maxLength={2}
 						id="inputAge"
 						clear
-						defaultValue={parseInt(this.props.user ? this.props.user.age : 0)}
+						defaultValue={parseInt(_user.age || 0)}
 						placeholder="填写年龄(生命有限，把握做梦)">
 						<i className={styles.iconfont}>&#xf252;</i>
 					</InputItem>
-
-					{/* <Picker
-                        data={this.ages()}
-                        title="年龄"
-                        cascade={true}
-                        extra="年龄"
-                        value={this.state.age}
-                        onChange={v => this.setState({age: v})}
-                        onOk={v => this.setState({age: v})}>
-
-                        <List.Item>
-                            <img src={ AgePng } />
-                        </List.Item>
-                    </Picker> */}
-
 				</List>
 
 				<List renderHeader={() => '性别'}>
@@ -257,7 +250,7 @@ class Edit extends React.Component {
 
 				<List renderHeader={() => ''}>
 					<TextareaItem
-						defaultValue={this.props.user ? this.props.user.intro : null}
+						defaultValue={_user.intro}
 						id="inputIntroId"
 						rows={4}
 						placeholder="你怎么看待梦境?"

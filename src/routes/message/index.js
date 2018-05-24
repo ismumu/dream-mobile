@@ -33,7 +33,7 @@ class Index extends React.Component {
 			dataSource,
 			msgList: [],
 			isLoading: true,
-      height: document.documentElement.clientHeight - 139,
+			height: document.documentElement.clientHeight - 139,
 			currentPage: 1,
 		};
 	}
@@ -43,19 +43,19 @@ class Index extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const hei= document.documentElement.clientHeight -139;
+		const hei = document.documentElement.clientHeight - 139;
 		if (this.state.msgList !== nextProps.msgList && nextProps.msgList !== undefined) {
 
 			this.setState({
 				msgList: [...this.state.msgList, ...nextProps.msgList],
-				height:hei
+				height: hei
 			})
 
 			setTimeout(() => {
 				this.setState({
 					dataSource: this.state.dataSource.cloneWithRows(this.state.msgList),
 					isLoading: false,
-					height:hei
+					height: hei
 				});
 			}, 500)
 		} else {
@@ -69,34 +69,34 @@ class Index extends React.Component {
 		const obj = rowData;
 		return (
 			<div className={styles.item}>
-        {
-          obj.is_open == '0'?
-            <i className={styles.msgOrange}></i>:null
-        }
+				{
+					obj.is_open == '0' ?
+						<i className={styles.msgOrange}></i> : null
+				}
 				<div className={styles.head}>
 					<Link to={{ pathname: "/my/other", 'state': + obj.fromUser.uid }}>
 						<span className={styles.name}>{obj.fromUser.uname}</span>
 					</Link>
 					<span className={styles.msgType}>
 						{
-              obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe60f;</i>
-              : obj.type == "收藏" ? <i style={{fontStyle:'normal',fontSize:12}}>| 收藏了你的梦境</i>
-                :<i className={styles.iconfontSmall}>&#xe604;</i>
+							obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe60f;</i>
+								: obj.type == "收藏" ? <i style={{ fontStyle: 'normal', fontSize: 12 }}>| 收藏了你的梦境</i>
+									: <i className={styles.iconfontSmall}>&#xe604;</i>
 						}
 					</span>
 					<span className={styles.review}></span>
 				</div>
-				  {/* 	<Link to={{ pathname: "/home/detail", 'state': + obj.feed.feed_id }}> */}
-          <Link to={{ pathname: "/home/detail", query: { id: obj.feed.feed_id } }}>
-						<div className={styles.reviewContent}>
-							{obj.fromUser.reviewContent}
-						</div>
-						<div className={styles.reviewTarget}>
-							<div className={styles.rehead}><b>{obj.feed.uname}</b> &nbsp; &nbsp; {obj.feed.publish_time}</div>
-							<div className={styles.title}>{obj.feed.title}</div>
-							<div className={styles.des}>{obj.feed.content}</div>
-						</div>
-					</Link>
+				{/* 	<Link to={{ pathname: "/home/detail", 'state': + obj.feed.feed_id }}> */}
+				<Link to={{ pathname: "/home/detail", query: { id: obj.feed.feed_id } }}>
+					<div className={styles.reviewContent}>
+						{obj.fromUser.reviewContent}
+					</div>
+					<div className={styles.reviewTarget}>
+						<div className={styles.rehead}><b>{obj.feed.uname}</b> &nbsp; &nbsp; {obj.feed.publish_time}</div>
+						<div className={styles.title}>{obj.feed.title}</div>
+						<div className={styles.des}>{obj.feed.content}</div>
+					</div>
+				</Link>
 				<div><span className={styles.time}>{obj.fromUser.add_time}</span></div>
 			</div>
 
@@ -129,7 +129,7 @@ class Index extends React.Component {
 
 		const tabs = [
 			{
-        title: <i className={styles.iconfontBlack}>&#xe60e;</i>
+				title: <i className={styles.iconfontBlack}>&#xf232;</i>
 			},
 			// {
 			//     title: '点赞'
@@ -142,7 +142,7 @@ class Index extends React.Component {
 			<div className={styles.chatWrap}>
 				<NavBarPage isFly="true" />
 				<StickyContainer>
-          <Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
+					<Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
 						{
 							//this.state.msgList && this.state.msgList.length > 0 ?
 							<ListView

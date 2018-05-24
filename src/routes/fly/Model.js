@@ -4,7 +4,8 @@ import {
 	Modal,
 	Tag,
 	TextareaItem,
-	Toast
+	Toast,
+	InputItem,
 } from "antd-mobile";
 
 import styles from "./index.less";
@@ -124,7 +125,7 @@ class TagModel extends React.Component {
 					wrapProps={{ onTouchStart: this.onWrapTouchStart }}
 				>
 					<div style={{ minHeight: 50, textAlign: 'left' }}>
-						<input type="text" placeholder="输入标签" ref="inputTag" className={styles.tagInput} />
+						<InputItem type="text" placeholder="输入标签" ref="inputTag" className={styles.tagInput} />
 					</div>
 				</Modal>
 			</div>

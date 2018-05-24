@@ -132,8 +132,6 @@ class Userinfo extends React.Component {
 			<div className={styles.userinfoWrap}>
 
 				<NavBarPage iconType="back" isSearch='true' isFixed="true" />
-
-				{/* 个人基本信息 */}
 				{
 					this.props.user ?
 						<div className={styles.userinfo}>

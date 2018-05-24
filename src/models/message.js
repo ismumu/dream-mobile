@@ -1,8 +1,8 @@
 import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
 import { hashHistory } from 'react-router';
-import { getMessageList,setNotice,getNotice } from '../services/message';
-import {setSecret } from '../services/user';
+import { getMessageList, setNotice, getNotice } from '../services/message';
+import { setSecret } from '../services/user';
 import Storage from '../utils/storage';
 import { Toast } from 'antd-mobile';
 
@@ -24,11 +24,11 @@ export default modelExtend(model, {
 	effects: {
 		// 获取通知列表
 		*getMessageList({ payload }, { call, put }) {
-			const { data, code, msg } = yield call(getMessageList,payload);
+			const { data, code, msg } = yield call(getMessageList, payload);
 			if (code == 200) {
-				yield put({ type: 'updateState', payload: { msgList:data.msg } });
-				if(data.count==0){
-					Toast.info("目前您木有评论喔~",1);
+				yield put({ type: 'updateState', payload: { msgList: data.msg } });
+				if (data.count == 0) {
+					Toast.info("目前您木有评论喔~", 1);
 				}
 			}
 		},
@@ -39,7 +39,7 @@ export default modelExtend(model, {
 
 			const { data, code, msg } = yield call(getNotice, payload);
 			if (code == 200) {
-				yield put({ type: 'updateState', payload: { notice:data} });
+				yield put({ type: 'updateState', payload: { notice: data } });
 			}
 		},
 
@@ -47,15 +47,15 @@ export default modelExtend(model, {
 		*setNotice({ payload }, { call, put }) {
 			const { data, code, msg } = yield call(setNotice, payload);
 			if (code == 200) {
-				Toast.info("已设置",1);
+				Toast.info("已设置", 1);
 			}
-    },
+		},
 
-    // 设置隐私
+		// 设置隐私
 		*setSecrets({ payload }, { call, put }) {
-      const { data, code, msg } = yield call(setSecret, payload);
+			const { data, code, msg } = yield call(setSecret, payload);
 			if (code == 200) {
-				Toast.info("设置成功",1);
+				Toast.info("设置成功", 1);
 			}
 		},
 	},

@@ -130,7 +130,7 @@ export default modelExtend(model, {
 		addTagItem(state, { payload }) {
 
 			// 标签最多只能添加7个
-			if( state.tags.length >= 7 ) {
+			if (state.tags.length >= 7) {
 				return { ...state };
 			} else {
 				let tags = state.tags.concat(payload.tag);
