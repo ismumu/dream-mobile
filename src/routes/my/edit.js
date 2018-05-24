@@ -39,6 +39,41 @@ const RadioItem = Radio.RadioItem;
 
 const UID = Storage.get('uid');
 
+
+// 性别列表
+const sexs = [
+	{
+		value: 0,
+		label: '男',
+		icon: SexM,
+	}, {
+		value: 1,
+		label: '女',
+		icon: SexW,
+	}, {
+		value: 2,
+		label: '男男',
+		icon: SexMM,
+	}, {
+		value: 3,
+		label: '女女',
+		icon: SexWW,
+	}, {
+		value: 4,
+		label: '异性',
+		icon: SexYx,
+	}, {
+		value: 5,
+		label: '双性',
+		icon: SexWn
+	}, {
+		value: 6,
+		label: '无性',
+		icon: SexNo
+	}
+];
+
+
 class Edit extends React.Component {
 
 	constructor(props, context) {
@@ -150,38 +185,6 @@ class Edit extends React.Component {
 
 
 	render() {
-		// 性别列表
-		const sexs = [
-			{
-				value: 0,
-				label: '男',
-				icon: SexM,
-			}, {
-				value: 1,
-				label: '女',
-				icon: SexW,
-			}, {
-				value: 2,
-				label: '男男',
-				icon: SexMM,
-			}, {
-				value: 3,
-				label: '女女',
-				icon: SexWW,
-			}, {
-				value: 4,
-				label: '异性',
-				icon: SexYx,
-			}, {
-				value: 5,
-				label: '双性',
-				icon: SexWn
-			}, {
-				value: 6,
-				label: '无性',
-				icon: SexNo
-			}
-		];
 
 		const { files } = this.state;
 

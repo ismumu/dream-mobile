@@ -128,42 +128,43 @@ class Userinfo extends React.Component {
 			})
 		}
 
+		let _user = {
+			...this.props.user,
+		}
+
 		return (
 			<div className={styles.userinfoWrap}>
 
 				<NavBarPage iconType="back" isSearch='true' isFixed="true" />
-				{
-					this.props.user ?
-						<div className={styles.userinfo}>
-							<div className={styles.title}>
-								<div className={styles.img}>
-									<img src={this.props.user.avatar ? this.props.user.avatar : Util.defaultImg} alt={this.props.user.uname} />
-								</div>
-								<div>
-									<b>{this.props.user.uname}</b>
-								</div>
+
+					<div className={styles.userinfo}>
+						<div className={styles.title}>
+							<div className={styles.img}>
+								<img src={_user.avatar || Util.defaultImg} alt={_user.uname} />
 							</div>
-							<ul>
-								<li>
-									<i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(this.props.user.sex)}</span></li>
-								<li>
-									<i className={styles.iconfont}>&#xe806;</i><span>{this.props.user.location}</span></li>
-								<li>
-									<i className={styles.iconfont}>&#xf32d;</i><span>{this.props.user.job}</span></li>
-								<li>
-									<i className={styles.iconfont}>&#xf252;</i><span>{this.props.user.age}</span></li>
-							</ul>
-							<div className={styles.tagsBox}>
-								{
-									Object.keys(tags).map((tag) => (<span className={styles.tag} key={tag}>{tags[tag]}</span>))
-								}
-							</div>
-							<div className={styles.opinion}>
-								{this.props.user.intro}
+							<div>
+								<b>{_user.uname}</b>
 							</div>
 						</div>
-						: null
-				}
+						<ul>
+							<li>
+								<i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_user.sex)}</span></li>
+							<li>
+								<i className={styles.iconfont}>&#xe806;</i><span>{_user.location}</span></li>
+							<li>
+								<i className={styles.iconfont}>&#xf32d;</i><span>{_user.job}</span></li>
+							<li>
+								<i className={styles.iconfont}>&#xf252;</i><span>{_user.age}</span></li>
+						</ul>
+						<div className={styles.tagsBox}>
+							{
+								Object.keys(tags).map((tag) => (<span className={styles.tag} key={tag}>{tags[tag]}</span>))
+							}
+						</div>
+						<div className={styles.opinion}>
+							{_user.intro}
+						</div>
+					</div>
 
 				<div className={styles.dreamWrap}>
 					<StickyContainer>

@@ -6,8 +6,6 @@ import styles from '../assets/styles/base.less'
 
 class NavBarPage extends React.Component {
 
-	componentDidMount() {}
-
 	showActionSheet = () => {
 
 		const BUTTONS = ['编辑我的信息', '搜索我的梦'];
@@ -26,20 +24,31 @@ class NavBarPage extends React.Component {
 
 	}
 
+
+	componentWillUnmount () {
+		let { isSearch } = this.props;
+		if(isSearch == "true") {
+			ActionSheet.close()
+		}
+	}
+
 	render() {
+
+		let { iconType, isFixed, isFly, isLogin, isSearch, title } = this.props;
+
 		return (
 			<NavBar
 				mode="light"
-				icon={this.props.iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className={styles.iconfontBlue}></i>}
+				icon={iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className={styles.iconfontBlue}></i>}
 				rightContent={
-					this.props.isFly == "true" ?
+					isFly == "true" ?
 						<Link to="/fly"><i className={styles.iconfontBlack}>&#xf1d8;</i></Link>
-						: this.props.isLogin == "true" ? <Link to="/login">登录</Link>
-							: this.props.isSearch == "true" ? <i onClick={this.showActionSheet} className={styles.iconfontBlack}>&#xf141;</i>
+						: isLogin == "true" ? <Link to="/login">登录</Link>
+							: isSearch == "true" ? <i onClick={this.showActionSheet} className={styles.iconfontBlack}>&#xf141;</i>
 								: null
 				}
-				className={this.props.isFixed ? styles.navBar : styles.navBar2}
-			>{this.props.title ? this.props.title : 'iDream'}</NavBar>
+				className={isFixed ? styles.navBar : styles.navBar2}
+			>{title ? title : 'iDream'}</NavBar>
 		);
 	}
 };
