@@ -149,23 +149,16 @@ class List extends React.Component {
 			<div>
 				{
 					<div className={styles.item}>
-						{/* 用户名、时间、操作 */}
 						<div className={styles.head}>
 							<div className={styles.img}>
 								<Link to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>
 									<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
 								</Link>
 							</div>
-							{
-								// 用户自己的梦境操作
-								obj.uid === UID ?
-									<Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream.bind(this, obj.feed_id, obj.show_type)} />
-									: null
-							}
+							{obj.uid === UID && <Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream.bind(this, obj.feed_id, obj.show_type)} />}
 							<span className={styles.name}><Link className={styles.bold} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link></span>
 							<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}><span className={styles.time}>{obj.publish_time}</span></Link>
 						</div>
-						{/* 标题、内容 */}
 						<div className={styles.itemContent}>
 							<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
 								<div className={styles.title}>
@@ -173,7 +166,6 @@ class List extends React.Component {
 								</div>
 							</Link>
 							<div className={styles.des} onClick={this.handleContentSlide}>{obj.content}</div>
-
 							{
 								obj.imgInfo && obj.imgInfo.length > 0 ?
 									<div className={styles.imgs}>
@@ -191,7 +183,6 @@ class List extends React.Component {
 									: null
 							}
 						</div>
-						{/* 点赞、评论数、分享 */}
 						<div className={styles.icons}>
 							<span className={styles.praise} onClick={this.handleUpdatedigg.bind(this, obj.feed_id)}>
 								{
@@ -205,8 +196,7 @@ class List extends React.Component {
 									<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
 								</Link>
 							</span>
-							{this.props.isShare && <span><i className={styles.iconfontSmall} onClick={this.onShowShareModal.bind(this, obj)}>&#xe811;</i></span>}
-
+							{(this.props.isShare !== false) && <span><i className={styles.iconfontSmall} onClick={this.onShowShareModal.bind(this, obj)}>&#xe811;</i></span>}
 						</div>
 					</div>
 				}

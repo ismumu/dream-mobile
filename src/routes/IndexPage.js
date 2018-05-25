@@ -15,6 +15,7 @@ import Storage from '../utils/storage';
 const UID = Storage.get('uid');
 
 class Home extends React.Component {
+
 	constructor(props, context) {
 		super(props, context);
 
@@ -24,6 +25,39 @@ class Home extends React.Component {
 		};
 	}
 
+	componentWillReceiveProps() {
+
+		this.setState({
+			unread_count: Storage.get('unread_count')
+		})
+	}
+
+
+	onPress(val) {
+		// 更新消息通知状态
+		this.setState({
+			unread_count: Storage.get('unread_count')
+		});
+
+		// 取消搜索框keyword
+		Storage.set('keyword', null);
+
+		// 切换页面
+		sessionStorage.setItem("selectedTab", val);
+		this.setState({ selectedTab: val });
+
+		// 取消提醒状态
+		if ( val == "tab3" ) {
+			Storage.set('unread_count', 0);
+		}
+
+	}
+
+	renderContent(pageText) {
+		return (
+			<div>{pageText}</div>
+		)
+	}
 
 
 	render() {
@@ -77,10 +111,6 @@ class Home extends React.Component {
 									onPress={this.onPress.bind(this, 'tab1')}>
 									{ selectedTab == "tab1" && <HomePage /> }
 								</TabBar.Item>
-
-
-
-
 							</TabBar>
 						</div>
 						:
@@ -91,39 +121,8 @@ class Home extends React.Component {
 		)
 	}
 
-	componentWillReceiveProps() {
-
-		this.setState({
-			unread_count: Storage.get('unread_count')
-		})
-	}
 
 
-	onPress(val) {
-		// 更新消息通知状态
-		this.setState({
-			unread_count: Storage.get('unread_count')
-		});
-
-		// 取消搜索框keyword
-		Storage.set('keyword', null);
-
-		// 切换页面
-		sessionStorage.setItem("selectedTab", val);
-		this.setState({ selectedTab: val });
-
-		// 取消提醒状态
-		if ( val == "tab3" ) {
-			Storage.set('unread_count', 0);
-		}
-
-	}
-
-	renderContent(pageText) {
-		return (
-			<div>{pageText}</div>
-		)
-	}
 }
 
 function mapStateToProps(state) {

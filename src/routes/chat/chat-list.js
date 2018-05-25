@@ -44,7 +44,6 @@ class ChatList extends React.Component {
       this.setState({
         list:[...this.state.list,...nextProps.list],
       })
-      console.log('chat:',this.state.list, nextProps.list);
 
       setTimeout(()=>{
         this.setState({

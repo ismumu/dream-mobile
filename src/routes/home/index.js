@@ -17,6 +17,9 @@ import IndexNotLogin from './index-not-login'
 
 const UID = Storage.get('uid');
 
+// 内容高度
+const contentHeight = document.documentElement.clientHeight - 99;
+
 class Index extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -26,20 +29,22 @@ class Index extends React.Component {
 			sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 		});
 
-		let h = document.documentElement.clientHeight - 139;
-
 		this.state = {
 			currentPage: 1,
 			dataSource,
 			list: [],
 			isLoading: true,
-			height: h > 500 ? h : 800,
-			//height: document.documentElement.clientHeight * 3 / 4,
+			height: contentHeight > 500 ? contentHeight : 800,
 		};
 	}
 
 	componentDidMount() {
-		this.props.dispatch({ type: 'home/getDreamList', payload: { page: 1 } });
+		this.props.dispatch({
+			type: 'home/getDreamList',
+			payload: {
+				page: 1
+			}
+		});
 	}
 
 	componentWillMount() {
@@ -47,18 +52,18 @@ class Index extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const hei = document.documentElement.clientHeight - 139;
+
 		if (this.state.list !== nextProps.list) {
 			this.setState({
 				list: [...this.state.list, ...nextProps.list],
-				height: hei,
+				height: contentHeight,
 			});
 
 			setTimeout(() => {
 				this.setState({
 					dataSource: this.state.dataSource.cloneWithRows(this.state.list),
 					isLoading: false,
-					height: hei,
+					height: contentHeight,
 				});
 			}, 500);
 		}
@@ -74,14 +79,7 @@ class Index extends React.Component {
 		this.props.dispatch({ type: 'home/getDreamList', payload: { page: this.state.currentPage } });
 	}
 
-	scroll = () => { }
-
 	render() {
-		// const tabs = [
-		// 	{
-		// 		title: <b className={styles.colorBlack}>梦境</b>,
-		// 	}
-		// ];
 
 		return (
 			<div className={styles.chatWrap}>
@@ -92,14 +90,6 @@ class Index extends React.Component {
 					height={this.state.height}
 					onEndReached={this.onEndReached}
 				/>
-				{/* <Tabs tabs={tabs} initalPage={'t2'} swipeable={false} swipeable={false}>
-					<List
-						dataSource={this.state.dataSource}
-						isLoading={this.state.isLoading}
-						height={this.state.height}
-						onEndReached={this.onEndReached}
-					/>
-				</Tabs> */}
 			</div>
 		)
 	}
