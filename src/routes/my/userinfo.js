@@ -5,7 +5,7 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { List, NavBar, Tabs, Icon, ListView, Toast, Tag, ActionSheet} from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
 import Storage from '../../utils/storage';

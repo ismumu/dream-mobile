@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { getMessageList, setNotice, getNotice } from '../services/message';
 import { setSecret } from '../services/user';
 import Storage from '../utils/storage';

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Icon, List, InputItem, Button, Toast } from "antd-mobile";
 import styles from "./login.less";
 import NavBarPage from "../../components/NavBar"
@@ -67,7 +67,7 @@ class Register extends React.Component {
           {/* <Link to=""><Button type="ghost"  className={styles.registerBtn}><span>注册账号</span></Button></Link> */}
 
         </div>
-        
+
       </div>
     )
   }
@@ -83,7 +83,7 @@ class Register extends React.Component {
 
     if (username == "") {
       Toast.info("请输入用户名", 1);
-    } 
+    }
     else if (email == "") {
       Toast.info("请输入邮箱", 1);
     }
@@ -92,10 +92,10 @@ class Register extends React.Component {
     }
     else if (password == "") {
       Toast.info("请输入密码", 1);
-    } 
+    }
     else if (password2 == "") {
       Toast.info("请确认密码", 1);
-    }  
+    }
     else if (password2.length <6 || password.length <6) {
       Toast.info("密码必须大于6位数", 1);
     }
@@ -103,7 +103,7 @@ class Register extends React.Component {
       Toast.info("密码不一致！", 1);
     } else {
       this.props.dispatch({
-        'type': 'user/register', 
+        'type': 'user/register',
         'payload': {
           'name':username,
           'email':email,

@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Toast } from "antd-mobile";
 import {
 	query,
@@ -134,7 +134,7 @@ export default modelExtend(model, {
 				Toast.success("删除成功！", 1);
 				setTimeout(() => {
 					//history.go(-1);
-					hashHistory.push('/');
+					browserHistory.push('/');
 				}, 500);
 			}
 		},

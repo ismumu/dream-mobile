@@ -3,7 +3,7 @@ import { connect } from "dva";
 import { Link } from "dva/router"
 import { ListView, Icon, NavBar, Tabs, ActionSheet, Toast, Modal, Button } from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import Clipboard from 'react-clipboard.js';
 import ImageView from 'react-mobile-imgview';
 import 'react-mobile-imgview/dist/react-mobile-imgview.css'
@@ -38,8 +38,8 @@ class List extends React.Component {
 
 		//const BUTTONS2 = ['编辑', show_type == 1 ? '设为私密' : '设为公开', '删除', '取消'];
 		const BUTTONS2 = ['编辑',
-			show_type == 1 ? <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe6d9;</i>&nbsp;设为私密</span>
-				: <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe6d9;</i>&nbsp;设为公开</span>,
+			show_type == 1 ? <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为私密</span>
+				: <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为公开</span>,
 			'删除'];
 
 		ActionSheet.showActionSheetWithOptions({
@@ -53,7 +53,7 @@ class List extends React.Component {
 				// 编辑
 				if (buttonIndex === 0) {
 					// 跳转到编辑
-					hashHistory.push('/fly/edit/' + feedId);
+					browserHistory.push('/fly/edit/' + feedId);
 				}
 				else if (buttonIndex === 2) {
 					// 删除
@@ -245,7 +245,6 @@ class List extends React.Component {
 						height: this.props.height,
 						overflow: 'auto',
 					}}
-					// onScroll={console.log("")}
 					pageSize={4}
 					scrollRenderAheadDistance={500}
 					onEndReached={this.props.onEndReached}
@@ -254,7 +253,6 @@ class List extends React.Component {
 
 				/>
 
-				{/* 分享弹框 */}
 				<Modal
 					popup
 					visible={this.state.shareModal}
@@ -266,13 +264,7 @@ class List extends React.Component {
 							<Button type="default">复制链接</Button>
 						</Clipboard>
 						<Button type="default" style={{ marginTop: -1 }} onClick={this.collectShow}>添加到收藏夹</Button>
-
-						<div style={{ padding: 10 }} id="socialShare">
-							{/* <a href="#" className="social-share-icon icon-weibo" style={{ border: 0 }} ><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe66e;</i></a>
-              <a href="#" className="social-share-icon icon-wechat" style={{ border: 0 }}><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe63d;</i></a>
-              <a href="#" className="social-share-icon icon-qq" style={{ border: 0 }} ><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe612;</i></a>
-              <a href="#" className="social-share-icon icon-douban" style={{ border: 0 }} ><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe64e;</i></a> */}
-						</div>
+						<div style={{ padding: 10 }} id="socialShare"></div>
 					</div>
 				</Modal>
 

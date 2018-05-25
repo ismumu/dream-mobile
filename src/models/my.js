@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import {
 	getUserHome, editUser, addOpinion, loginout,
 	setBlack, delBlack, getBlackList,
@@ -90,7 +90,7 @@ export default modelExtend(model, {
 				yield put({ type: 'updateState', payload: { user: null, list: null } });
 
 				setTimeout(() => {
-					hashHistory.push('/login');
+					browserHistory.push('/login');
 				}, 500);
 
 				setTimeout(() => {
@@ -106,8 +106,8 @@ export default modelExtend(model, {
 			const { data, code, msg } = yield call(setBlack, payload);
 			// console.log(payload);
 			if (code == 200) {
+				Toast.hide()
 				Toast.success(msg);
-
 				// 更新用户数据
 				yield put({ type: 'getOtherInfo2', payload: { uid: payload.black_uid } });
 			}
@@ -118,6 +118,7 @@ export default modelExtend(model, {
 			Toast.loading('解除中...');
 			const { data, code, msg } = yield call(delBlack, payload);
 			if (code == 200) {
+				Toast.hide()
 				Toast.success(msg);
 
 				// 重新黑名单列表
@@ -130,6 +131,7 @@ export default modelExtend(model, {
 			Toast.loading('解除中...');
 			const { data, code, msg } = yield call(delBlack, payload);
 			if (code == 200) {
+				Toast.hide()
 				Toast.success(msg);
 
 				// 更新用户数据

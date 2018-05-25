@@ -68,21 +68,21 @@ class Index extends React.Component {
 	}
 
 	render() {
-		const tabs = [
-			{
-        title: <b className={styles.colorBlack}>梦境</b>,
-			}
-		];
+		// const tabs = [
+		// 	{
+        // 		title: <b className={styles.colorBlack}>梦境</b>,
+		// 	}
+		// ];
 
 		return (
 			<div>
 				  <NavBarPage isLogin="true"/>
-          <List
-            dataSource = {this.state.dataSource}
-            isLoading = {this.state.isLoading}
-            height={this.state.height}
-            onEndReached={this.onEndReached}
-          />
+					<List
+						dataSource = {this.state.dataSource}
+						isLoading = {this.state.isLoading}
+						height={this.state.height}
+						onEndReached={this.onEndReached}
+					/>
 			</div>
 		)
 	}

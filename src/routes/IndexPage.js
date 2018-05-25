@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "dva";
 import { NavBar, Icon, TabBar } from "antd-mobile";
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import styles from "./IndexPage.less";
 import ChartList from "./chat/chat-list";
 import My from "./my/my";
@@ -19,7 +19,7 @@ class Home extends React.Component {
 		super(props, context);
 
 		this.state = {
-			selectedTab: sessionStorage.getItem("selectedTab") ? sessionStorage.getItem("selectedTab") : 'tab1',
+			selectedTab: sessionStorage.getItem("selectedTab") ? sessionStorage.getItem("selectedTab") : 'tab4',
 			unread_count: Storage.get('unread_count')
 		};
 	}
@@ -39,23 +39,12 @@ class Home extends React.Component {
 						<div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
 							<TabBar unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white">
 								<TabBar.Item
-									icon={<i className={styles.iconfont} style={{ fontSize: 28 }}>&#xe802;</i>}
-									selectedIcon={<i className={styles.iconfontBlack} style={{ fontSize: 28 }}>&#xe802;</i>}
-									// title="探索"
-									key="Friend1"
-									selected={ selectedTab === "tab1" }
-									onPress={this.onPress.bind(this, 'tab1')}>
-									{ selectedTab == "tab1" && <HomePage /> }
-								</TabBar.Item>
-
-								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xe803;</i>}
-									selectedIcon={<i className={styles.iconfontBlack} >&#xe803;</i>}
-									key="Koubei"
-									selected={ selectedTab === "tab2" }
-									onPress={this.onPress.bind(this, 'tab2')}
-									data-seed="logId1">
-									{ selectedTab == "tab2" && <Search /> }
+									icon={<i className={styles.iconfont}>&#xe80d;</i>}
+									selectedIcon={<i className={styles.iconfontBlack}>&#xe80d;</i>}
+									key="my"
+									selected={ selectedTab === "tab4" }
+									onPress={this.onPress.bind(this, 'tab4')} >
+									{ selectedTab == "tab4" && <My /> }
 								</TabBar.Item>
 
 								<TabBar.Item
@@ -70,13 +59,28 @@ class Home extends React.Component {
 								</TabBar.Item>
 
 								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xe80d;</i>}
-									selectedIcon={<i className={styles.iconfontBlack}>&#xe80d;</i>}
-									key="my"
-									selected={ selectedTab === "tab4" }
-									onPress={this.onPress.bind(this, 'tab4')} >
-									{ selectedTab == "tab4" && <My /> }
+									icon={<i className={styles.iconfont}>&#xe803;</i>}
+									selectedIcon={<i className={styles.iconfontBlack} >&#xe803;</i>}
+									key="Koubei"
+									selected={ selectedTab === "tab2" }
+									onPress={this.onPress.bind(this, 'tab2')}
+									data-seed="logId1">
+									{ selectedTab == "tab2" && <Search /> }
 								</TabBar.Item>
+
+								<TabBar.Item
+									icon={<i className={styles.iconfont} style={{ fontSize: 28 }}>&#xe802;</i>}
+									selectedIcon={<i className={styles.iconfontBlack} style={{ fontSize: 28 }}>&#xe802;</i>}
+									// title="探索"
+									key="Friend1"
+									selected={ selectedTab === "tab1" }
+									onPress={this.onPress.bind(this, 'tab1')}>
+									{ selectedTab == "tab1" && <HomePage /> }
+								</TabBar.Item>
+
+
+
+
 							</TabBar>
 						</div>
 						:

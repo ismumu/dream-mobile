@@ -1,7 +1,7 @@
 
 import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { login, register, resetPassword } from '../services/user.js';
 import Storage from '../utils/storage';
 import { Toast } from 'antd-mobile'
@@ -20,7 +20,7 @@ export default modelExtend(model, {
     setup({ dispatch, history }) {
       // 已登录，跳到首页
       //  if(Storage.get('token')){
-      //   hashHistory.push('/');
+      //   browserHistory.push('/');
       //  }
     },
   },
@@ -33,7 +33,7 @@ export default modelExtend(model, {
       if (code == 200) {
         setTimeout(() => {
           Toast.success("登录成功！", 1);
-          hashHistory.push('/');
+          browserHistory.push('/');
         }, 500);
 
         setTimeout(() => {
@@ -55,7 +55,7 @@ export default modelExtend(model, {
         if (code == 200) {
           setTimeout(() => {
             Toast.success("登录成功！", 1);
-            hashHistory.push('/');
+            browserHistory.push('/');
           }, 1000);
 
           setTimeout(() => {

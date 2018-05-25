@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { List, NavBar, Tabs, Icon, ListView, ActionSheet} from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
 import Storage from '../../utils/storage';
@@ -58,7 +58,7 @@ class Userinfo extends React.Component {
     if (uid) {
       // 如果是自己
       if(uid == UID){
-        //hashHistory.push('my/userinfo');
+        //browserHistory.push('my/userinfo');
       }else{
         this.props.dispatch({ type: 'my/getOtherInfo', payload: { uid: uid, page: 1 } });
       }

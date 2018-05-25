@@ -77,22 +77,29 @@ class Index extends React.Component {
 	scroll = () => { }
 
 	render() {
-		const tabs = [
-			{
-				title: <b className={styles.colorBlack}>梦境</b>,
-			}
-		];
+		// const tabs = [
+		// 	{
+		// 		title: <b className={styles.colorBlack}>梦境</b>,
+		// 	}
+		// ];
 
 		return (
 			<div className={styles.chatWrap}>
 				<NavBarPage isFly="true" />
-				<Tabs tabs={tabs} initalPage={'t2'} swipeable={false} swipeable={false}>
+				<List
+					dataSource={this.state.dataSource}
+					isLoading={this.state.isLoading}
+					height={this.state.height}
+					onEndReached={this.onEndReached}
+				/>
+				{/* <Tabs tabs={tabs} initalPage={'t2'} swipeable={false} swipeable={false}>
 					<List
 						dataSource={this.state.dataSource}
 						isLoading={this.state.isLoading}
 						height={this.state.height}
-						onEndReached={this.onEndReached} />
-				</Tabs>
+						onEndReached={this.onEndReached}
+					/>
+				</Tabs> */}
 			</div>
 		)
 	}

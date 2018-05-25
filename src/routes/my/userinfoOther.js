@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { List, NavBar, Tabs, Icon, ListView, ActionSheet } from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
 import Storage from '../../utils/storage';
@@ -52,7 +52,7 @@ class Userinfo extends React.Component {
 		if (uid) {
 			// 如果是自己
 			if (uid == UID) {
-				//hashHistory.push('my/userinfo');
+				//browserHistory.push('my/userinfo');
 			} else {
 				this.props.dispatch({ type: 'my/getOtherInfo', payload: { uid: uid, page: 1 } });
 			}
@@ -178,6 +178,11 @@ class Userinfo extends React.Component {
 		}
 	}
 
+
+	componentWillUnmount () {
+		ActionSheet.close()
+	}
+
 	render() {
 
 		let _otherInfo = {
@@ -213,22 +218,16 @@ class Userinfo extends React.Component {
 											</div>
 
 											<ul>
-												<li>
-													<i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
-												<li>
-													<i className={styles.iconfont}>&#xe806;</i><span>{_otherInfo.location}</span></li>
-												<li>
-													<i className={styles.iconfont}>&#xf32d;</i><span>{_otherInfo.job}</span></li>
-												<li>
-													<i className={styles.iconfont}>&#xf252;</i><span>{_otherInfo.age}</span></li>
+												<li><i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
+												<li><i className={styles.iconfont}>&#xe806;</i><span>{_otherInfo.location}</span></li>
+												<li><i className={styles.iconfont}>&#xf32d;</i><span>{_otherInfo.job}</span></li>
+												<li><i className={styles.iconfont}>&#xf252;</i><span>{_otherInfo.age}</span></li>
 											</ul>
 											<div className={styles.opinion}>{_otherInfo.intro}</div>
 										</div>
 										: null
 								}
 							</div>
-
-							{/* 梦境列表 */}
 							<div className={styles.dreamWrap}>
 								<Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
 									<div>
@@ -238,23 +237,6 @@ class Userinfo extends React.Component {
 											onEndReached={this.onEndReached}
 											isUseBodyScroll={true}
 										/>
-										{/* <ListView
-                      ref={el => this.lv = el}
-                      dataSource={this.state.dataSource}
-                      renderFooter={() => (<div style={{ padding: 5, textAlign: 'center' }}>
-                        {this.state.isLoading ? "加载中..." : <span className={styles.f12}>我是有底线的</span>}
-                      </div>)}
-                      renderRow={this.row}
-                      renderSeparator={separator}
-                      className="am-list"
-                      pageSize={4}
-                      useBodyScroll
-                      onScroll={() => {  }}
-                      scrollRenderAheadDistance={500}
-                      onEndReached={this.onEndReached}
-                      onEndReachedThreshold={10}
-                    /> */}
-
 									</div>
 								</Tabs>
 							</div>

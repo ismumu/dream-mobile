@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from "dva/router";
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import {
 	NavBar,
 	TextareaItem,
@@ -204,8 +204,8 @@ class Detail extends React.Component {
 		show_type = parseInt(show_type);
 
 		const BUTTONS2 = ['编辑',
-			show_type == 1 ? <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe6d9;</i>&nbsp;设为私密</span>
-				: <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe6d9;</i>&nbsp;设为公开</span>,
+			show_type == 1 ? <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为私密</span>
+				: <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为公开</span>,
 			'删除'];
 
 		ActionSheet.showActionSheetWithOptions({
@@ -224,7 +224,7 @@ class Detail extends React.Component {
 				// 编辑
 				if (buttonIndex === 0) {
 					// 跳转到编辑
-					hashHistory.push('/fly/edit/' + id);
+					browserHistory.push('/fly/edit/' + id);
 				}
 				else if (buttonIndex === 2) {
 					// 删除
@@ -540,13 +540,7 @@ class Detail extends React.Component {
 							<Button type="default">复制链接</Button>
 						</Clipboard>
 						<Button type="default" style={{ marginTop: -1 }} onClick={this.collectShow}>添加到收藏夹</Button>
-
-						<div style={{ padding: 10 }} id="socialShare">
-							{/* <a href="#" className="social-share-icon icon-weibo" style={{ border: 0 }}><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe66e;</i></a>
-              <a href="#" className="social-share-icon icon-wechat" style={{ border: 0 }}><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe63d;</i></a>
-              <a href="#" className="social-share-icon icon-qq" style={{ border: 0 }}><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe612;</i></a>
-              <a href="#" className="social-share-icon icon-douban" style={{ border: 0 }}><i className={styles.iconfont} style={{ fontSize: 30 }}>&#xe64e;</i></a> */}
-						</div>
+						<div style={{ padding: 10 }} id="socialShare"></div>
 					</div>
 				</Modal>
 			</div>

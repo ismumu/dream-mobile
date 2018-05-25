@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Icon, List, InputItem, Button, Toast } from "antd-mobile";
 import styles from "./login.less";
 import NavBarPage from "../../components/NavBar"
@@ -45,7 +45,7 @@ class Forget extends React.Component {
           You can stay alive whithout sex <br/>  but you cant't without dreams when you are alive
         </div> */}
       </div>
-      
+
     )
   }
 
@@ -63,7 +63,7 @@ class Forget extends React.Component {
       /* setTimeout(() => {
         Toast.info("发送成功！", 1);
         setTimeout(() => {
-          hashHistory.push('/login');
+          browserHistory.push('/login');
         }, 1000)
       }, 2000); */
     }

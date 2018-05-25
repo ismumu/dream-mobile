@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Toast } from "antd-mobile";
 import { search, searchUser } from '../services/search.js';
 

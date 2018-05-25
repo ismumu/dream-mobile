@@ -3,7 +3,7 @@ import { connect } from "dva";
 import { Link } from "dva/router"
 import { ListView, Icon, NavBar, Tabs, ActionSheet, Toast } from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import styles from "./List.less";
 import Util from "../utils/util";
 import Storage from '../utils/storage';

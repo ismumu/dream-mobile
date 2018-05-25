@@ -1,6 +1,6 @@
 import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Toast } from "antd-mobile";
 import { publish, uploadImg, getTags, getDreamDetail } from '../services/fly.js';
 
@@ -34,7 +34,7 @@ export default modelExtend(model, {
 			if (code == 200) {
 				Toast.success("发送成功!");
 				setTimeout(() => {
-					hashHistory.push('/');
+					browserHistory.push('/');
 				}, 1000);
 
 				Storage.remove('title');
