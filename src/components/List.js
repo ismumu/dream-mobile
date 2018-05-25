@@ -79,6 +79,7 @@ class List extends React.Component {
 
 	// 梦境收藏、分享
 	collectShow = () => {
+
 		this.props.dispatch({
 			type: 'home/colletDream',
 			payload: {
@@ -91,18 +92,22 @@ class List extends React.Component {
 
 	// 分享
 	onShowShareModal = (item) => {
+
 		if (!UID) {
 			Toast.info("请先登录！");
 			return;
 		}
 
 		const { feed_id, title, content } = item;
-		this.setState({ shareModal: true, shareId: feed_id });
+
+		this.setState({
+			shareModal: true,
+			shareId: feed_id
+		});
 
 		setTimeout(() => {
 			// 分享配置
 			window.socialShare('#socialShare', {
-				// 这里配置各种参数
 				sites: ['weibo', 'wechat', 'douban', 'qq'],
 				mode: 'prepend',
 				url: `h5.xiaoyiwo.net/#/home/detail?id=${feed_id}`,
@@ -110,7 +115,6 @@ class List extends React.Component {
 				title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream梦境网）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
-
 			});
 		}, 100);
 
@@ -119,7 +123,9 @@ class List extends React.Component {
 
 	// 复制
 	onSuccess = () => {
-		this.setState({ shareModal: false })
+		this.setState({
+			shareModal: false
+		})
 		Toast.success('复制成功！', 1);
 	}
 
@@ -143,6 +149,8 @@ class List extends React.Component {
 
 	// 行
 	row = (rowData, sectionID, rowID) => {
+
+
 		const obj = rowData;
 
 		return (
@@ -155,9 +163,11 @@ class List extends React.Component {
 									<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
 								</Link>
 							</div>
-							{obj.uid === UID && <Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream.bind(this, obj.feed_id, obj.show_type)} />}
-							<span className={styles.name}><Link className={styles.bold} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link></span>
-							<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}><span className={styles.time}>{obj.publish_time}</span></Link>
+							<div className={styles.name}>
+								{obj.uid === UID && <Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream.bind(this, obj.feed_id, obj.show_type)} />}
+								<Link className={styles.bold} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link>
+								<span className={styles.time}>{obj.publish_time}</span>
+							</div>
 						</div>
 						<div className={styles.itemContent}>
 							<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
@@ -250,7 +260,7 @@ class List extends React.Component {
 					animationType="slide-up"
 				>
 					<div>
-						<Clipboard data-clipboard-text={window.location.href} onSuccess={this.onSuccess} style={{ width: '100%', border: 0, background: 'white', padding: 0 }}>
+						<Clipboard data-clipboard-text={window.location.origin + '/home/detail?id=' + this.state.shareId} onSuccess={this.onSuccess} style={{ width: '100%', border: 0, background: 'white', padding: 0 }}>
 							<Button type="default">复制链接</Button>
 						</Clipboard>
 						<Button type="default" style={{ marginTop: -1 }} onClick={this.collectShow}>添加到收藏夹</Button>
