@@ -371,7 +371,7 @@ class Detail extends React.Component {
 												<span className={styles.praise} onClick={this.handleUpdatedigg}>
 													{/* <i className={this.props.detail.info.hasDigg == 0 ? styles.iconfont : styles.iconfontBlue}>&#xe71a;</i> */}
 													{
-														this.props.detail.info.hasDigg == 1 ? <i className={styles.iconfontSmall} style={{ color: '#108ee9' }}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>
+														this.props.detail.info.hasDigg == 1 ? <i className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>
 													}
 													<label>{this.props.detail.info.digg_count > 0 ? this.props.detail.info.digg_count : null}</label>
 												</span>
@@ -403,9 +403,7 @@ class Detail extends React.Component {
 																	<div className={styles.des}>{item.content}</div>
 																</div>
 																<div className={`${styles.time} ${styles.clear}`}>
-																	{/* 发布时间 */}
 																	<span className={styles.fl}>{item.ctime}</span>
-																	{/* <span className={`${styles.iconfont} ${styles.more}`} onClick={this.showActionSheet}>&#xe679;</span> */}
 
 																	{
 																		// 添加删除评论，只有自己或梦住才能删除

@@ -89,7 +89,7 @@ export default modelExtend(model, {
 			const { data, code } = yield call(review, payload);
 
 			if (code == 200) {
-				Toast.info("评论成功");
+				Toast.info("评论成功", 1);
 				const { data, code } = yield call(getDreamDetail, payload);
 				if (code == 200) {
 					yield put({ type: 'updateState', payload: { detail: data } });
@@ -166,7 +166,7 @@ export default modelExtend(model, {
 			Toast.loading("收藏中...");
 			const { data, code, msg } = yield call(colletDream, payload);
 			if (code == 200) {
-				Toast.success(msg);
+				Toast.success(msg, 1);
 			}
 		},
 
@@ -183,7 +183,7 @@ export default modelExtend(model, {
 		*setSecret({ payload }, { call, put }) {
 			const { data, code, msg } = yield call(setSecret, payload);
 			if (code == 200) {
-				Toast.success(msg);
+				Toast.success(msg, 1);
 
 				yield put({
 					type: 'getDetail2',
@@ -196,16 +196,13 @@ export default modelExtend(model, {
 		*setSecretInList({ payload }, { call, put }) {
 			const { data, code, msg } = yield call(setSecret, payload);
 			if (code == 200) {
-				Toast.success(msg);
-
+				Toast.success(msg, 1);
 				yield put({
 					type: 'getDreamList',
 					payload: payload
 				})
 			}
 		},
-
-
 
 	},
 

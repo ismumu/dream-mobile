@@ -32,7 +32,7 @@ export default modelExtend(model, {
 			Toast.loading("发送中...");
 			const { data, code, msg } = yield call(publish, payload);
 			if (code == 200) {
-				Toast.success("发送成功!");
+				Toast.success("发送成功!", 1);
 				setTimeout(() => {
 					browserHistory.push('/');
 				}, 1000);
@@ -68,7 +68,7 @@ export default modelExtend(model, {
 			const { data, code, msg } = yield call(publish, payload);
 			if (code == 200) {
 				yield put({ type: 'updateState', payload: { imagesEdit: [], tagsEdit: [] } });
-				Toast.success("更新成功!");
+				Toast.success("更新成功!", 1);
 				history.go(-1);
 			}
 		},

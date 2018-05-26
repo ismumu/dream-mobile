@@ -107,7 +107,7 @@ export default modelExtend(model, {
 			// console.log(payload);
 			if (code == 200) {
 				Toast.hide()
-				Toast.success(msg);
+				Toast.success(msg, 1);
 				// 更新用户数据
 				yield put({ type: 'getOtherInfo2', payload: { uid: payload.black_uid } });
 			}
@@ -119,7 +119,7 @@ export default modelExtend(model, {
 			const { data, code, msg } = yield call(delBlack, payload);
 			if (code == 200) {
 				Toast.hide()
-				Toast.success(msg);
+				Toast.success(msg, 1);
 
 				// 重新黑名单列表
 				yield put({ type: 'getBlackList', payload: {} });
@@ -132,7 +132,7 @@ export default modelExtend(model, {
 			const { data, code, msg } = yield call(delBlack, payload);
 			if (code == 200) {
 				Toast.hide()
-				Toast.success(msg);
+				Toast.success(msg, 1);
 
 				// 更新用户数据
 				yield put({ type: 'getOtherInfo2', payload: { uid: payload.black_uid } });
@@ -164,7 +164,7 @@ export default modelExtend(model, {
 			Toast.loading("发送中...");
 			const { data, code, msg } = yield call(sendEmailCode, payload);
 			if (code == 200) {
-				Toast.success(msg);
+				Toast.success(msg, 1);
 			}
 		},
 

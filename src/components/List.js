@@ -33,6 +33,8 @@ class List extends React.Component {
 	// 编辑梦境
 	editDream = (feedId, show_type) => {
 
+		console.log(feedId, show_type)
+
 		// show_type：1（公开），2（私密）
 		show_type = parseInt(show_type);
 
@@ -135,16 +137,25 @@ class List extends React.Component {
 	}
 
 	// 内容展开与隐藏
-	handleContentSlide = (t) => {}
+	handleContentSlide = (t) => {
+		console.log(111111)
+	}
 
 	// 点赞
 	handleUpdatedigg = (id) => {
+
+		if (!UID) {
+			Toast.info("请先登录！");
+			return;
+		}
+
 		this.props.dispatch({
 			type: 'home/updateListDigg',
 			payload: {
 				feed_id: id,
 			}
 		});
+
 	}
 
 	// 行
@@ -196,7 +207,7 @@ class List extends React.Component {
 						<div className={styles.icons}>
 							<span className={styles.praise} onClick={this.handleUpdatedigg.bind(this, obj.feed_id)}>
 								{
-									obj.hasDigg == 1 ? <i className={styles.iconfontSmall} style={{ color: '#108ee9' }}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>//<i className={styles.iconfont}>&#xe707;</i> : <i className={styles.iconfontSmall}>&#xe604;</i>
+									obj.hasDigg == 1 ? <i className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>
 								}
 								<label>{obj.digg_count > 0 ? obj.digg_count : null}</label>
 							</span>
