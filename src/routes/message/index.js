@@ -12,18 +12,6 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 
-// Tabs
-function renderTabBar(props) {
-	return (
-		<Sticky>
-			{({ style }) => <div
-				style={{
-					...style,
-					zIndex: 1
-				}}><Tabs.DefaultTabBar {...props} /></div>}
-		</Sticky>
-	);
-}
 
 
 class Index extends React.Component {
@@ -76,21 +64,14 @@ class Index extends React.Component {
 		console.log(rowData)
 
 
-		return (
-			<List>
-				<Item extra="10:30" align="top" className={styles.avatar} thumb={rowData.fromUser.avatar || Util.defaultImg} multipleLine>
-				叶孤城 | 评论你的梦境
-				</Item>
-		  	</List>
-		)
 
 		return (
 			<div className={styles.message}>
-				{rowData.is_open == '1' && <i className={styles.msgOrange}></i>}
+				{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
 				<img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} />
-				<div className={styles.msgContent}>
-					<p className={styles.head}><span className={styles.time}>2019-09-02</span>xxxx | 评论你的梦境</p>
-
+				<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
+					<p className={styles.head}><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>
+					<p className={styles.des}>{rowData.fromUser.reviewContent}</p>
 				</div>
 			</div>
 		)
@@ -110,7 +91,7 @@ class Index extends React.Component {
 					<span className={styles.msgType}>
 						{
 							obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe810;</i>
-								: obj.type == "收藏" ? <i style={{ fontStyle: 'normal', fontSize: 12 }}>| 收藏了你的梦境</i>
+								: obj.type == "收藏" ? <i style={{ fontStyle: 'normal', fontSize: 12 }}>| 收藏你梦境</i>
 									: <i className={styles.iconfontSmall}>&#xe808;</i>
 						}
 					</span>
