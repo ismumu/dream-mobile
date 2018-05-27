@@ -1,10 +1,16 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from "dva/router"
-import { ListView, Icon, NavBar, Tabs, PullToRefresh } from "antd-mobile";
+import { ListView, Icon, NavBar, Tabs, PullToRefresh, List } from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
 import NavBarPage from "../../components/NavBar"
 import styles from "./index.less";
+
+import Util from "../../utils/util";
+
+const Item = List.Item;
+const Brief = Item.Brief;
+
 
 // Tabs
 function renderTabBar(props) {
@@ -66,11 +72,35 @@ class Index extends React.Component {
 	}
 
 	row = (rowData, sectionID, rowID) => {
-		const obj = rowData;
+
+		console.log(rowData)
+
+
+		return (
+			<List>
+				<Item extra="10:30" align="top" className={styles.avatar} thumb={rowData.fromUser.avatar || Util.defaultImg} multipleLine>
+				叶孤城 | 评论你的梦境
+				</Item>
+		  	</List>
+		)
+
+		return (
+			<div className={styles.message}>
+				{rowData.is_open == '1' && <i className={styles.msgOrange}></i>}
+				<img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} />
+				<div className={styles.msgContent}>
+					<p className={styles.head}><span className={styles.time}>2019-09-02</span>xxxx | 评论你的梦境</p>
+
+				</div>
+			</div>
+		)
+
+
+
 		return (
 			<div className={styles.item}>
 				{
-					obj.is_open == '0' ?
+					obj.is_open == '1' ?
 						<i className={styles.msgOrange}></i> : null
 				}
 				<div className={styles.head}>
@@ -79,14 +109,13 @@ class Index extends React.Component {
 					</Link>
 					<span className={styles.msgType}>
 						{
-							obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe60f;</i>
+							obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe810;</i>
 								: obj.type == "收藏" ? <i style={{ fontStyle: 'normal', fontSize: 12 }}>| 收藏了你的梦境</i>
-									: <i className={styles.iconfontSmall}>&#xe604;</i>
+									: <i className={styles.iconfontSmall}>&#xe808;</i>
 						}
 					</span>
 					<span className={styles.review}></span>
 				</div>
-				{/* 	<Link to={{ pathname: "/home/detail", 'state': + obj.feed.feed_id }}> */}
 				<Link to={{ pathname: "/home/detail", query: { id: obj.feed.feed_id } }}>
 					<div className={styles.reviewContent}>
 						{obj.fromUser.reviewContent}

@@ -1,114 +1,44 @@
 @import '../../assets/styles/base.less';
-.chatWrap {
-    .item {
-        position: relative;
-        text-align: left;
-        padding: 0 10px;
-        line-height: 30px;
-        margin-left:10px;
-        margin-top: -1px;
 
-        .msgOrange{
-          position: absolute;
-          top:16px;
-          left:-2px;
-
-        }
-        .head {
-            img {
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-            }
-            span {
-                display: inline-block;
-                margin-top: 5px;
-                vertical-align: top;
-            }
-            .review {
-                float: right;
-            }
-            .msgType i {
-                font-size: 16px;
-                margin-left: 10px;
-            }
-        }
-        .reviewContent {
-            line-height: 24px;
-            color: #333;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-            word-break: break-all
-        }
-        .reviewTarget {
-            color: #333;
-            padding: 10px 15px;
-            background-color: #eee;
-            border-radius: 5px;
-            font-size: 12px;
-            line-height: 20px;
-            .rehead {}
-            .title {
-                color: #333;
-                font-weight: bold;
-            }
-            .des {
-                line-height: 20px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-                color: #999;
-                word-break: break-all
-            }
-        }
-        .icons {
-            height: 40px;
-            border-top: 1px solid #eee;
-            margin: 10px -10px -15px -10px;
-            margin-bottom: -15px;
-            line-height: 40px;
-            color: #bfbfbf;
-            text-align: center;
-            span {
-                position: relative;
-                float: right;
-                display: block;
-                width: 33%;
-                height: 40px;
-                i {
-                    display: inline-block;
-                    width: 30px;
-                    height: 40px;
-                    vertical-align: top;
-                }
-                label {
-                    display: inline-block;
-                    height: 40px;
-                    min-width: 40px;
-                    vertical-align: top;
-                    text-align: left;
-                }
-            }
-            .review {
-                i {
-                    background: ~"url(../../assets/images/message.png) center center / 22px 22px no-repeat";
-                    background-position-y: 8px;
-                }
-            }
-            .praise {
-                i {
-                    background: ~"url(../../assets/images/praise.png) center center / 22px 22px no-repeat";
-                    background-position-y: 8px;
-                }
-            }
-        }
-        .time {
-            color: #999;
-            font-size: 12px;
-        }
-    }
+.message {
+	position: relative;
+	padding: 15px 10px;
+	margin: 0 10px;
+	overflow: hidden;
 }
+
+.msgOrange {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -3px;
+}
+
+
+
+:global {
+	.am-list-item {
+		min-height: 70px;
+	}
+	.am-list-item img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+	}
+}
+
+.msgContent {
+	float: left;
+
+	.head {
+		color: #333;
+		font-weight: bold;
+		font-size: 14px;
+		.time {
+			float: right;
+			color: #bbb;
+			font-weight: normal;
+		}
+	}
+}
+

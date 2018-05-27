@@ -27,13 +27,12 @@ class List extends React.Component {
 			showViewer: false,
 			imagelist: null,
 			imagelistCurrent: 0,
+
 		}
 	}
 
 	// 编辑梦境
 	editDream = (feedId, show_type) => {
-
-		console.log(feedId, show_type)
 
 		// show_type：1（公开），2（私密）
 		show_type = parseInt(show_type);
@@ -96,7 +95,7 @@ class List extends React.Component {
 	onShowShareModal = (item) => {
 
 		if (!UID) {
-			Toast.info("请先登录！");
+			Toast.info("请先登录！", 1);
 			return;
 		}
 
@@ -137,15 +136,30 @@ class List extends React.Component {
 	}
 
 	// 内容展开与隐藏
-	handleContentSlide = (t) => {
-		console.log(111111)
+	handleContentSlide = (feed_id) => {
+
+		let key = 'isDesShowAll' + feed_id;
+
+
+		if(Date.now() - this.time < 200) {
+			this.setState({
+				[key]: false,
+			})
+		} else {
+			this.setState({
+				[key]: true,
+			})
+		}
+
+		this.time = Date.now();
+
 	}
 
 	// 点赞
 	handleUpdatedigg = (id) => {
 
 		if (!UID) {
-			Toast.info("请先登录！");
+			Toast.info("请先登录！", 1);
 			return;
 		}
 
@@ -164,6 +178,7 @@ class List extends React.Component {
 
 		const obj = rowData;
 
+
 		return (
 			<div>
 				{
@@ -176,7 +191,7 @@ class List extends React.Component {
 							</div>
 							<div className={styles.name}>
 								{obj.uid === UID && <Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream.bind(this, obj.feed_id, obj.show_type)} />}
-								<Link className={styles.bold} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link>
+								<Link className={styles.userName} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link>
 								<span className={styles.time}>{obj.publish_time}</span>
 							</div>
 						</div>
@@ -186,7 +201,7 @@ class List extends React.Component {
 									{obj.title}
 								</div>
 							</Link>
-							<div className={styles.des} onClick={this.handleContentSlide}>{obj.content}</div>
+							<div className={ this.state['isDesShowAll' + obj.feed_id] ? styles.desAll : styles.des} onClick={this.handleContentSlide.bind(this, obj.feed_id)}>{obj.content}</div>
 							{
 								obj.imgInfo && obj.imgInfo.length > 0 ?
 									<div className={styles.imgs}>
