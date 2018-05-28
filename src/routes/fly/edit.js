@@ -60,7 +60,7 @@ class FlyEdit extends React.Component {
 				tagStr += tag + ',';
 			})
 
-			console.log('imgStr', imgStr);
+
 
 			this.props.dispatch({
 				type: 'fly/updateDream', payload: {

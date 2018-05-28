@@ -178,9 +178,6 @@ class List extends React.Component {
 
 		const obj = rowData;
 
-		console.log(obj)
-
-
 		return (
 			<div>
 				{

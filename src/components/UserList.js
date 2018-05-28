@@ -78,7 +78,6 @@ class List extends React.Component {
             height: this.props.height,
             overflow: 'auto',
           }}
-          onScroll={console.log("")}
           pageSize={4}
           scrollRenderAheadDistance={500}
           onEndReached={this.props.onEndReached}

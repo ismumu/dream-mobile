@@ -119,8 +119,13 @@ export function post(url, options) {
 		//return;
 	}
 
+	if ( document.domain == 'localhost' ) {
+		return request( '/' + url, { ...options, method: 'post' })
+	} else {
+		return request( url, { ...options, method: 'post' })
+	}
 
-	return request( url, { ...options, method: 'post' })
+
 }
 
 export function postLogin(url, options) {
