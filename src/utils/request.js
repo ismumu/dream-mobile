@@ -120,9 +120,7 @@ export function post(url, options) {
 	}
 
 
-
-	// 加 / ，从根目录开始请求
-	return request( '/' + url, { ...options, method: 'post' })
+	return request( url, { ...options, method: 'post' })
 }
 
 export function postLogin(url, options) {
