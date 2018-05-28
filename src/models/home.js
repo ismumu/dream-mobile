@@ -31,22 +31,31 @@ export default modelExtend(model, {
 	},
 
 	effects: {
+
 		// 梦境列表
 		*getDreamList({ payload }, { call, put }) {
 			const { data, code } = yield call(getDreamList, payload);
 			if (code == 200) {
-				yield put({ type: 'updateState', payload: { list: data.data } });
+				yield put({
+					type: 'updateState',
+					payload: {
+						list: data.data
+					}
+				});
 			}
 		},
 
 		// 列表点赞
-		*updateListDigg({ payload }, { call, put }) {
-			const { data, code } = yield call(updatedigg, payload);
+		*updateListDigg(action, { call, put }) {
+
+			const { data, code, msg } = yield call(updatedigg, action.payload);
 			if (code == 200) {
-				yield put({
-					type: 'getDreamList',
-					payload: {}
-				})
+
+				action.callback && action.callback(msg)
+				// yield put({
+				// 	type: 'getDreamList',
+				// 	payload: {}
+				// })
 
 			}
 		},

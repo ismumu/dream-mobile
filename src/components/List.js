@@ -12,7 +12,7 @@ import styles from "./List.less";
 import Util from "../utils/util";
 import Storage from '../utils/storage';
 
-// 登陆id
+
 const UID = Storage.get('uid');
 
 class List extends React.Component {
@@ -29,6 +29,9 @@ class List extends React.Component {
 			imagelistCurrent: 0,
 
 		}
+
+
+
 	}
 
 	// 编辑梦境
@@ -70,7 +73,7 @@ class List extends React.Component {
 					this.props.dispatch({
 						type: 'home/setSecretInList',
 						payload: {
-							is_show: show_type == 1 ? 2 : 1,
+							show_type: show_type == 1 ? 2 : 1,
 							feed_id: feedId,
 						}
 					});
@@ -156,7 +159,9 @@ class List extends React.Component {
 	}
 
 	// 点赞
-	handleUpdatedigg = (id) => {
+	handleUpdatedigg = (id, count) => {
+
+		count = count * 1;
 
 		if (!UID) {
 			Toast.info("请先登录！", 1);
@@ -167,6 +172,39 @@ class List extends React.Component {
 			type: 'home/updateListDigg',
 			payload: {
 				feed_id: id,
+			},
+			callback: (msg) => {
+
+
+				let likeIcon = document.getElementById('likeIcon' + id);
+				let likeCountLabel = document.getElementById('likeCount' + id);
+				let likeCountNum = document.getElementById('likeCount' + id).innerHTML || 0;
+
+
+				if ( msg == '点赞成功' ) {
+
+					let newCount = likeCountNum * 1 + 1;
+
+					likeIcon.style.color = '#05bcff';
+					if ( newCount <= 0 ) {
+						likeCountLabel.innerHTML = '';
+					} else {
+						likeCountLabel.innerHTML = newCount;
+					}
+
+				} else {
+
+					let newCount = likeCountNum * 1 - 1;
+
+					likeIcon.style.color = '#afaeae';
+					if ( newCount <= 0 ) {
+						likeCountLabel.innerHTML = '';
+					} else {
+						likeCountLabel.innerHTML = newCount;
+					}
+
+				}
+
 			}
 		});
 
@@ -174,7 +212,6 @@ class List extends React.Component {
 
 	// 行
 	row = (rowData, sectionID, rowID) => {
-
 
 		const obj = rowData;
 
@@ -195,12 +232,10 @@ class List extends React.Component {
 							</div>
 						</div>
 						<div className={styles.itemContent}>
-							<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
-								<div className={styles.title}>
-									{ obj.uid == UID && obj.show_type == '1' && <i className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80b;</i> }
-									{obj.title}
-								</div>
-							</Link>
+							<div className={styles.title}>
+								{ obj.uid == UID && obj.show_type == '1' && <i className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80b;</i> }
+								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.title}</Link>
+							</div>
 							<div className={ this.state['isDesShowAll' + obj.feed_id] ? styles.desAll : styles.des} onClick={this.handleContentSlide.bind(this, obj.feed_id)}>{obj.content}</div>
 							{
 								obj.imgInfo && obj.imgInfo.length > 0 ?
@@ -220,11 +255,17 @@ class List extends React.Component {
 							}
 						</div>
 						<div className={styles.icons}>
-							<span className={styles.praise} onClick={this.handleUpdatedigg.bind(this, obj.feed_id)}>
+							<span className={styles.praise} onClick={this.handleUpdatedigg.bind(this, obj.feed_id, obj.digg_count)}>
+								{/* {likeIcon}
+								{likeCount} */}
 								{
-									obj.hasDigg == 1 ? <i className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>
+									obj.has_digg == 1
+									?
+									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i>
+									:
+									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall}>&#xe808;</i>
 								}
-								<label>{obj.digg_count > 0 ? obj.digg_count : null}</label>
+								<label id={"likeCount" + obj.feed_id}>{obj.digg_count > 0 ? obj.digg_count : null}</label>
 							</span>
 							<span className={styles.review}>
 								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>

@@ -1,7 +1,4 @@
-/**
- * 梦境列表页
- * author:zch
- */
+
 import React from "react";
 import { connect } from "dva";
 import { Link } from "dva/router"
@@ -54,18 +51,14 @@ class Index extends React.Component {
 	componentWillReceiveProps(nextProps) {
 
 		if (this.state.list !== nextProps.list) {
+
 			this.setState({
 				list: [...this.state.list, ...nextProps.list],
 				height: contentHeight,
+				dataSource: this.state.dataSource.cloneWithRows([...this.state.list, ...nextProps.list]),
+				isLoading: false,
 			});
 
-			setTimeout(() => {
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(this.state.list),
-					isLoading: false,
-					height: contentHeight,
-				});
-			}, 500);
 		}
 	}
 
@@ -76,7 +69,12 @@ class Index extends React.Component {
 		}
 		this.setState({ isLoading: true });
 		this.state.currentPage = this.state.currentPage + 1;
-		this.props.dispatch({ type: 'home/getDreamList', payload: { page: this.state.currentPage } });
+		this.props.dispatch({
+			type: 'home/getDreamList',
+			payload: {
+				page: this.state.currentPage
+			}
+		});
 	}
 
 	render() {

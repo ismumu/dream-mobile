@@ -27,9 +27,6 @@ if (document.domain === '118.31.61.9') {
 
 
 
-
-
-
 module.exports = {
 	dream: {
 		list: `${devApi}/feed/view`,
