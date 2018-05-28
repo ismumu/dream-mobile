@@ -61,10 +61,6 @@ class Index extends React.Component {
 
 	row = (rowData, sectionID, rowID) => {
 
-		console.log(rowData)
-
-
-
 		return (
 			<div className={styles.message}>
 				{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
@@ -76,39 +72,6 @@ class Index extends React.Component {
 			</div>
 		)
 
-		// return (
-		// 	<div className={styles.item}>
-		// 		{
-		// 			obj.is_open == '1' ?
-		// 				<i className={styles.msgOrange}></i> : null
-		// 		}
-		// 		<div className={styles.head}>
-		// 			<Link to={{ pathname: "/my/other", 'state': + obj.fromUser.uid }}>
-		// 				<span className={styles.name}>{obj.fromUser.uname}</span>
-		// 			</Link>
-		// 			<span className={styles.msgType}>
-		// 				{
-		// 					obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe810;</i>
-		// 						: obj.type == "收藏" ? <i style={{ fontStyle: 'normal', fontSize: 12 }}>| 收藏你梦境</i>
-		// 							: <i className={styles.iconfontSmall}>&#xe808;</i>
-		// 				}
-		// 			</span>
-		// 			<span className={styles.review}></span>
-		// 		</div>
-		// 		<Link to={{ pathname: "/home/detail", query: { id: obj.feed.feed_id } }}>
-		// 			<div className={styles.reviewContent}>
-		// 				{obj.fromUser.reviewContent}
-		// 			</div>
-		// 			<div className={styles.reviewTarget}>
-		// 				<div className={styles.rehead}><b>{obj.feed.uname}</b> &nbsp; &nbsp; {obj.feed.publish_time}</div>
-		// 				<div className={styles.title}>{obj.feed.title}</div>
-		// 				<div className={styles.des}>{obj.feed.content}</div>
-		// 			</div>
-		// 		</Link>
-		// 		<div><span className={styles.time}>{obj.fromUser.add_time}</span></div>
-		// 	</div>
-
-		// );
 	};
 
 	// 拉底刷新
@@ -135,16 +98,6 @@ class Index extends React.Component {
 			/>
 		);
 
-		const tabs = [
-			{
-				title: <i className={styles.iconfontBlack}>&#xf232;</i>
-			},
-			// {
-			//     title: '点赞'
-			// }, {
-			//     title: '@艾特'
-			// }
-		];
 
 		return (
 			<div className={styles.chatWrap}>
@@ -168,34 +121,6 @@ class Index extends React.Component {
 						onEndReached={this.onEndReached}
 						onEndReachedThreshold={10}
 					/>
-					{/* <Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
-						{
-							//this.state.msgList && this.state.msgList.length > 0 ?
-							<ListView
-								ref={el => this.lv = el}
-								dataSource={this.state.dataSource}
-								renderFooter={() => (<div style={{ padding: 5, textAlign: 'center' }}>
-									{this.state.isLoading ? "加载中..." : ''}
-								</div>)}
-								renderRow={this.row}
-								renderSeparator={separator}
-								style={{
-									height: this.state.height,
-									overflow: 'auto',
-								}}
-								pageSize={4}
-								// onScroll={() => { console.log('scroll'); }}
-								scrollRenderAheadDistance={500}
-								onEndReached={this.onEndReached}
-								onEndReachedThreshold={10}
-							/>
-						}
-
-
-
-						<div>点赞</div>
-						<div>艾特</div>
-					</Tabs> */}
 				</StickyContainer>
 			</div>
 		)

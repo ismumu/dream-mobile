@@ -15,6 +15,18 @@ if (document.domain === 'h5.xiaoyiwo.net') {
 }
 
 
+
+
+
+if (document.domain === '118.31.61.9') {
+	devApi = 'http://118.31.61.9:7171';
+}
+
+
+
+
+
+
 module.exports = {
 	dream: {
 		list: `${devApi}/feed/view`,
