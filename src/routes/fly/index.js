@@ -19,7 +19,6 @@ class Fly extends React.Component {
 	// 发布
 	handlePublish = () => {
 
-		const _this = this;
 		const title = document.getElementById("titleId").value;
 		const content = document.getElementById("txtId").value;
 		const feeling = this.state.feeling;
@@ -30,19 +29,11 @@ class Fly extends React.Component {
 			Toast.info('请多少输入一点吧~~', 1);
 		}
 		else {
-			// 拼接图片/标签
-			let imgStr = "", tagStr = "";
 
-			_this.props.images.map(image => {
-				imgStr += image + ',';
-			})
+			let imgStr = this.state.files.join(',');
+			let tagStr = this.state.selectTags.join(' ');
 
-
-			_this.state.selectTags.map(tag => {
-				tagStr += tag + ',';
-			})
-
-			_this.props.dispatch({
+			this.props.dispatch({
 				type: 'fly/publishDream',
 				payload: {
 					'title': title,
@@ -57,7 +48,6 @@ class Fly extends React.Component {
 
 	// 选择图片
 	onChange = (files, type, index) => {
-		const _this = this;
 
 		this.setState({
 			files,
@@ -83,11 +73,11 @@ class Fly extends React.Component {
 
 	// 自动缓存到本地
 	autoSaveSet = () => {
-		const _this = this;
+
 		const title = document.getElementById("titleId") ? document.getElementById("titleId").value : '',
 			content = document.getElementById("txtId") ? document.getElementById("txtId").value : '',
-			images = _this.props.images,
-			tags = _this.state.selectTags,
+			images = this.props.images,
+			tags = this.state.selectTags,
 			timer = 1000 * 60 * 60 * 24;         // 存储时间，24小时
 
 		if (title !== "") {
@@ -131,51 +121,39 @@ class Fly extends React.Component {
 	}
 
 	componentDidMount() {
-		const _this = this;
 
 		// 获取未发布的信息
-		_this.autoSaveGet()
+		this.autoSaveGet()
 
 		// 每隔50秒自动保存一次
 		setInterval(() => {
-			_this.autoSaveSet();
+			this.autoSaveSet();
 		}, 1000 * 50);
+	}
+
+	onAddTag = (val) => {
+		let tags = this.state.selectTags;
+
+		tags.push(val);
+
+		this.setState({
+			selectTags: tags,
+		})
+	}
+	onClose = (index) => {
+		let tags = this.state.selectTags
+
+		tags.splice(index, 1);
+
+		this.setState({
+			selectTags: tags,
+		})
 	}
 
 	render() {
 
-		const _this = this;
 		const { getFieldProps } = this.props.form;
-		const { files } = this.state;
-
-		const tagProps = {
-			tags: _this.props.tags,
-			selectTags: _this.state.selectTags,
-			onAddTag: (val) => {
-				this.props.dispatch({
-					type: 'fly/addTagItem',
-					payload: {
-						tag: val
-					}
-				})
-			},
-			onSelectTag: (val, t) => {
-				let tags = this.state.selectTags
-
-				if (t) {
-					tags.push(val);
-
-					_this.setState({
-						selectTags: tags,
-					})
-				} else {
-					tags.splice(tags.indexOf(val), 1);
-					_this.setState({
-						selectTags: tags,
-					})
-				}
-			}
-		}
+		const { files, selectTags } = this.state;
 
 		return (
 			<div className={styles.flyWrap}>
@@ -216,7 +194,11 @@ class Fly extends React.Component {
 					multiple={1}
 				/>
 
-				<TagModel {...tagProps} />
+				<TagModel
+					selectTags={selectTags}
+					onAddTag={this.onAddTag}
+					onClose={this.onClose}
+				/>
 
 				<p className={styles.autoSaveMsg}>
 					系统每50秒自动保存一次 <br />

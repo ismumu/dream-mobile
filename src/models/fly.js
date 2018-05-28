@@ -101,11 +101,6 @@ export default modelExtend(model, {
 			}
 		},
 
-		//添加标签
-		*addTag({ payload }, { call, put }) {
-			yield put({ type: 'addTagItem', payload: payload });
-		},
-
 	},
 
 	reducers: {
@@ -127,17 +122,6 @@ export default modelExtend(model, {
 			return { ...state, imagesEdit: state.imagesEdit };
 		},
 
-		addTagItem(state, { payload }) {
-
-			// 标签最多只能添加7个
-			if (state.tags.length >= 7) {
-				return { ...state };
-			} else {
-				let tags = state.tags.concat(payload.tag);
-				return { ...state, tags: tags };
-			}
-
-		},
 	},
 
 });

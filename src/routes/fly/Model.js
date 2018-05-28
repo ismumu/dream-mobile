@@ -52,9 +52,9 @@ class TagModel extends React.Component {
 		e.preventDefault();
 
 
-		const { tags } = this.props;
+		const { selectTags } = this.props;
 
-		if ( tags.length >= 7 ) {
+		if ( selectTags.length >= 7 ) {
 			Toast.info('最多只能添加7个标签', 1);
 			return false;
 		}
@@ -74,10 +74,10 @@ class TagModel extends React.Component {
 	// 添加标签
 	onAddTags = (event) => {
 
-		const { tags } = this.props;
+		const { selectTags } = this.props;
 		const val = this.refs.inputTag.value;
 
-		if (!tags.includes(val) && val) {
+		if (!selectTags.includes(val) && val) {
 			this.props.onAddTag(val);
 		}
 
@@ -87,15 +87,17 @@ class TagModel extends React.Component {
 
 	}
 
-	// 选择标签
-	onSelectTag = (t, val) => {
-		this.props.onSelectTag(t, val);
+
+
+	tagsOnClose = (index) => {
+		this.props.onClose(index);
 	}
 
 
 	render() {
 
-		const { tags, selectTags } = this.props;
+		const { selectTags } = this.props;
+
 
 		return (
 			<div>
@@ -110,9 +112,9 @@ class TagModel extends React.Component {
 
 				<div style={{ margin: '10px 0 0 10px' }}>
 					{
-						tags.map((item, index) => (
-							<Tag key={index} style={{ marginRight: 5, marginBottom: 5 }} selected={selectTags.contains(item)} onChange={this.onSelectTag.bind(this, item)}>{item}</Tag>
-						))
+						selectTags.map((item, index) => {
+							return <Tag closable key={Date.now() + index} style={{ marginRight: 5, marginBottom: 5 }} onClose={this.tagsOnClose.bind(this, index)}>{item}</Tag>
+						})
 					}
 				</div>
 

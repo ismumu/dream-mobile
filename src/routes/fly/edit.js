@@ -29,6 +29,7 @@ class FlyEdit extends React.Component {
 	}
 
 	componentWillReceiveProps(props) {
+
 		if (props.images) {
 			this.setState({
 				files: props.imagesEdit,
@@ -40,6 +41,7 @@ class FlyEdit extends React.Component {
 
 	// 发梦
 	handlePublish = () => {
+
 		const id = this.props.params.id;
 		const title = document.getElementById("titleId").value;
 		const content = document.getElementById("txtId").value;
@@ -51,16 +53,9 @@ class FlyEdit extends React.Component {
 			Toast.info('请多少输入一点吧~~', 1);
 		}
 		else {
-			// 拼接图片/标签
-			let imgStr = "", tagStr = "";
-			this.state.files.map(image => {
-				imgStr += image.url + ',';
-			})
-			this.state.selectTags.map(tag => {
-				tagStr += tag + ',';
-			})
 
-
+			let imgStr = this.state.files.join(',');
+			let tagStr = this.state.selectTags.join(' ');
 
 			this.props.dispatch({
 				type: 'fly/updateDream', payload: {
@@ -77,7 +72,6 @@ class FlyEdit extends React.Component {
 
 	// 选择图片
 	onChange = (files, type, index) => {
-		const _this = this;
 
 		this.setState({
 			files,
@@ -101,38 +95,35 @@ class FlyEdit extends React.Component {
 		}
 	}
 
+
+	onAddTag = (val) => {
+
+		let tags = this.state.selectTags;
+
+		tags.push(val);
+
+		this.setState({
+			selectTags: tags,
+		})
+	}
+
+
+	onClose = (index) => {
+
+		let tags = this.state.selectTags;
+
+		tags.splice(index, 1);
+
+		this.setState({
+			selectTags: tags,
+		})
+	}
+
+
 	render() {
-		const _this = this;
+
 		const { getFieldProps } = this.props.form;
-		const { files } = this.state;
-		const tagProps = {
-			tags: _this.props.tags,
-			selectTags: _this.state.selectTags,
-			onAddTag: (val) => {
-				this.props.dispatch({
-					type: 'fly/addTagItem',
-					payload: {
-						tag: val
-					}
-				})
-			},
-			onSelectTag: (val, t) => {
-				let tags = this.state.selectTags
-
-				if (t) {
-					tags.push(val);
-
-					_this.setState({
-						selectTags: tags,
-					})
-				} else {
-					tags.splice(tags.indexOf(val), 1);
-					_this.setState({
-						selectTags: tags,
-					})
-				}
-			}
-		}
+		const { files, selectTags } = this.state;
 
 		return (
 			<div className={styles.flyWrap}>
@@ -171,7 +162,11 @@ class FlyEdit extends React.Component {
 									multiple={true}
 								/>
 
-								<TagModel {...tagProps} />
+								<TagModel
+									selectTags={selectTags}
+									onAddTag={this.onAddTag}
+									onClose={this.onClose}
+								/>
 								<Button icon={<span className={styles.icon}></span>} type="primary" onClick={this.handlePublish} className={styles.flyUpdateBtn}>更新</Button>
 							</div>
 							: null
