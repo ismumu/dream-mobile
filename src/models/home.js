@@ -202,14 +202,11 @@ export default modelExtend(model, {
 		},
 
 		// 设为私密
-		*setSecretInList({ payload }, { call, put }) {
-			const { data, code, msg } = yield call(setSecret, payload);
+		*setSecretInList(action, { call, put }) {
+			const { data, code, msg } = yield call(setSecret, action.payload);
 			if (code == 200) {
 				Toast.success(msg, 1);
-				yield put({
-					type: 'getDreamList',
-					payload: payload
-				})
+				action.callback && action.callback();
 			}
 		},
 

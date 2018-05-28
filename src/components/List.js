@@ -37,12 +37,17 @@ class List extends React.Component {
 	// 编辑梦境
 	editDream = (feedId, show_type) => {
 
-		// show_type：1（公开），2（私密）
-		show_type = parseInt(show_type);
 
-		//const BUTTONS2 = ['编辑', show_type == 1 ? '设为私密' : '设为公开', '删除', '取消'];
+		// show_type：1（公开），2（私密）
+
+		let showTypeKey = 'showTypeId' + feedId;
+
+		if ( !this[showTypeKey] ) {
+			this[showTypeKey] = parseInt(show_type);
+		}
+
 		const BUTTONS2 = ['编辑',
-			show_type == 1 ? <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为私密</span>
+			this[showTypeKey] == 1 ? <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为私密</span>
 				: <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为公开</span>,
 			'删除'];
 
@@ -70,11 +75,22 @@ class List extends React.Component {
 				}
 				else if (buttonIndex === 1) {
 					// 设为私密
+
+					let newTpye = (this[showTypeKey] == 1 ? 2 : 1);
+					this[showTypeKey] = newTpye;
+
 					this.props.dispatch({
 						type: 'home/setSecretInList',
 						payload: {
-							show_type: show_type == 1 ? 2 : 1,
+							show_type: newTpye,
 							feed_id: feedId,
+						},
+						callback: () => {
+							if ( this[showTypeKey] == 1 ) {
+								document.getElementById('secret' + feedId).style.display = 'none';
+							} else {
+								document.getElementById('secret' + feedId).style.display = 'block';
+							}
 						}
 					});
 				}
@@ -215,6 +231,13 @@ class List extends React.Component {
 
 		const obj = rowData;
 
+		let secretDom = ''
+		if ( obj.uid == UID && obj.show_type == '2' ) {
+			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80b;</i>;
+		} else {
+			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal', display: 'none' }}>&#xe80b;</i>;
+		}
+
 		return (
 			<div>
 				{
@@ -233,7 +256,7 @@ class List extends React.Component {
 						</div>
 						<div className={styles.itemContent}>
 							<div className={styles.title}>
-								{ obj.uid == UID && obj.show_type == '1' && <i className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80b;</i> }
+								{ secretDom }
 								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.title}</Link>
 							</div>
 							<div className={ this.state['isDesShowAll' + obj.feed_id] ? styles.desAll : styles.des} onClick={this.handleContentSlide.bind(this, obj.feed_id)}>{obj.content}</div>
