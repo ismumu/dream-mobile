@@ -178,6 +178,8 @@ class List extends React.Component {
 
 		const obj = rowData;
 
+		console.log(obj)
+
 
 		return (
 			<div>
@@ -198,6 +200,7 @@ class List extends React.Component {
 						<div className={styles.itemContent}>
 							<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
 								<div className={styles.title}>
+									{ obj.uid == UID && obj.show_type == '1' && <i className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80b;</i> }
 									{obj.title}
 								</div>
 							</Link>

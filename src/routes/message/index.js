@@ -70,47 +70,45 @@ class Index extends React.Component {
 				{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
 				<img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} />
 				<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
-					<p className={styles.head}><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>
-					<p className={styles.des}>{rowData.fromUser.reviewContent}</p>
+					<p className={rowData.fromUser.reviewContent ? styles.head : styles.head + ' ' + styles.noReviewContent }><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>
+					{rowData.fromUser.reviewContent && <p className={styles.des}>{rowData.fromUser.reviewContent}</p>}
 				</div>
 			</div>
 		)
 
+		// return (
+		// 	<div className={styles.item}>
+		// 		{
+		// 			obj.is_open == '1' ?
+		// 				<i className={styles.msgOrange}></i> : null
+		// 		}
+		// 		<div className={styles.head}>
+		// 			<Link to={{ pathname: "/my/other", 'state': + obj.fromUser.uid }}>
+		// 				<span className={styles.name}>{obj.fromUser.uname}</span>
+		// 			</Link>
+		// 			<span className={styles.msgType}>
+		// 				{
+		// 					obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe810;</i>
+		// 						: obj.type == "收藏" ? <i style={{ fontStyle: 'normal', fontSize: 12 }}>| 收藏你梦境</i>
+		// 							: <i className={styles.iconfontSmall}>&#xe808;</i>
+		// 				}
+		// 			</span>
+		// 			<span className={styles.review}></span>
+		// 		</div>
+		// 		<Link to={{ pathname: "/home/detail", query: { id: obj.feed.feed_id } }}>
+		// 			<div className={styles.reviewContent}>
+		// 				{obj.fromUser.reviewContent}
+		// 			</div>
+		// 			<div className={styles.reviewTarget}>
+		// 				<div className={styles.rehead}><b>{obj.feed.uname}</b> &nbsp; &nbsp; {obj.feed.publish_time}</div>
+		// 				<div className={styles.title}>{obj.feed.title}</div>
+		// 				<div className={styles.des}>{obj.feed.content}</div>
+		// 			</div>
+		// 		</Link>
+		// 		<div><span className={styles.time}>{obj.fromUser.add_time}</span></div>
+		// 	</div>
 
-
-		return (
-			<div className={styles.item}>
-				{
-					obj.is_open == '1' ?
-						<i className={styles.msgOrange}></i> : null
-				}
-				<div className={styles.head}>
-					<Link to={{ pathname: "/my/other", 'state': + obj.fromUser.uid }}>
-						<span className={styles.name}>{obj.fromUser.uname}</span>
-					</Link>
-					<span className={styles.msgType}>
-						{
-							obj.type == "评论" ? <i className={styles.iconfontSmall}>&#xe810;</i>
-								: obj.type == "收藏" ? <i style={{ fontStyle: 'normal', fontSize: 12 }}>| 收藏你梦境</i>
-									: <i className={styles.iconfontSmall}>&#xe808;</i>
-						}
-					</span>
-					<span className={styles.review}></span>
-				</div>
-				<Link to={{ pathname: "/home/detail", query: { id: obj.feed.feed_id } }}>
-					<div className={styles.reviewContent}>
-						{obj.fromUser.reviewContent}
-					</div>
-					<div className={styles.reviewTarget}>
-						<div className={styles.rehead}><b>{obj.feed.uname}</b> &nbsp; &nbsp; {obj.feed.publish_time}</div>
-						<div className={styles.title}>{obj.feed.title}</div>
-						<div className={styles.des}>{obj.feed.content}</div>
-					</div>
-				</Link>
-				<div><span className={styles.time}>{obj.fromUser.add_time}</span></div>
-			</div>
-
-		);
+		// );
 	};
 
 	// 拉底刷新
