@@ -47,8 +47,7 @@ class List extends React.Component {
 		}
 
 		const BUTTONS2 = ['编辑',
-			this[showTypeKey] == 1 ? <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为私密</span>
-				: <span><i className={styles.iconfont} style={{ verticalAlign: 'top' }}>&#xe80b;</i>&nbsp;设为公开</span>,
+			this[showTypeKey] == 1 ? '设为私密' : '设为公开',
 			'删除'];
 
 		ActionSheet.showActionSheetWithOptions({
@@ -353,7 +352,7 @@ class List extends React.Component {
 						<Clipboard data-clipboard-text={window.location.origin + '/home/detail?id=' + this.state.shareId} onSuccess={this.onSuccess} style={{ width: '100%', border: 0, background: 'white', padding: 0 }}>
 							<Button type="default">复制链接</Button>
 						</Clipboard>
-						<Button type="default" style={{ marginTop: -1 }} onClick={this.collectShow}>添加到收藏夹</Button>
+						{/* <Button type="default" style={{ marginTop: -1 }} onClick={this.collectShow}>添加到收藏夹</Button> */}
 						<div style={{ padding: 10 }} id="socialShare"></div>
 					</div>
 				</Modal>

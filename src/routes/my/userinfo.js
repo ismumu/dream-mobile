@@ -74,7 +74,7 @@ class Userinfo extends React.Component {
 		}
 
 		if (this.state.hasMore) {
-			Toast.info("没有更多了");
+			Toast.info("没有更多了", 1);
 			return;
 		}
 
@@ -111,9 +111,11 @@ class Userinfo extends React.Component {
 		const tabs = [
 			{
 				title: <b className={styles.colorBlack}>我的梦境</b>
-			}, {
-				title: <b className={styles.colorBlack}>收藏夹</b>
-			}
+			},
+			// 暂时隐藏我的收藏
+			// {
+			// 	title: <b className={styles.colorBlack}>收藏夹</b>
+			// }
 		];
 
 		const { tags } = this.props;
@@ -146,6 +148,7 @@ class Userinfo extends React.Component {
 								<b>{_user.uname}</b>
 							</div>
 						</div>
+						<div className={styles.opinion}>{_user.intro}</div>
 						<ul>
 							<li>
 								<i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_user.sex)}</span></li>
@@ -160,9 +163,6 @@ class Userinfo extends React.Component {
 							{
 								Object.keys(tags).map((tag) => (<span className={styles.tag} key={tag}>{tags[tag]}</span>))
 							}
-						</div>
-						<div className={styles.opinion}>
-							{_user.intro}
 						</div>
 					</div>
 

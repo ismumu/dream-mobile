@@ -60,15 +60,16 @@ class Index extends React.Component {
 	}
 
 	row = (rowData, sectionID, rowID) => {
-
 		return (
 			<div className={styles.message}>
 				{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
-				<img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} />
-				<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
-					<p className={rowData.fromUser.reviewContent ? styles.head : styles.head + ' ' + styles.noReviewContent }><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>
-					{rowData.fromUser.reviewContent && <p className={styles.des}>{rowData.fromUser.reviewContent}</p>}
-				</div>
+				<Link to={{ pathname: "/my/other", 'state': + rowData.fromUser.uid }}><img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} /></Link>
+				<Link to={{ pathname: "/home/detail", query: { id: rowData.feed.feed_id } }}>
+					<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
+						<p className={rowData.fromUser.reviewContent ? styles.head : styles.head + ' ' + styles.noReviewContent }><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>
+						{rowData.fromUser.reviewContent && <p className={styles.des}>{rowData.fromUser.reviewContent}</p>}
+					</div>
+				</Link>
 			</div>
 		)
 

@@ -49,10 +49,11 @@ class Userinfo extends React.Component {
 
 	componentDidMount() {
 		const uid = this.props.location.state;
+
 		if (uid) {
 			// 如果是自己
 			if (uid == UID) {
-				//browserHistory.push('my/userinfo');
+				// browserHistory.push('my/userinfo');
 			} else {
 				this.props.dispatch({ type: 'my/getOtherInfo', payload: { uid: uid, page: 1 } });
 			}
