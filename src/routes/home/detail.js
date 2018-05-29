@@ -121,11 +121,10 @@ class Detail extends React.Component {
 
 			this.setState({ "placeholder": '开始评论', "review_id": 0 });
 
-			textId.value = null;
-			textId.focus();
-			setTimeout(() => {
-				textId.blur();
-			}, 500);
+			// textId.focus();
+			// setTimeout(() => {
+			// 	textId.blur();
+			// }, 500);
 		}
 	}
 
@@ -471,10 +470,11 @@ class Detail extends React.Component {
 											</div>
 										</div>
 
-										{/* 评论框 */}
+
 										<div className={styles.reviewTextArea} id="reviewTextArea">
 											<div className={styles.l}>
 												<TextareaItem
+													key={Date.now()}
 													style={{
 														width: '98%',
 														height: 28,
@@ -484,7 +484,6 @@ class Detail extends React.Component {
 														padding: '5px',
 														fontSize: 14,
 														lineHeight: '18px',
-														value: null,
 														zIndex: 9999
 													}}
 													rows={1}
