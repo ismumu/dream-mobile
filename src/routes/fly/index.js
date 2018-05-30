@@ -30,7 +30,7 @@ class Fly extends React.Component {
 		}
 		else {
 
-			let imgStr = this.state.files.join(',');
+			let imgStr = this.props.images.join(',');
 			let tagStr = this.state.selectTags.join(' ');
 
 			this.props.dispatch({
@@ -52,6 +52,7 @@ class Fly extends React.Component {
 		this.setState({
 			files,
 		});
+
 
 		if (type == "add") {
 			const len = files.length - 1;

@@ -54,8 +54,16 @@ class FlyEdit extends React.Component {
 		}
 		else {
 
-			let imgStr = this.state.files.join(',');
+
+
+			let _array = [];
+			this.state.files.map((obj) => {
+				_array.push(obj.url);
+			})
+
+			let imgStr = _array.join(',');
 			let tagStr = this.state.selectTags.join(' ');
+
 
 			this.props.dispatch({
 				type: 'fly/updateDream', payload: {
