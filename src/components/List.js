@@ -156,17 +156,15 @@ class List extends React.Component {
 	// 内容展开与隐藏
 	handleContentSlide = (feed_id) => {
 
-		let key = 'isDesShowAll' + feed_id;
+		let id = 'desShowAll' + feed_id;
+		let dom = document.getElementById(id);
 
 
+	// 双击
 		if(Date.now() - this.time < 200) {
-			this.setState({
-				[key]: false,
-			})
+			dom.setAttribute('style','max-height: 40px');
 		} else {
-			this.setState({
-				[key]: true,
-			})
+			dom.setAttribute('style','max-height: none');
 		}
 
 		this.time = Date.now();
@@ -258,7 +256,7 @@ class List extends React.Component {
 								{ secretDom }
 								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.title}</Link>
 							</div>
-							<div className={ this.state['isDesShowAll' + obj.feed_id] ? styles.desAll : styles.des} onClick={this.handleContentSlide.bind(this, obj.feed_id)}>{obj.content}</div>
+							<div className={ styles.des} id={'desShowAll' + obj.feed_id} onClick={this.handleContentSlide.bind(this, obj.feed_id)}>{obj.content}</div>
 							{
 								obj.imgInfo && obj.imgInfo.length > 0 ?
 									<div className={styles.imgs}>
@@ -278,8 +276,6 @@ class List extends React.Component {
 						</div>
 						<div className={styles.icons}>
 							<span className={styles.praise} onClick={this.handleUpdatedigg.bind(this, obj.feed_id, obj.digg_count)}>
-								{/* {likeIcon}
-								{likeCount} */}
 								{
 									obj.has_digg == 1
 									?
