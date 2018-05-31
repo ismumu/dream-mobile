@@ -5,11 +5,15 @@ import styles from "./index.less";
 import { createForm } from 'rc-form';
 import TagModel from "./Model";
 
+import { browserHistory } from 'react-router';
+
 class FlyEdit extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
 		this.state = {
+			editDetail: '', // 详情信息
+
 			files: [],
 			selectTags: [],
 		};
@@ -23,33 +27,39 @@ class FlyEdit extends React.Component {
 			payload: {
 				feed_id: id,
 				page: 1
+			},
+			callback: (editDetail) => {
+				let _array = [];
+
+				editDetail.data.info.imgInfo.map((url) => {
+					_array.push({
+						url: url,
+					})
+				})
+				this.setState({
+					editDetail: editDetail,
+					files: _array,
+					selectTags: editDetail.data.info.tags,
+				})
 			}
 		});
 
 	}
 
-	componentWillReceiveProps(props) {
-
-		if (props.images) {
-			this.setState({
-				files: props.imagesEdit,
-				selectTags: props.tagsEdit
-			})
-		}
-	}
-
-
 	// 发梦
 	handlePublish = () => {
 
 		const id = this.props.params.id;
-		const title = document.getElementById("titleId").value;
-		const content = document.getElementById("txtId").value;
-		const feeling = this.state.feeling;
 
-		if (title == "") {
+		let titleDom =  document.getElementById("titleId");
+		let contentDom =  document.getElementById("txtId");
+
+		const title = titleDom.value;
+		const content = contentDom.value;
+
+		if ( !title ) {
 			Toast.info('请先填写标题', 1);
-		} else if (content == "") {
+		} else if ( !content ) {
 			Toast.info('请多少输入一点吧~~', 1);
 		}
 		else {
@@ -64,15 +74,22 @@ class FlyEdit extends React.Component {
 			let imgStr = _array.join(',');
 			let tagStr = this.state.selectTags.join(' ');
 
-
 			this.props.dispatch({
 				type: 'fly/updateDream', payload: {
 					'title': title,
 					'content': content,
 					'feed_id': id,
-					'feeling': null,
 					'img_url': imgStr,
 					'tags': tagStr
+				},
+				callback: () => {
+
+					titleDom.value = '';
+					contentDom.value = '';
+					Toast.success("更新成功!", 1);
+
+					history.go(-1);
+
 				}
 			})
 		}
@@ -81,24 +98,37 @@ class FlyEdit extends React.Component {
 	// 选择图片
 	onChange = (files, type, index) => {
 
-		this.setState({
-			files,
-		});
+		let _this = this;
 
 		if (type == "add") {
 			const len = files.length - 1;
-			this.props.dispatch({
+			_this.props.dispatch({
 				type: 'fly/uploadImgEdit',
 				payload: {
 					img: files[len].url
+				},
+				callback: (data) => {
+
+					let _files = _this.state.files;
+
+					_files.push({
+						url: data.data.url,
+					})
+
+					_this.setState({
+						files: _files,
+					});
+
 				}
+
 			});
 		} else if (type == "remove") {
-			this.props.dispatch({
-				type: 'fly/removeImagesEdit',
-				payload: {
-					index: index
-				}
+
+			let { files } = this.state;
+			files.splice(index, 1);
+
+			_this.setState({
+				files: files,
 			});
 		}
 	}
@@ -133,6 +163,8 @@ class FlyEdit extends React.Component {
 		const { getFieldProps } = this.props.form;
 		const { files, selectTags } = this.state;
 
+		let { info = {} } = this.state.editDetail && this.state.editDetail.data;
+
 		return (
 			<div className={styles.flyWrap}>
 				<NavBar
@@ -142,43 +174,39 @@ class FlyEdit extends React.Component {
 					style={{ borderBottom: "1px solid #eee" }}
 				>iDream</NavBar>
 				<div>
-					{
-						this.props.editDetail ?
-							<div>
-								<TextareaItem
-									{...getFieldProps('note0', { initialValue: this.props.editDetail.title })}
-									placeholder="梦境标题"
-									data-seed="logId"
-									id="titleId"
-									autoHeight
-									className={styles.title}
-									ref={el => this.customFocusInst = el}
-								/>
-								<TextareaItem
-									{...getFieldProps('note1', { initialValue: this.props.editDetail.content })}
-									rows={10}
-									id="txtId"
-									className={styles.textarea}
-									placeholder="真诚面对梦境，记下吧~~"
+				<div>
+					<TextareaItem
+						{...getFieldProps('note0', { initialValue: info.title })}
+						placeholder="梦境标题"
+						data-seed="logId"
+						id="titleId"
+						autoHeight
+						className={styles.title}
+						ref={el => this.customFocusInst = el}
+					/>
+					<TextareaItem
+						{...getFieldProps('note1', { initialValue: info.content })}
+						rows={10}
+						id="txtId"
+						className={styles.textarea}
+						placeholder="真诚面对梦境，记下吧~~"
 
-								/>
-								<ImagePicker
-									files={files}
-									onChange={this.onChange}
-									// onImageClick={(index, fs) => console.log(index, fs)}
-									selectable={files.length < 3}
-									multiple={true}
-								/>
+					/>
+					<ImagePicker
+						files={files}
+						onChange={this.onChange}
+						// onImageClick={(index, fs) => console.log(index, fs)}
+						selectable={files.length < 3}
+						multiple={true}
+					/>
 
-								<TagModel
-									selectTags={selectTags}
-									onAddTag={this.onAddTag}
-									onClose={this.onClose}
-								/>
-								<Button icon={<span className={styles.icon}></span>} type="primary" onClick={this.handlePublish} className={styles.flyUpdateBtn}>更新</Button>
-							</div>
-							: null
-					}
+					<TagModel
+						selectTags={selectTags}
+						onAddTag={this.onAddTag}
+						onClose={this.onClose}
+					/>
+					<Button icon={<span className={styles.icon}></span>} type="primary" onClick={this.handlePublish} className={styles.flyUpdateBtn}>更新</Button>
+				</div>
 				</div>
 			</div>
 		)

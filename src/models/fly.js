@@ -28,67 +28,63 @@ export default modelExtend(model, {
 	effects: {
 
 		//发梦
-		*publishDream({ payload }, { call, put, select }) {
+		*publishDream(action, { call, put, select }) {
+
+			let { payload, callback } = action;
+
 			Toast.loading("发送中...");
 			const { data, code, msg } = yield call(publish, payload);
 			if (code == 200) {
-				Toast.success("发送成功!", 1);
-				setTimeout(() => {
-					browserHistory.push('/');
-				}, 1000);
 
-				Storage.remove('title');
-				Storage.remove('content');
-				Storage.remove('images');
-				Storage.remove('tags');
-				yield put({ type: 'updateState', payload: { images: [], tags: [] } });
+				yield put({
+					type: 'updateState',
+					payload: {
+						images: [],
+						tags: []
+					}
+				});
+
+				callback && callback();
+			} else {
+				Toast.info(msg || '系统异常', 1);
 			}
 		},
 
 		// 上传图片
-		*uploadImg({ payload }, { call, put }) {
-			const { data, code, msg } = yield call(uploadImg, payload);
-			if (code === 200) {
-				yield put({ type: 'addImages', payload: data.url });
+		*uploadImg({ payload, callback }, { call, put }) {
+			const data = yield call(uploadImg, payload);
+
+			if (data.code === 200) {
+				callback && callback(data)
 			}
 		},
 
 		// 上传图片,编辑页面
-		*uploadImgEdit({ payload }, { call, put }) {
-			const { data, code, msg } = yield call(uploadImg, payload);
-			if (code === 200) {
-				yield put({ type: 'addImagesEdit', payload: data.url });
+		*uploadImgEdit({ payload, callback }, { call, put }) {
+			const data = yield call(uploadImg, payload);
+			if (data.code === 200) {
+				callback && callback(data)
 			}
 		},
 
 		// 更新梦境
-		*updateDream({ payload }, { call, put }) {
+		*updateDream({ payload, callback }, { call, put }) {
 			Toast.loading("更新中...");
 
-			const { data, code, msg } = yield call(publish, payload);
-			if (code == 200) {
-				yield put({ type: 'updateState', payload: { imagesEdit: [], tagsEdit: [] } });
-				Toast.success("更新成功!", 1);
-				history.go(-1);
+			const data = yield call(publish, payload);
+			if (data.code == 200) {
+				callback && callback(data);
 			}
 		},
 
 		// 获取梦境
-		*editDetail({ payload }, { call, put }) {
+		*editDetail({ payload, callback }, { call, put }) {
 			yield put({ type: 'updateState', payload: { detailLoading: false, detail: null, } });
-			const { data, code } = yield call(getDreamDetail, payload);
-			if (code == 200) {
-				let imgFiles = [];
-				data.info.imgInfo.map((img, index) => {
-					imgFiles.push({
-						url: img,
-						id: index
-					})
-				});
-
-				yield put({ type: 'updateState', payload: { editDetail: data.info, imagesEdit: imgFiles, tagsEdit: data.info.tags, editDetailLoading: false } });
+			const data = yield call(getDreamDetail, payload);
+			if (data.code == 200) {
+				callback && callback(data)
 			} else {
-				yield put({ type: 'updateState', payload: { editDetail: false, editDetailLoading: false } });
+				Toast.info('服务器异常，请稍后重试', 1);
 			}
 		},
 
@@ -104,23 +100,25 @@ export default modelExtend(model, {
 	},
 
 	reducers: {
-		addImages(state, { payload: image }) {
-			const images = state.images.concat(image);
-			return { ...state, images: images };
-		},
-		removeImages(state, { payload: index }) {
-			state.images.splice(index, 1);
-			return { ...state, images: state.images };
-		},
+		// addImages(state, { payload: image }) {
 
-		addImagesEdit(state, { payload: image }) {
-			const images = state.imagesEdit.push({ id: 1, url: image });
-			return { ...state, images };
-		},
-		removeImagesEdit(state, { payload: index }) {
-			state.imagesEdit.splice(index, 1);
-			return { ...state, imagesEdit: state.imagesEdit };
-		},
+		// 	const images = state.images.concat(image);
+		// 	return { ...state, images: images };
+		// },
+		// removeImages(state, { payload: index }) {
+		// 	debugger
+		// 	state.images.splice(index, 1);
+		// 	return { ...state, images: state.images };
+		// },
+
+		// addImagesEdit(state, { payload: image }) {
+		// 	const images = state.imagesEdit.push({ id: 1, url: image });
+		// 	return { ...state, images };
+		// },
+		// removeImagesEdit(state, { payload: index }) {
+		// 	state.imagesEdit.splice(index, 1);
+		// 	return { ...state, imagesEdit: state.imagesEdit };
+		// },
 
 	},
 

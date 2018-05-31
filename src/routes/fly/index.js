@@ -6,6 +6,8 @@ import { createForm } from 'rc-form';
 import Storage from '../../utils/storage'
 import TagModel from "./Model";
 
+import { browserHistory } from 'react-router';
+
 class Fly extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -19,9 +21,13 @@ class Fly extends React.Component {
 	// 发布
 	handlePublish = () => {
 
-		const title = document.getElementById("titleId").value;
-		const content = document.getElementById("txtId").value;
-		const feeling = this.state.feeling;
+		let titleDom =  document.getElementById("titleId");
+		let contentDom =  document.getElementById("txtId");
+
+
+		const title = titleDom.value;
+		const content = contentDom.value;
+
 
 		if (title == "") {
 			Toast.info('请先填写标题', 1);
@@ -30,7 +36,12 @@ class Fly extends React.Component {
 		}
 		else {
 
-			let imgStr = this.props.images.join(',');
+			let _array = [];
+			this.state.files.map((obj) => {
+				_array.push(obj.url);
+			})
+
+			let imgStr = _array.join(',');
 			let tagStr = this.state.selectTags.join(' ');
 
 			this.props.dispatch({
@@ -38,36 +49,68 @@ class Fly extends React.Component {
 				payload: {
 					'title': title,
 					'content': content,
-					'feeling': feeling,
 					'img_url': imgStr,
 					'tags': tagStr
+				},
+				callback: () => {
+					Toast.success("发送成功!", 1);
+					browserHistory.push('/');
+
+					Storage.remove('title');
+					Storage.remove('content');
+					Storage.remove('files');
+					Storage.remove('tags');
+
+					this.setState({
+						files: [],
+					});
+
+					titleDom.value = '';
+					contentDom.value = '';
+
 				}
 			})
+
+
+
 		}
 	}
 
 	// 选择图片
 	onChange = (files, type, index) => {
 
-		this.setState({
-			files,
-		});
-
+		let _this = this;
 
 		if (type == "add") {
+
 			const len = files.length - 1;
-			this.props.dispatch({
+
+			_this.props.dispatch({
 				type: 'fly/uploadImg',
 				payload: {
 					img: files[len].url
+				},
+				callback: (data) => {
+
+					let _files = _this.state.files;
+
+					_files.push({
+						url: data.data.url,
+					})
+
+					_this.setState({
+						files: _files,
+					});
+
 				}
 			});
 		} else if (type == "remove") {
-			this.props.dispatch({
-				type: 'fly/removeImages',
-				payload: {
-					index: index
-				}
+
+			let { files } = _this.state;
+			files.splice(index, 1);
+
+			_this.setState({
+				files: files,
 			});
 		}
 	}
@@ -77,9 +120,9 @@ class Fly extends React.Component {
 
 		const title = document.getElementById("titleId") ? document.getElementById("titleId").value : '',
 			content = document.getElementById("txtId") ? document.getElementById("txtId").value : '',
-			images = this.props.images,
+			files = this.state.files,
 			tags = this.state.selectTags,
-			timer = 1000 * 60 * 60 * 24;         // 存储时间，24小时
+			timer = 1000 * 60 * 60 * 24;// 存储时间，24小时
 
 		if (title !== "") {
 			Storage.set('title', title, timer)
@@ -87,8 +130,8 @@ class Fly extends React.Component {
 		if (content !== "") {
 			Storage.set('content', content, timer)
 		}
-		if (images && images.length > 0) {
-			Storage.set('images', JSON.stringify(images), timer)
+		if (files && files.length > 0) {
+			Storage.set('files', JSON.stringify(files), timer)
 		}
 		if (tags && tags.length > 0) {
 			Storage.set('tags', JSON.stringify(tags), timer)
@@ -100,7 +143,7 @@ class Fly extends React.Component {
 
 		const title = Storage.get('title'),
 			content = Storage.get('content'),
-			images = Storage.get('images'),
+			files = Storage.get('files'),
 			tags = Storage.get('tags');
 
 		if (title) {
@@ -109,9 +152,9 @@ class Fly extends React.Component {
 		if (content) {
 			document.getElementById("txtId").value = content;
 		}
-		if (images) {
+		if (files) {
 			this.setState({
-				files: JSON.parse(images),
+				files: JSON.parse(files),
 			});
 		}
 		if (tags) {
@@ -130,6 +173,22 @@ class Fly extends React.Component {
 		setInterval(() => {
 			this.autoSaveSet();
 		}, 1000 * 50);
+	}
+
+	componentWillReceiveProps(nextProps) {
+
+		if ( nextProps.images.length > 0 ) {
+
+			let _files = this.state.files;
+
+			_files.push({
+				url: nextProps.images[0]
+			})
+
+			this.setState({
+				files: _files,
+			});
+		}
 	}
 
 	onAddTag = (val) => {
