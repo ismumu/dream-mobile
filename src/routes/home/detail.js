@@ -61,7 +61,10 @@ class Detail extends React.Component {
 
 		// 滚动时候收起键盘
 		window.onscroll = function () {
-			document.getElementById("txtId").blur();
+			setTimeout(() => {
+				document.getElementById("txtId").blur();
+			}, 800)
+
 		}
 
 	}
