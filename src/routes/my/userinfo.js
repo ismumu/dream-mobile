@@ -177,7 +177,7 @@ class Userinfo extends React.Component {
 											isLoading={this.state.isLoading}
 											onEndReached={this.onEndReached}
 											isUseBodyScroll={true}
-											isShare={false}
+											isShare={true}
 										/>
 										: <div style={{ textAlign: 'center', color: '#999', fontSize: '12px', marginTop: 30 }}>开展你的梦</div>
 								}

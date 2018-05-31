@@ -291,6 +291,7 @@ class List extends React.Component {
 									<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
 								</Link>
 							</span>
+
 							{(this.props.isShare !== false) && <span><i className={styles.iconfontSmall} onClick={this.onShowShareModal.bind(this, obj)}>&#xe811;</i></span>}
 						</div>
 					</div>
@@ -348,7 +349,6 @@ class List extends React.Component {
 						<Clipboard data-clipboard-text={window.location.origin + '/home/detail?id=' + this.state.shareId} onSuccess={this.onSuccess} style={{ width: '100%', border: 0, background: 'white', padding: 0 }}>
 							<Button type="default">复制链接</Button>
 						</Clipboard>
-						{/* <Button type="default" style={{ marginTop: -1 }} onClick={this.collectShow}>添加到收藏夹</Button> */}
 						<div style={{ padding: 10 }} id="socialShare"></div>
 					</div>
 				</Modal>

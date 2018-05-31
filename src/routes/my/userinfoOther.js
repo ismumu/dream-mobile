@@ -78,49 +78,6 @@ class Userinfo extends React.Component {
 		}
 	}
 
-	// 行
-	/* row = (rowData, sectionID, rowID) => {
-	  const obj = rowData;
-	  return (
-		<div className={styles.item}>
-		  <div className={styles.head}>
-			<div className={styles.img}>
-			  <Link to={{ pathname: "/my/other", 'state': + obj.uid }}>
-				<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
-			  </Link>
-			</div>
-			<span className={styles.name}><Link to={{ pathname: "/my/other", 'state': + obj.uid }}>{obj.uname}</Link></span>
-			<span className={styles.time}>{obj.publish_time}</span>
-		  </div>
-		  <div className={styles.itemContent}>
-			<Link to={{ pathname: "/home/detail", 'state': + obj.feed_id }}>
-			  <div className={styles.title}>
-
-				{obj.title}
-			  </div>
-			  <div className={styles.des}>{obj.content}</div>
-			</Link>
-		  </div>
-		  <div className={styles.icons}>
-			<span className={styles.praise}>
-			  {
-				obj.hasDigg == 1 ? <i className={styles.iconfont}>&#xe707;</i> : <i className={styles.iconfontSmall}>&#xe604;</i>
-			  }
-			  <label>{obj.digg_count>0?obj.digg_count:null}</label>
-			</span>
-			<span className={styles.review}>
-			  <Link to={{ pathname: "/home/detail", 'state': + obj.feed_id }}>
-				<i className={styles.iconfontSmall}>&#xe60f;</i>
-				<label>{obj.comment_all_count>0?obj.comment_all_count:null}</label>
-			  </Link>
-			</span>
-
-		  </div>
-		</div>
-
-	  );
-	}; */
-
 	// 拉到底部刷新
 	onEndReached = (event) => {
 		if (this.state.isLoading && !this.state.hasMore) {
@@ -208,7 +165,6 @@ class Userinfo extends React.Component {
 								{
 									this.props.otherInfo ?
 										<div>
-											{/* <Icon style={{ position: 'absolute', right: 10 }} type="ellipsis" size="xxs" onClick={this.addBlackList.bind(this, _otherInfo.is_black || null)} /> */}
 											<div className={styles.title}>
 												<div className={styles.img}>
 													<img src={_otherInfo.avatar || Util.defaultImg} alt={uname} />

@@ -108,18 +108,18 @@ class Userinfo extends React.Component {
 				<div className={styles.icons}>
 					<span className={styles.praise}>
 						{
-							obj.hasDigg == 1 ? <i className={styles.iconfont}>&#xe707;</i> : <i className={styles.iconfontSmall}>&#xe604;</i>
+							obj.hasDigg == 1 ? <i className={styles.iconfont}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>
 						}
 						<label>{obj.digg_count > 0 ? obj.digg_count : null}</label>
 					</span>
 					<span className={styles.review}>
-						<Link to={{ pathname: "/home/detail", 'state': + obj.feed_id }}>
-							<i className={styles.iconfontSmall}>&#xe60f;</i>
+						<Link to={"/home/detail?id=" + obj.feed_id}>
+							<i className={styles.iconfontSmall}>&#xe810;</i>
 							<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
 						</Link>
 					</span>
 					<span>
-						<i className={styles.iconfontSmall}>&#xe606;</i>
+						<i className={styles.iconfontSmall}>&#xe811;</i>
 					</span>
 
 				</div>
@@ -162,6 +162,8 @@ class Userinfo extends React.Component {
 	}
 
 	render() {
+
+
 		const separator = (sectionID, rowID) => (
 			<div
 				key={`${sectionID}-${rowID}`}
@@ -196,14 +198,10 @@ class Userinfo extends React.Component {
 							</div>
 							<div className={styles.opinion}>{this.props.otherInfo.intro}</div>
 							<ul>
-								<li>
-									<i className={styles.iconfont}>&#xe67b;</i><span>{this.props.otherInfo.sex}</span></li>
-								<li>
-									<i className={styles.iconfont}>&#xe613;</i><span>{this.props.otherInfo.location}</span></li>
-								<li>
-									<i className={styles.iconfont}>&#xe84b;</i><span>{this.props.otherInfo.job}</span></li>
-								<li>
-									<i className={styles.iconfont}>&#xe6e5;</i><span>{this.props.otherInfo.age}</span></li>
+								<li><i className={styles.iconfont}>&#xf226;</i><span>{this.props.otherInfo.sex}</span></li>
+								<li><i className={styles.iconfont}>&#xe806;</i><span>{this.props.otherInfo.location}</span></li>
+								<li><i className={styles.iconfont}>&#xf32d;</i><span>{this.props.otherInfo.job}</span></li>
+								<li><i className={styles.iconfont}>&#xf252;</i><span>{this.props.otherInfo.age}</span></li>
 							</ul>
 
 						</div>
