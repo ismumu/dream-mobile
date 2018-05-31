@@ -59,10 +59,32 @@ class Detail extends React.Component {
 		}
 	}
 
-	componentDidMount() {
-		/* setTimeout(() => {
-		  document.getElementById('txtId').focus();
-		}, 500) */
+	// 输入时，滚动，兼容ios
+	TextareaFocus = () => {
+
+		var top = window.scrollTop;
+		var bottom = window.scrollBottom;
+		var height = window.height;//整个窗口高
+		height = height / 4;
+
+		let id = document.getElementById("reviewTextArea");
+		id.style.position = 'absolute';
+		id.style.bottom = bottom;
+
+
+		var i = 1;
+		var int = setInterval(function () {
+		  window.scrollTo(0, i);
+		  i += 10;
+		  if (i == 100) clearInterval(int);
+		}, 20);
+
+
+	}
+	TextareaBlur = () => {
+		let id = document.getElementById("reviewTextArea");
+		id.style.position = 'fixed';
+		id.style.bottom = 0;
 	}
 
 
@@ -431,6 +453,8 @@ class Detail extends React.Component {
 													rows={1}
 													placeholder={this.state.placeholder}
 													ref={el => this.customFocusInst = el}
+													onFocus={this.TextareaFocus}
+                          							onBlur={this.TextareaBlur}
 													id="txtId"
 												/>
 											</div>
