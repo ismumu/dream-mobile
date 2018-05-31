@@ -15,6 +15,10 @@ import NavBarPage from "../../components/NavBar"
 import CollectList from "./collect/collectList"
 import ListPage from '../../components/List'
 
+
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css';
+
 class Userinfo extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -31,6 +35,11 @@ class Userinfo extends React.Component {
 			height: document.body.clientHeight - 99,
 			currentPage: 1,
 			hasMore: true,
+
+			// ImageView
+			showViewer: false,
+			imagelist: null,
+			imagelistCurrent: 0,
 		};
 	}
 
@@ -106,6 +115,21 @@ class Userinfo extends React.Component {
 	}
 
 
+	// imageView
+	imageViewClick = (data) => {
+		this.setState({
+			showViewer: data.showViewer,
+			imagelist: data.imagelist,
+			imagelistCurrent: data.imagelistCurrent,
+		})
+	}
+	closeImageView = () => {
+		this.setState({
+			showViewer: false,
+		})
+	}
+
+
 
 	render() {
 		const tabs = [
@@ -167,28 +191,37 @@ class Userinfo extends React.Component {
 					</div>
 
 				<div className={styles.dreamWrap}>
-					<StickyContainer>
-						<Tabs tabs={tabs} initialPage={this.props.userInfoInitTabs} swipeable={false} onChange={handleInitTabs}>
-							<div>
-								{
-									this.state.list.length > 0 ?
-										<ListPage
-											dataSource={this.state.dataSource}
-											isLoading={this.state.isLoading}
-											onEndReached={this.onEndReached}
-											isUseBodyScroll={true}
-											isShare={true}
-										/>
-										: <div style={{ textAlign: 'center', color: '#999', fontSize: '12px', marginTop: 30 }}>开展你的梦</div>
-								}
-							</div>
-							<div>
-								<CollectList />
-							</div>
+					<Tabs tabs={tabs} initialPage={this.props.userInfoInitTabs} swipeable={false} onChange={handleInitTabs}>
+						{
+							this.state.list.length > 0
+							?
+							<ListPage
+								dataSource={this.state.dataSource}
+								isLoading={this.state.isLoading}
+								onEndReached={this.onEndReached}
+								isUseBodyScroll={true}
+								isShare={true}
+								imageView={this.imageViewClick}
+							/>
+							:
+							<div style={{ textAlign: 'center', color: '#999', fontSize: '12px', marginTop: 30 }}>开展你的梦</div>
+						}
+						{/* <div>
+							<CollectList />
+						</div> */}
 
-						</Tabs>
-					</StickyContainer>
+					</Tabs>
 				</div>
+
+				{
+					this.state.showViewer &&
+					<ImageView
+						imagelist={this.state.imagelist}
+						current={this.state.imagelistCurrent}
+						close={this.closeImageView}
+					/>
+				}
+
 			</div>
 		)
 	}

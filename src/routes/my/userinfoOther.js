@@ -11,20 +11,11 @@ import NavBarPage from "../../components/NavBar"
 import UserInfoNotLogin from "./userinfoOther-not-login"
 import ListPage from '../../components/List'
 
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css';
+
 // 登陆id
 const UID = Storage.get('uid');
-
-function renderTabBar(props) {
-	return (
-		<Sticky>
-			{({ style }) => <div
-				style={{
-					...style,
-					zIndex: 1
-				}}><Tabs.DefaultTabBar {...props} /></div>}
-		</Sticky>
-	);
-}
 
 
 class Userinfo extends React.Component {
@@ -42,6 +33,11 @@ class Userinfo extends React.Component {
 			isLoading: true,
 			height: document.body.clientHeight * 3 / 4,
 			currentPage: 1,
+
+			// ImageView
+			showViewer: false,
+			imagelist: null,
+			imagelistCurrent: 0,
 
 		};
 
@@ -141,6 +137,21 @@ class Userinfo extends React.Component {
 		ActionSheet.close()
 	}
 
+
+	// imageView
+	imageViewClick = (data) => {
+		this.setState({
+			showViewer: data.showViewer,
+			imagelist: data.imagelist,
+			imagelistCurrent: data.imagelistCurrent,
+		})
+	}
+	closeImageView = () => {
+		this.setState({
+			showViewer: false,
+		})
+	}
+
 	render() {
 
 		let _otherInfo = {
@@ -186,20 +197,29 @@ class Userinfo extends React.Component {
 							</div>
 							<div className={styles.dreamWrap}>
 								<Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
-									<div>
-										<ListPage
-											dataSource={this.state.dataSource}
-											isLoading={this.state.isLoading}
-											onEndReached={this.onEndReached}
-											isUseBodyScroll={true}
-										/>
-									</div>
+									<ListPage
+										dataSource={this.state.dataSource}
+										isLoading={this.state.isLoading}
+										onEndReached={this.onEndReached}
+										isUseBodyScroll={true}
+										imageView={this.imageViewClick}
+									/>
 								</Tabs>
 							</div>
 						</div>
 						:
 						<UserInfoNotLogin uid={this.props.location.state} />
 				}
+
+				{
+					this.state.showViewer &&
+					<ImageView
+						imagelist={this.state.imagelist}
+						current={this.state.imagelistCurrent}
+						close={this.closeImageView}
+					/>
+				}
+
 			</div>
 
 		)

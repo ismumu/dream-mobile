@@ -10,6 +10,9 @@ import MyDreamList from './MyDreamList'
 import UserList from "./UserList";
 import NavBarPage from "../../components/NavBar"
 
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css';
+
 class Index extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -30,6 +33,11 @@ class Index extends React.Component {
 			currentTab: 0,
 
 			isMe: this.props.location ? this.props.location.query.isMe : false,
+
+			// ImageView
+			showViewer: false,
+			imagelist: null,
+			imagelistCurrent: 0,
 		};
 	}
 
@@ -181,6 +189,21 @@ class Index extends React.Component {
 		Storage.remove('keyword');
 	}
 
+
+	// imageView
+	imageViewClick = (data) => {
+		this.setState({
+			showViewer: data.showViewer,
+			imagelist: data.imagelist,
+			imagelistCurrent: data.imagelistCurrent,
+		})
+	}
+	closeImageView = () => {
+		this.setState({
+			showViewer: false,
+		})
+	}
+
 	render() {
 		const tabs = [
 			{
@@ -241,7 +264,9 @@ class Index extends React.Component {
 													dataSource={this.state.dataSource}
 													isLoading={this.state.isLoading}
 													height={this.state.height}
-													onEndReached={this.onEndReached} />
+													onEndReached={this.onEndReached}
+													imageView={this.imageViewClick}
+												/>
 											</div>
 											<div>
 												<MyDreamList keyword={this.state.keyword} />
@@ -271,6 +296,18 @@ class Index extends React.Component {
 							</div>
 						</div>
 				}
+
+
+				{
+					this.state.showViewer &&
+					<ImageView
+						imagelist={this.state.imagelist}
+						current={this.state.imagelistCurrent}
+						close={this.closeImageView}
+					/>
+				}
+
+
 			</div>
 		)
 	}

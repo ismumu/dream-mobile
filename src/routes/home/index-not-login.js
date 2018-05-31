@@ -14,6 +14,10 @@ import Storage from '../../utils/storage';
 import NavBarPage from "../../components/NavBar"
 import List from '../../components/List'
 
+
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css';
+
 const UID = Storage.get('uid');
 
 class Index extends React.Component {
@@ -31,11 +35,16 @@ class Index extends React.Component {
 			list: [],
 			isLoading: true,
 			height: document.body.clientHeight - 44,
+
+			// ImageView
+			showViewer: false,
+			imagelist: null,
+			imagelistCurrent: 0,
 		};
 	}
 
 	componentDidMount() {
-    this.props.dispatch({ type: 'home/getDreamList', payload: { page: 1 } });
+		this.props.dispatch({ type: 'home/getDreamList', payload: { page: 1 } });
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -66,22 +75,45 @@ class Index extends React.Component {
 		this.props.dispatch({ type: 'home/getDreamList', payload: { page: this.state.currentPage } });
 	}
 
+	// imageView
+	imageViewClick = (data) => {
+		this.setState({
+			showViewer: data.showViewer,
+			imagelist: data.imagelist,
+			imagelistCurrent: data.imagelistCurrent,
+		})
+	}
+	closeImageView = () => {
+		this.setState({
+			showViewer: false,
+		})
+	}
+
 	render() {
 		// const tabs = [
 		// 	{
-        // 		title: <b className={styles.colorBlack}>梦境</b>,
+		// 		title: <b className={styles.colorBlack}>梦境</b>,
 		// 	}
 		// ];
 
 		return (
 			<div>
-				  <NavBarPage isLogin="true"/>
-					<List
-						dataSource = {this.state.dataSource}
-						isLoading = {this.state.isLoading}
-						height={this.state.height}
-						onEndReached={this.onEndReached}
+				<NavBarPage isLogin="true" />
+				<List
+					dataSource={this.state.dataSource}
+					isLoading={this.state.isLoading}
+					height={this.state.height}
+					onEndReached={this.onEndReached}
+					imageView={this.imageViewClick}
+				/>
+				{
+					this.state.showViewer &&
+					<ImageView
+						imagelist={this.state.imagelist}
+						current={this.state.imagelistCurrent}
+						close={this.closeImageView}
 					/>
+				}
 			</div>
 		)
 	}

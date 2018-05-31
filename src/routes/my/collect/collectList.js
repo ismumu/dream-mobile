@@ -13,6 +13,9 @@ import Util from "../../../utils/util";
 import NavBarPage from "../../../components/NavBar"
 import ListPage from '../../../components/List'
 
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css';
+
 
 class collectList extends React.Component {
   constructor(props, context) {
@@ -28,7 +31,12 @@ class collectList extends React.Component {
       list: [],
       isLoading: true,
       height: document.body.clientHeight - 99,
-      currentPage: 1,
+	  currentPage: 1,
+
+	  // ImageView
+	  showViewer: false,
+	  imagelist: null,
+	  imagelistCurrent: 0,
     };
   }
 
@@ -70,12 +78,25 @@ class collectList extends React.Component {
     this.props.dispatch({ type: 'home/colletDreamList', payload: { page: this.state.currentPage } });
   }
 
+  // imageView
+	imageViewClick = (data) => {
+		this.setState({
+			showViewer: data.showViewer,
+			imagelist: data.imagelist,
+			imagelistCurrent: data.imagelistCurrent,
+		})
+	}
+	closeImageView = () => {
+		this.setState({
+			showViewer: false,
+		})
+	}
+
 
   render() {
 
     return (
       <div className={styles.dreamWrap}>
-        {/* 我的收藏 */}
         {
           this.state.list && this.state.list.length > 0 ?
               /* <ListView
@@ -99,10 +120,19 @@ class collectList extends React.Component {
                 isLoading={this.state.isLoading}
                 onEndReached={this.onEndReached}
                 isUseBodyScroll={true}
-                isShare={false}
+				isShare={false}
+				imageView={this.imageViewClick}
               />
             : <div style={{ textAlign: 'center', color: '#999', fontSize: '12px', marginTop: 30 }}>您还没有收藏梦境喔</div>
-        }
+		}
+			{
+				this.state.showViewer &&
+				<ImageView
+					imagelist={this.state.imagelist}
+					current={this.state.imagelistCurrent}
+					close={this.closeImageView}
+				/>
+			}
       </div>
 
     )

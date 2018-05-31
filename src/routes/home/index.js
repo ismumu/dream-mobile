@@ -12,6 +12,9 @@ import NavBarPage from "../../components/NavBar"
 import List from '../../components/List'
 import IndexNotLogin from './index-not-login'
 
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css';
+
 const UID = Storage.get('uid');
 
 // 内容高度
@@ -32,6 +35,11 @@ class Index extends React.Component {
 			list: [],
 			isLoading: true,
 			height: contentHeight > 500 ? contentHeight : 800,
+
+			// ImageView
+			showViewer: false,
+			imagelist: null,
+			imagelistCurrent: 0,
 		};
 	}
 
@@ -77,6 +85,20 @@ class Index extends React.Component {
 		});
 	}
 
+	// imageView
+	imageViewClick = (data) => {
+		this.setState({
+			showViewer: data.showViewer,
+			imagelist: data.imagelist,
+			imagelistCurrent: data.imagelistCurrent,
+		})
+	}
+	closeImageView = () => {
+		this.setState({
+			showViewer: false,
+		})
+	}
+
 	render() {
 
 		return (
@@ -87,7 +109,16 @@ class Index extends React.Component {
 					isLoading={this.state.isLoading}
 					height={this.state.height}
 					onEndReached={this.onEndReached}
+					imageView={this.imageViewClick}
 				/>
+				{
+					this.state.showViewer &&
+					<ImageView
+						imagelist={this.state.imagelist}
+						current={this.state.imagelistCurrent}
+						close={this.closeImageView}
+					/>
+				}
 			</div>
 		)
 	}

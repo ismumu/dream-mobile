@@ -45,9 +45,14 @@ class Detail extends React.Component {
 
 			shareModal: false,
 		};
+
 	}
 
 	componentWillMount() {
+
+		let _this = this;
+		this.inputFocus = false;
+
 		const query = this.props.location.query;
 		if (query) {
 			this.props.dispatch({
@@ -60,38 +65,33 @@ class Detail extends React.Component {
 		}
 
 		// 滚动时候收起键盘
-		window.onscroll = function () {
-			setTimeout(() => {
-				document.getElementById("txtId").blur();
-			}, 800)
+		window.onscroll = function (e) {
 
+			let _t = _this.scrollTime;
+
+			if ( _this.inputFocus && Date.now() - _t < 300 ) {
+				let _input = document.getElementById("txtId");
+				_input && _input.blur();
+			}
+
+			_this.scrollTime = Date.now();
 		}
 
 	}
 
-	// 输入时，滚动，兼容ios
 	TextareaFocus = () => {
 
-		// var top = window.scrollTop;
-		// var bottom = window.scrollBottom;
-		// var height = window.height;//整个窗口高
-		// height = height / 4;
-
-		// let id = document.getElementById("reviewTextArea");
-		// id.style.position = 'absolute';
-		// id.style.bottom = bottom;
-
-
-		// var i = 1;
-		// var int = setInterval(function () {
-		//   window.scrollTo(0, i);
-		//   i += 10;
-		//   if (i == 100) clearInterval(int);
-		// }, 20);
-
+		setTimeout(() => {
+			this.inputFocus = true;
+		}, 800)
 
 	}
 	TextareaBlur = () => {
+
+
+		this.inputFocus = false;
+		this.scrollTime = NaN;
+
 		let id = document.getElementById("reviewTextArea");
 		id.style.position = 'fixed';
 		id.style.bottom = 0;

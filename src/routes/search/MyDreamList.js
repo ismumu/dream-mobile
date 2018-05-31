@@ -13,6 +13,9 @@ import styles from "./MyDreamList.less";
 import List from '../../components/List';
 import Util from "../../utils/util";
 
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css';
+
 
 class MyDreamList extends React.Component {
 	constructor(props, context) {
@@ -29,6 +32,11 @@ class MyDreamList extends React.Component {
 			isLoading: true,
 			height: document.body.clientHeight - 99,
 			currentPage: 1,
+
+			// ImageView
+			showViewer: false,
+			imagelist: null,
+			imagelistCurrent: 0,
 		};
 	}
 
@@ -87,6 +95,20 @@ class MyDreamList extends React.Component {
 	}
 
 
+	// imageView
+	imageViewClick = (data) => {
+		this.setState({
+			showViewer: data.showViewer,
+			imagelist: data.imagelist,
+			imagelistCurrent: data.imagelistCurrent,
+		})
+	}
+	closeImageView = () => {
+		this.setState({
+			showViewer: false,
+		})
+	}
+
 	render() {
 
 		return (
@@ -96,7 +118,18 @@ class MyDreamList extends React.Component {
 					isLoading={false}
 					height={this.state.height}
 					onEndReached={this.onEndReached}
+					imageView={this.imageViewClick}
 				/>
+
+				{
+					this.state.showViewer &&
+					<ImageView
+						imagelist={this.state.imagelist}
+						current={this.state.imagelistCurrent}
+						close={this.closeImageView}
+					/>
+				}
+
 			</div>
 
 

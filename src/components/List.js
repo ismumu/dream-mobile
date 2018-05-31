@@ -5,8 +5,8 @@ import { ListView, Icon, NavBar, Tabs, ActionSheet, Toast, Modal, Button } from 
 import { StickyContainer, Sticky } from 'react-sticky';
 import { browserHistory } from 'react-router';
 import Clipboard from 'react-clipboard.js';
-import ImageView from 'react-mobile-imgview';
-import 'react-mobile-imgview/dist/react-mobile-imgview.css'
+
+
 
 import styles from "./List.less";
 import Util from "../utils/util";
@@ -23,11 +23,6 @@ class List extends React.Component {
 			height: this.props.height ? this.props.height : 1000,
 			shareModal: false,
 			shareId: null,
-
-			showViewer: false,
-			imagelist: null,
-			imagelistCurrent: 0,
-
 		}
 
 
@@ -256,7 +251,13 @@ class List extends React.Component {
 								{ secretDom }
 								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.title}</Link>
 							</div>
-							<div className={ styles.des} id={'desShowAll' + obj.feed_id} onClick={this.handleContentSlide.bind(this, obj.feed_id)}>{obj.content}</div>
+							<div
+								className={ styles.des}
+								id={'desShowAll' + obj.feed_id}
+								onClick={this.handleContentSlide.bind(this, obj.feed_id)}
+							>
+								{obj.content}
+							</div>
 							{
 								obj.imgInfo && obj.imgInfo.length > 0 ?
 									<div className={styles.imgs}>
@@ -265,7 +266,16 @@ class List extends React.Component {
 												// 最多只显示3张图片
 												index <= 2 ?
 													<div className={styles.imgbox} key={index}>
-														<img src={img} alt="" onClick={() => { this.setState({ showViewer: true, imagelist: obj.imgInfo, imagelistCurrent: index }) }} />
+														<img
+															src={img}
+															onClick={() => {
+																this.props.imageView({
+																	showViewer: true,
+																	imagelist: obj.imgInfo,
+																	imagelistCurrent: index
+																})
+															}}
+														/>
 													</div>
 													: null
 											))
@@ -352,10 +362,6 @@ class List extends React.Component {
 						<div style={{ padding: 10 }} id="socialShare"></div>
 					</div>
 				</Modal>
-
-				{
-					!!this.state.showViewer && <ImageView imagelist={this.state.imagelist} current={this.state.imagelistCurrent} close={() => { this.setState({ showViewer: false }) }} />
-				}
 			</div>
 		)
 	}
