@@ -41,7 +41,14 @@ class Index extends React.Component {
 			this.onSearch(keyword);
 		} else {
 			if (this.state.isMe) {
-				this.props.dispatch({ type: 'search/searchMy', payload: { 'keyword': '', 'is_me': true, 'page': 1 } });
+				this.props.dispatch({
+					type: 'search/searchMy',
+					payload: {
+						'keyword': '',
+						'is_me': true,
+						'page': 1
+					}
+				});
 			}
 		}
 	}
@@ -56,48 +63,56 @@ class Index extends React.Component {
 		});
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.searchList == null) return;
+
+	// 处理搜索数据
+	setSearchData = (data, keyword) => {
 
 		let hei = document.body.clientHeight - 99;
 
-		if (this.state.list !== nextProps.searchList) {
-			if (this.state.currentPage == 1) {
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows([]),
-					list: [...nextProps.searchList],
-					height: hei,
-				})
-			} else {
-				this.setState({
-					list: [...this.state.list, ...nextProps.searchList],
-					height: hei
-				});
-			}
+		// 缓存keyword
+		keyword && Storage.set('keyword', keyword);
 
-			setTimeout(() => {
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(this.state.list),
-					isLoading: false,
-					height: hei
-				});
-			}, 500)
-		}
+		let { list } = this.state;
+
+		let _list = list.concat(data.data.data);
+
+		this.setState({
+			list: _list,
+			dataSource: this.state.dataSource.cloneWithRows(_list),
+			isLoading: false,
+			height: hei
+		});
+
 	}
+
+
 
 	// 拉到底部刷新
 	onEndReached = (event) => {
+
 		if (this.state.isLoading && !this.state.hasMore) {
 			return;
 		}
 
 		const that = this;
+
 		this.setState({
 			isLoading: true,
 			currentPage: that.state.currentPage + 1
 		});
 
-		this.props.dispatch({ type: 'search/search', payload: { 'keyword': that.state.keyword, 'is_me': false, page: that.state.currentPage } });
+		this.props.dispatch({
+			type: 'search/search',
+			payload: {
+				'keyword': that.state.keyword,
+				'is_me': false,
+				page: that.state.currentPage
+			},
+			callback: (d) => {
+				this.setSearchData(d, that.state.keyword);
+			}
+		});
+
 	}
 
 	// 搜索
@@ -106,23 +121,52 @@ class Index extends React.Component {
 			keyword: value,
 			isLoading: true,
 			currentPage: 1,
-			//currentTab: 0,
 		});
 
 		// 只搜索我自己的梦境
 		if (this.state.isMe) {
-			this.props.dispatch({ type: 'search/searchMy', payload: { 'keyword': value, 'is_me': true, 'page': 1 } });
+			this.props.dispatch({
+				type: 'search/searchMy',
+				payload: {
+					'keyword': value,
+					'is_me': true,
+					'page': 1
+				}
+			});
 		}
 		else {
 			switch (this.state.currentTab) {
 				case 0:
-					this.props.dispatch({ type: 'search/search', payload: { 'keyword': value, 'is_me': false, 'page': 1 } });
+					this.props.dispatch({
+						type: 'search/search',
+						payload: {
+							'keyword': value,
+							'is_me': false,
+							'page': 1
+						},
+						callback: (d) => {
+							this.setSearchData(d, value);
+						}
+					});
 					break;
 				case 1:
-					this.props.dispatch({ type: 'search/searchMy', payload: { 'keyword': value, 'is_me': true, 'page': 1 } });
+					this.props.dispatch({
+						type: 'search/searchMy',
+						payload: {
+							'keyword': value,
+							'is_me': true,
+							'page': 1
+						}
+					});
 					break;
 				case 2:
-					this.props.dispatch({ type: 'search/searchUsers', payload: { 'uname': value, 'page': 1 } });
+					this.props.dispatch({
+						type: 'search/searchUsers',
+						payload: {
+							'uname': value,
+							'page': 1
+						}
+					});
 					break;
 			}
 		}

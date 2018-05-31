@@ -17,21 +17,29 @@ export default modelExtend(model, {
 
 	effects: {
 		// 搜索
-		*search({ payload }, { call, put }) {
-			yield put({ type: 'updateState', payload: { 'searchLoading': false, 'searchList': null } });
-			const { data, code, msg } = yield call(search, payload);
+		*search({ payload, callback }, { call, put }) {
 
-			if (code == 200) {
-				if (data.data.length == 0) {
-					//Toast.info("木有更多了", 1);
-				}
-				yield put({ type: 'updateState', payload: { 'searchList': data.data } });
-				yield put({ type: 'updateState', payload: { 'searchLoading': true } });
+			// yield put({
+			// 	type: 'updateState',
+			// 	payload: {
+			// 		'searchLoading': false,
+			// 		'searchList': null
+			// 	}
+			// });
 
-				const keyword = payload.keyword;
-				if (keyword) {
-					Storage.set('keyword', keyword);
-				}
+			const data = yield call(search, payload);
+
+			if (data.code == 200) {
+
+				callback && callback(data);
+
+				// yield put({ type: 'updateState', payload: { 'searchList': data.data } });
+				// yield put({ type: 'updateState', payload: { 'searchLoading': true } });
+
+				// const keyword = payload.keyword;
+				// if (keyword) {
+				// 	Storage.set('keyword', keyword);
+				// }
 			}
 		},
 
