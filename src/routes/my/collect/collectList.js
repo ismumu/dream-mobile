@@ -27,7 +27,7 @@ class collectList extends React.Component {
       dataSource,
       list: [],
       isLoading: true,
-      height: document.documentElement.clientHeight - (50 + 43.5),
+      height: document.body.clientHeight - 99,
       currentPage: 1,
     };
   }

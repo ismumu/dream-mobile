@@ -24,7 +24,7 @@ class Index extends React.Component {
 			dataSource,
 			list: [],
 			isLoading: false,
-			height: document.documentElement.clientHeight - 100,
+			height: document.body.clientHeight - 99,
 			currentPage: 1,
 			keyword: '',
 			currentTab: 0,
@@ -52,14 +52,14 @@ class Index extends React.Component {
 
 	componentUpdateMount() {
 		this.setState({
-			height: document.documentElement.clientHeight - 100
+			height: document.body.clientHeight - 99
 		});
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.searchList == null) return;
 
-		let hei = document.documentElement.clientHeight - 100;
+		let hei = document.body.clientHeight - 99;
 
 		if (this.state.list !== nextProps.searchList) {
 			if (this.state.currentPage == 1) {

@@ -27,7 +27,7 @@ class MyDreamList extends React.Component {
 			dataSource,
 			list: [],
 			isLoading: true,
-			height: document.documentElement.clientHeight - (50 + 43.5),
+			height: document.body.clientHeight - 99,
 			currentPage: 1,
 		};
 	}
@@ -45,7 +45,7 @@ class MyDreamList extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.searchMyList == null) return;
 
-		let hei = document.documentElement.clientHeight - 100;
+		let hei = document.body.clientHeight - 99;
 
 		if (this.state.list !== nextProps.searchMyList) {
 			if (this.state.currentPage == 1) {

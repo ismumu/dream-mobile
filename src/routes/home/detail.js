@@ -121,10 +121,6 @@ class Detail extends React.Component {
 
 			this.setState({ "placeholder": '开始评论', "review_id": 0 });
 
-			// textId.focus();
-			// setTimeout(() => {
-			// 	textId.blur();
-			// }, 500);
 		}
 	}
 
@@ -139,37 +135,7 @@ class Detail extends React.Component {
 		});
 	}
 
-	// 输入时，滚动，兼容ios
-	TextareaFocus = () => {
 
-		// var top = window.scrollTop;
-		// var bottom = window.scrollBottom;
-		// var height = window.height;//整个窗口高
-		// height = height / 4;
-
-		// let id = document.getElementById("reviewTextArea");
-		// id.style.position = 'absolute';
-		// id.style.bottom = bottom;
-
-
-		// var i = 1;
-		// var int = setInterval(function () {
-		//   window.scrollTo(0, i);
-		//   i += 10;
-		//   if (i == 100) clearInterval(int);
-		// }, 20);
-
-
-	}
-	TextareaBlur = () => {
-		let id = document.getElementById("reviewTextArea");
-		id.style.position = 'fixed';
-		//id.style.bottom = 0;
-	}
-	removeFocus = () => {
-		//console.log('re f');
-		//document.getElementById('txtId').blur();
-	}
 
 	// 二级评论操作
 	delReview = (feedId, reviewId) => {
@@ -262,29 +228,6 @@ class Detail extends React.Component {
 			shareModal: false
 		})
 
-		/* const BUTTONS = ['添加到收藏夹', '取消'];
-		ActionSheet.showActionSheetWithOptions({
-		  options: BUTTONS,
-		  cancelButtonIndex: BUTTONS.length - 1,
-		  destructiveButtonIndex: BUTTONS.length - 2,
-		  message: null,
-		  maskClosable: true,
-		  //wrapProps,
-		},
-		  (buttonIndex) => {
-
-			// 收藏梦境
-			if (buttonIndex === 0) {
-			  const feed_id = this.props.location.state;
-			  this.props.dispatch({
-				type: 'home/colletDream',
-				payload: {
-				  feed_id: feed_id
-				}
-			  })
-			}
-		  }); */
-
 	}
 
 	// 分享
@@ -325,7 +268,7 @@ class Detail extends React.Component {
 				{
 					UID ?
 						// 已登录
-						<div className={styles.detailWrap} onClick={this.removeFocus.bind(this)}>
+						<div className={styles.detailWrap}>
 							<NavBarPage iconType="back" isFixed="true" title="梦境" />
 							{
 								this.props.detail && !this.props.detailLoading
@@ -476,22 +419,19 @@ class Detail extends React.Component {
 													key={Date.now()}
 													style={{
 														width: '98%',
-														height: 28,
+														height: '28px',
 														border: '1px solid #eee',
 														borderRadius: 5,
 														marginLeft: -10,
 														padding: '5px',
 														fontSize: 14,
-														lineHeight: '18px',
+														lineHeight: '28px',
 														zIndex: 9999
 													}}
 													rows={1}
 													placeholder={this.state.placeholder}
 													ref={el => this.customFocusInst = el}
 													id="txtId"
-													autoHeight
-													onFocus={this.TextareaFocus}
-													onBlur={this.TextareaBlur}
 												/>
 											</div>
 

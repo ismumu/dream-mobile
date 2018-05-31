@@ -27,7 +27,7 @@ class UserList extends React.Component {
       dataSource,
       list: [],
       isLoading: true,
-      height: document.documentElement.clientHeight - (50 + 43.5),
+      height: document.body.clientHeight - 99,
       currentPage: 1,
     };
   }
@@ -37,7 +37,7 @@ class UserList extends React.Component {
 
     if (nextProps.userList == null) return;
 
-    let hei = document.documentElement.clientHeight - 100;
+    let hei = document.body.clientHeight - 99;
 
     if (this.state.list !== nextProps.userList) {
       if (this.state.currentPage == 1) {

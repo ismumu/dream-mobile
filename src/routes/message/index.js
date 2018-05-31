@@ -13,7 +13,6 @@ const Brief = Item.Brief;
 
 
 
-
 class Index extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -27,7 +26,7 @@ class Index extends React.Component {
 			dataSource,
 			msgList: [],
 			isLoading: true,
-			height: document.documentElement.clientHeight - 139,
+			height: document.body.clientHeight - 99,
 			currentPage: 1,
 		};
 	}
@@ -37,19 +36,19 @@ class Index extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const hei = document.documentElement.clientHeight - 139;
+
 		if (this.state.msgList !== nextProps.msgList && nextProps.msgList !== undefined) {
 
 			this.setState({
 				msgList: [...this.state.msgList, ...nextProps.msgList],
-				height: hei
+				height: document.body.clientHeight - 99,
 			})
 
 			setTimeout(() => {
 				this.setState({
 					dataSource: this.state.dataSource.cloneWithRows(this.state.msgList),
 					isLoading: false,
-					height: hei
+					height: document.body.clientHeight - 99,
 				});
 			}, 500)
 		} else {

@@ -40,7 +40,7 @@ class Userinfo extends React.Component {
 			dataSource,
 			list: [],
 			isLoading: true,
-			height: document.documentElement.clientHeight * 3 / 4,
+			height: document.body.clientHeight * 3 / 4,
 			currentPage: 1,
 
 		};
@@ -62,7 +62,7 @@ class Userinfo extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const hei = document.documentElement.clientHeight;
+		const hei = document.body.clientHeight;
 		if (this.state.list !== nextProps.otherDream && nextProps.otherDream !== null) {
 			this.setState({
 				list: [...this.state.list, ...nextProps.otherDream],
@@ -190,6 +190,7 @@ class Userinfo extends React.Component {
 			...this.props.otherInfo,
 		}
 
+
 		const uname = _otherInfo.uname;
 		const tabs = [
 			{
@@ -202,13 +203,12 @@ class Userinfo extends React.Component {
 				{
 					UID ?
 						<div className={styles.userinfoWrap}>
-							<NavBarPage iconType="back" isFly='false' isFixed="true" title={uname} />
+							<NavBarPage iconType="back" isFly='false' isFixed="true" isOther="true" title={uname} addBlackList={this.addBlackList.bind(this, _otherInfo.is_black || null)} />
 							<div className={styles.userinfo}>
 								{
 									this.props.otherInfo ?
 										<div>
-											<Icon style={{ position: 'absolute', right: 10 }} type="ellipsis" size="xxs"
-												onClick={this.addBlackList.bind(this, _otherInfo.is_black || null)} />
+											{/* <Icon style={{ position: 'absolute', right: 10 }} type="ellipsis" size="xxs" onClick={this.addBlackList.bind(this, _otherInfo.is_black || null)} /> */}
 											<div className={styles.title}>
 												<div className={styles.img}>
 													<img src={_otherInfo.avatar || Util.defaultImg} alt={uname} />
@@ -217,14 +217,13 @@ class Userinfo extends React.Component {
 													<b>{uname}</b>
 												</div>
 											</div>
-
+											<div className={styles.opinion}>{_otherInfo.intro}</div>
 											<ul>
 												<li><i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
 												<li><i className={styles.iconfont}>&#xe806;</i><span>{_otherInfo.location}</span></li>
 												<li><i className={styles.iconfont}>&#xf32d;</i><span>{_otherInfo.job}</span></li>
 												<li><i className={styles.iconfont}>&#xf252;</i><span>{_otherInfo.age}</span></li>
 											</ul>
-											<div className={styles.opinion}>{_otherInfo.intro}</div>
 										</div>
 										: null
 								}

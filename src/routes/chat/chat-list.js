@@ -28,7 +28,7 @@ class ChatList extends React.Component {
       dataSource,
       list: [],
       isLoading: true,
-      height: document.documentElement.clientHeight * 3 / 4,
+      height: document.body.clientHeight * 3 / 4,
     };
   }
 
@@ -38,7 +38,7 @@ class ChatList extends React.Component {
 
   componentWillReceiveProps(nextProps) {
 
-    const hei = document.documentElement.clientHeight;
+    const hei = document.body.clientHeight;
     if (this.state.list !== nextProps.list) {
 
       this.setState({

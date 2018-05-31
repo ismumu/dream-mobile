@@ -34,19 +34,25 @@ class NavBarPage extends React.Component {
 
 	render() {
 
-		let { iconType, isFixed, isFly, isLogin, isSearch, title } = this.props;
+		let { iconType, isFixed, isFly, isLogin, isSearch, isOther, title, addBlackList } = this.props;
+
+		let _rightContent = '';
+
+		if ( isFly == 'true' ) {
+			_rightContent = <Link to="/fly"><i className={styles.iconfontBlack}>&#xf1d8;</i></Link>;
+		} else if ( isLogin == 'true' ) {
+			_rightContent = <Link to="/login">登录</Link>;
+		} else if ( isSearch == 'true' ) {
+			_rightContent = <i onClick={this.showActionSheet} className={styles.iconfontBlack}>&#xf141;</i>
+		} else if ( isOther == 'true' ) {
+			_rightContent = <i onClick={addBlackList} className={styles.iconfontBlack}>&#xf141;</i>
+		}
 
 		return (
 			<NavBar
 				mode="light"
 				icon={iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className={styles.iconfontBlue}></i>}
-				rightContent={
-					isFly == "true" ?
-						<Link to="/fly"><i className={styles.iconfontBlack}>&#xf1d8;</i></Link>
-						: isLogin == "true" ? <Link to="/login">登录</Link>
-							: isSearch == "true" ? <i onClick={this.showActionSheet} className={styles.iconfontBlack}>&#xf141;</i>
-								: null
-				}
+				rightContent={ _rightContent }
 				className={isFixed ? styles.navBar : styles.navBar2}
 			>{title ? title : 'iDream'}</NavBar>
 		);

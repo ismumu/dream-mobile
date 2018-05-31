@@ -15,7 +15,7 @@ import IndexNotLogin from './index-not-login'
 const UID = Storage.get('uid');
 
 // 内容高度
-const contentHeight = document.documentElement.clientHeight - 99;
+const contentHeight = document.body.clientHeight - 99;
 
 class Index extends React.Component {
 	constructor(props, context) {

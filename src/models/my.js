@@ -39,9 +39,24 @@ export default modelExtend(model, {
 			yield put({ type: 'updateState', payload: { otherInfo: null, otherDream: null, } })
 
 			const { data, code, msg } = yield call(getUserHome, payload);
+
+
+
 			if (code == 200) {
-				yield put({ type: 'updateState', payload: { otherInfo: data.user, otherDream: data.feed } });
+
+				yield put({
+					type: 'updateState',
+					payload: {
+						otherInfo: data.user,
+						otherDream: data.feed
+					}
+				});
+			} else if (code == 400) {
+				Toast.info('该梦着设置了私密~', 1);
+				browserHistory.push(-1);
 			}
+
+
 		},
 
 		// 他人信息，用于更新，不清楚
@@ -56,7 +71,7 @@ export default modelExtend(model, {
 		*editUser({ payload }, { call, put }) {
 			const { data, code, msg } = yield call(editUser, payload);
 			if (code == 200) {
-				Toast.success(msg);
+				Toast.success(msg, 1);
 				setTimeout(() => { history.back() }, 1000)
 			}
 		},
