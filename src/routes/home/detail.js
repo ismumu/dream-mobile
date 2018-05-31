@@ -32,6 +32,7 @@ const UID = Storage.get('uid');
 
 class Detail extends React.Component {
 	constructor(props, context) {
+
 		super(props, context);
 
 		this.state = {
@@ -57,6 +58,12 @@ class Detail extends React.Component {
 				}
 			});
 		}
+
+		// 滚动时候收起键盘
+		window.onscroll = function () {
+			document.getElementById("txtId").blur();
+		}
+
 	}
 
 	// 输入时，滚动，兼容ios
@@ -85,18 +92,6 @@ class Detail extends React.Component {
 		let id = document.getElementById("reviewTextArea");
 		id.style.position = 'fixed';
 		id.style.bottom = 0;
-	}
-
-
-	onWrapTouchStart = (e) => {
-		// fix touch to scroll background page on iOS
-		if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
-			return;
-		}
-		const pNode = closest(e.target, '.am-modal-content');
-		if (!pNode) {
-			e.preventDefault();
-		}
 	}
 
 	// 回复输入框
