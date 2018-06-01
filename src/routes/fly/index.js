@@ -182,7 +182,7 @@ class Fly extends React.Component {
 		// 每隔50秒自动保存一次
 		setInterval(() => {
 			this.autoSaveSet();
-		}, 1000 * 10);
+		}, 1000 * 50);
 	}
 
 	componentWillReceiveProps(nextProps) {
