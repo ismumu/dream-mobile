@@ -125,10 +125,12 @@ class Index extends React.Component {
 
 	// 搜索
 	onSearch = (value) => {
+
 		this.setState({
 			keyword: value,
 			isLoading: true,
 			currentPage: 1,
+			list: [],
 		});
 
 		// 只搜索我自己的梦境
