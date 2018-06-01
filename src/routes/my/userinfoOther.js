@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
 import { browserHistory } from 'react-router';
-import { List, NavBar, Tabs, Icon, ListView, ActionSheet } from "antd-mobile";
+import { List, NavBar, Tabs, Icon, ListView, ActionSheet, Toast } from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
 import Storage from '../../utils/storage';
 import styles from "./userinfo.less";
@@ -33,6 +33,10 @@ class Userinfo extends React.Component {
 			isLoading: true,
 			height: document.body.clientHeight * 3 / 4,
 			currentPage: 1,
+			hasMore: true,
+
+			// 用户信息
+			userinfo: '',
 
 			// ImageView
 			showViewer: false,
@@ -51,38 +55,77 @@ class Userinfo extends React.Component {
 			if (uid == UID) {
 				// browserHistory.push('my/userinfo');
 			} else {
-				this.props.dispatch({ type: 'my/getOtherInfo', payload: { uid: uid, page: 1 } });
+				this.props.dispatch({
+					type: 'my/getOtherInfo',
+					payload: {
+						uid: uid,
+						page: 1
+					},
+					callback: (d) => {
+						this.setData(d);
+					}
+				});
 			}
 
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-		const hei = document.body.clientHeight;
-		if (this.state.list !== nextProps.otherDream && nextProps.otherDream !== null) {
-			this.setState({
-				list: [...this.state.list, ...nextProps.otherDream],
-			})
+	// 处理搜索数据
+	setData = (data) => {
 
-			setTimeout(() => {
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(this.state.list),
-					isLoading: false,
-					height: hei,
-				});
-			}, 500)
+		const hei = document.body.clientHeight;
+
+		// 不足10条，最后一页
+		if (data.data.feed.length < 15) {
+			this.setState({
+				hasMore: false
+			})
 		}
+
+
+		let { list } = this.state;
+
+		let _list = list.concat(data.data.feed);
+
+		this.setState({
+			list: _list,
+			dataSource: this.state.dataSource.cloneWithRows(_list),
+			isLoading: false,
+			height: hei,
+			userinfo: data.data.user,
+		});
+
 	}
 
 	// 拉到底部刷新
 	onEndReached = (event) => {
-		if (this.state.isLoading && !this.state.hasMore) {
+
+		let { isLoading, hasMore, currentPage } = this.state;
+
+		if ( isLoading) {
 			return;
 		}
 
-		this.setState({ isLoading: true });
-		this.state.currentPage = this.state.currentPage + 1;
-		this.props.dispatch({ type: 'my/getOtherInfo2', payload: { uid: this.props.location.state, page: this.state.currentPage } });
+		if ( !hasMore ) {
+			Toast.info("没有更多了", 1);
+			return;
+		}
+
+		this.setState({
+			isLoading: true,
+			currentPage: currentPage + 1,
+		});
+
+		this.props.dispatch({
+			type: 'my/getOtherInfo',
+			payload: {
+				uid: this.props.location.state,
+				page: currentPage + 1,
+			},
+			callback: (d) => {
+				this.setData(d);
+			}
+		});
 	}
 
 	// 拉黑
@@ -155,7 +198,7 @@ class Userinfo extends React.Component {
 	render() {
 
 		let _otherInfo = {
-			...this.props.otherInfo,
+			...this.state.userinfo,
 		}
 
 
@@ -173,27 +216,23 @@ class Userinfo extends React.Component {
 						<div className={styles.userinfoWrap}>
 							<NavBarPage iconType="back" isFly='false' isFixed="true" isOther="true" title={uname} addBlackList={this.addBlackList.bind(this, _otherInfo.is_black || null)} />
 							<div className={styles.userinfo}>
-								{
-									this.props.otherInfo ?
-										<div>
-											<div className={styles.title}>
-												<div className={styles.img}>
-													<img src={_otherInfo.avatar || Util.defaultImg} alt={uname} />
-												</div>
-												<div>
-													<b>{uname}</b>
-												</div>
-											</div>
-											<div className={styles.opinion}>{_otherInfo.intro}</div>
-											<ul>
-												<li><i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
-												<li><i className={styles.iconfont}>&#xe806;</i><span>{_otherInfo.location}</span></li>
-												<li><i className={styles.iconfont}>&#xf32d;</i><span>{_otherInfo.job}</span></li>
-												<li><i className={styles.iconfont}>&#xf252;</i><span>{_otherInfo.age}</span></li>
-											</ul>
+								<div>
+									<div className={styles.title}>
+										<div className={styles.img}>
+											<img src={_otherInfo.avatar || Util.defaultImg} alt={uname} />
 										</div>
-										: null
-								}
+										<div>
+											<b>{uname}</b>
+										</div>
+									</div>
+									<div className={styles.opinion}>{_otherInfo.intro}</div>
+									<ul>
+										<li><i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
+										<li><i className={styles.iconfont}>&#xe806;</i><span>{_otherInfo.location}</span></li>
+										<li><i className={styles.iconfont}>&#xf32d;</i><span>{_otherInfo.job}</span></li>
+										<li><i className={styles.iconfont}>&#xf252;</i><span>{_otherInfo.age}</span></li>
+									</ul>
+								</div>
 							</div>
 							<div className={styles.dreamWrap}>
 								<Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>

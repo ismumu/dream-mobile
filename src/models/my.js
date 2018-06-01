@@ -34,37 +34,33 @@ export default modelExtend(model, {
 		},
 
 		// 他人信息
-		*getOtherInfo({ payload }, { call, put }) {
+		*getOtherInfo({ payload, callback }, { call, put }) {
 			// 清空数据
-			yield put({ type: 'updateState', payload: { otherInfo: null, otherDream: null, } })
+			// yield put({ type: 'updateState', payload: { otherInfo: null, otherDream: null, } })
 
-			const { data, code, msg } = yield call(getUserHome, payload);
+			const data = yield call(getUserHome, payload);
 
 
 
-			if (code == 200) {
+			if (data.code == 200) {
 
-				yield put({
-					type: 'updateState',
-					payload: {
-						otherInfo: data.user,
-						otherDream: data.feed
-					}
-				});
-			} else if (code == 400) {
+				callback && callback(data);
+
+				// yield put({
+				// 	type: 'updateState',
+				// 	payload: {
+				// 		otherInfo: data.user,
+				// 		otherDream: data.feed
+				// 	}
+				// });
+
+
+			} else if (data.code == 400) {
 				Toast.info('该梦着设置了私密~', 1);
 				browserHistory.push(-1);
 			}
 
 
-		},
-
-		// 他人信息，用于更新，不清楚
-		*getOtherInfo2({ payload }, { call, put }) {
-			const { data, code, msg } = yield call(getUserHome, payload);
-			if (code == 200) {
-				yield put({ type: 'updateState', payload: { otherInfo: data.user, otherDream: data.feed } });
-			}
 		},
 
 		// 编辑用户
