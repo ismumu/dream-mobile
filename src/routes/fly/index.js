@@ -15,6 +15,9 @@ class Fly extends React.Component {
 		this.state = {
 			files: [],
 			selectTags: [],
+
+			defaultTitle: '',
+			defaultContent: '',
 		};
 	}
 
@@ -53,8 +56,6 @@ class Fly extends React.Component {
 					'tags': tagStr
 				},
 				callback: () => {
-					Toast.success("发送成功!", 1);
-					browserHistory.push('/');
 
 					Storage.remove('title');
 					Storage.remove('content');
@@ -63,10 +64,14 @@ class Fly extends React.Component {
 
 					this.setState({
 						files: [],
+						selectTags: [],
+
+						defaultTitle: '',
+						defaultContent: '',
 					});
 
-					titleDom.value = '';
-					contentDom.value = '';
+					Toast.success("发送成功!", 1);
+					browserHistory.push('/');
 
 				}
 			})
@@ -147,10 +152,15 @@ class Fly extends React.Component {
 			tags = Storage.get('tags');
 
 		if (title) {
-			document.getElementById("titleId").value = title;
+			this.setState({
+				defaultTitle: title,
+			})
+
 		}
 		if (content) {
-			document.getElementById("txtId").value = content;
+			this.setState({
+				defaultContent: content,
+			})
 		}
 		if (files) {
 			this.setState({
@@ -172,7 +182,7 @@ class Fly extends React.Component {
 		// 每隔50秒自动保存一次
 		setInterval(() => {
 			this.autoSaveSet();
-		}, 1000 * 50);
+		}, 1000 * 10);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -213,7 +223,7 @@ class Fly extends React.Component {
 	render() {
 
 		const { getFieldProps } = this.props.form;
-		const { files, selectTags } = this.state;
+		const { files, selectTags, defaultTitle, defaultContent } = this.state;
 
 		return (
 			<div className={styles.flyWrap}>
@@ -233,17 +243,19 @@ class Fly extends React.Component {
 					placeholder="梦境标题"
 					data-seed="logId"
 					id="titleId"
+					defaultValue={defaultTitle}
 					autoHeight
 					className={styles.title}
-					ref={el => this.customFocusInst = el}
+					// ref={el => this.customFocusInst = el}
 				/>
 
 				<TextareaItem
 					rows={10}
 					id="txtId"
 					className={styles.textarea}
+					defaultValue={defaultContent}
 					placeholder="真诚面对梦境，记下吧~~"
-					ref={el => this.customFocusInst = el}
+					// ref={el => this.customFocusInst = el}
 				/>
 
 				<ImagePicker

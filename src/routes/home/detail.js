@@ -93,7 +93,7 @@ class Detail extends React.Component {
 		this.scrollTime = NaN;
 
 		let id = document.getElementById("reviewTextArea");
-		id.style.position = 'fixed';
+		// id.style.position = 'fixed';
 		id.style.bottom = 0;
 	}
 
