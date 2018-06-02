@@ -30,7 +30,7 @@ class collectList extends React.Component {
       dataSource,
       list: [],
       isLoading: true,
-      height: document.body.clientHeight - 99,
+      height: document.body.clientHeight - 95,
 	  currentPage: 1,
 
 	  // ImageView

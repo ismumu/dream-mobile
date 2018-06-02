@@ -27,7 +27,7 @@ class Index extends React.Component {
 			dataSource,
 			list: [],
 			isLoading: false,
-			height: document.body.clientHeight - 99,
+			height: document.body.clientHeight - 95,
 			currentPage: 1,
 			keyword: '',
 			currentTab: 0,
@@ -67,7 +67,7 @@ class Index extends React.Component {
 
 	componentUpdateMount() {
 		this.setState({
-			height: document.body.clientHeight - 99
+			height: document.body.clientHeight - 95,
 		});
 	}
 
@@ -75,7 +75,7 @@ class Index extends React.Component {
 	// 处理搜索数据
 	setSearchData = (data, keyword) => {
 
-		let hei = document.body.clientHeight - 99;
+		let hei = document.body.clientHeight - 95;
 
 		// 缓存keyword
 		keyword && Storage.set('keyword', keyword);

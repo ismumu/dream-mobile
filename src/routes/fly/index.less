@@ -58,19 +58,16 @@
 
 }
 .tagInput{
-	margin: 0;
-	padding: 0 8px;
-
-	width:100%;
-
-	box-sizing: border-box;
-
 	border:1px solid #eee;
-	margin-bottom: 10px;
+	height: 40px !important;
+	min-height: 40px !important;
+	line-height: 40px !important;
 
-	height: 40px;
-	line-height: 40px;
-
+	:global {
+		.am-input-control input {
+			font-size: 14px;
+		}
+	}
 }
 
 .tag{

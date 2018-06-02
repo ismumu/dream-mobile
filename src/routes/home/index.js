@@ -18,7 +18,7 @@ import 'react-mobile-imgview/dist/react-mobile-imgview.css';
 const UID = Storage.get('uid');
 
 // 内容高度
-const contentHeight = document.body.clientHeight - 99;
+const contentHeight = document.body.clientHeight - 95;
 
 class Index extends React.Component {
 	constructor(props, context) {

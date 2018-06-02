@@ -26,13 +26,18 @@ class Index extends React.Component {
 			dataSource,
 			msgList: [],
 			isLoading: true,
-			height: document.body.clientHeight - 99,
+			height: document.body.clientHeight - 95,
 			currentPage: 1,
 		};
 	}
 
 	componentWillMount() {
-		this.props.dispatch({ type: 'message/getMessageList', payload: { page: 1 } });
+		this.props.dispatch({
+			type: 'message/getMessageList',
+			payload: {
+				page: 1
+			}
+		});
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -41,14 +46,14 @@ class Index extends React.Component {
 
 			this.setState({
 				msgList: [...this.state.msgList, ...nextProps.msgList],
-				height: document.body.clientHeight - 99,
+				height: document.body.clientHeight - 95,
 			})
 
 			setTimeout(() => {
 				this.setState({
 					dataSource: this.state.dataSource.cloneWithRows(this.state.msgList),
 					isLoading: false,
-					height: document.body.clientHeight - 99,
+					height: document.body.clientHeight - 95,
 				});
 			}, 500)
 		} else {
@@ -74,16 +79,6 @@ class Index extends React.Component {
 
 	};
 
-	// 拉底刷新
-	onEndReached = (event) => {
-		/* if (this.state.isLoading && !this.state.hasMore) {
-			return;
-		}
-
-		this.setState({ isLoading: true });
-		this.state.currentPage = this.state.currentPage + 1;
-		this.props.dispatch({ type: 'message/getMessageList', payload: { page: this.state.currentPage } }); */
-	}
 
 	render() {
 		const separator = (sectionID, rowID) => (

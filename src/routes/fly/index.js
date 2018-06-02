@@ -123,23 +123,20 @@ class Fly extends React.Component {
 	// 自动缓存到本地
 	autoSaveSet = () => {
 
-		const title = document.getElementById("titleId") ? document.getElementById("titleId").value : '',
-			content = document.getElementById("txtId") ? document.getElementById("txtId").value : '',
-			files = this.state.files,
-			tags = this.state.selectTags,
-			timer = 1000 * 60 * 60 * 24;// 存储时间，24小时
+		let { defaultTitle, defaultContent, files, selectTags } = this.state;
+		let timer = 1000 * 60 * 60 * 24; // 存储时间，24小时
 
-		if (title !== "") {
-			Storage.set('title', title, timer)
+		if (defaultTitle) {
+			Storage.set('title', defaultTitle, timer)
 		}
-		if (content !== "") {
-			Storage.set('content', content, timer)
+		if (defaultContent) {
+			Storage.set('content', defaultContent, timer)
 		}
 		if (files && files.length > 0) {
 			Storage.set('files', JSON.stringify(files), timer)
 		}
-		if (tags && tags.length > 0) {
-			Storage.set('tags', JSON.stringify(tags), timer)
+		if (selectTags && selectTags.length > 0) {
+			Storage.set('tags', JSON.stringify(selectTags), timer)
 		}
 	}
 
@@ -241,21 +238,28 @@ class Fly extends React.Component {
 
 				<TextareaItem
 					placeholder="梦境标题"
-					data-seed="logId"
 					id="titleId"
-					defaultValue={defaultTitle}
+					value={defaultTitle}
 					autoHeight
 					className={styles.title}
-					// ref={el => this.customFocusInst = el}
+					onChange={(value) => {
+						this.setState({
+							defaultTitle: value,
+						})
+					}}
 				/>
 
 				<TextareaItem
 					rows={10}
 					id="txtId"
 					className={styles.textarea}
-					defaultValue={defaultContent}
+					value={defaultContent}
 					placeholder="真诚面对梦境，记下吧~~"
-					// ref={el => this.customFocusInst = el}
+					onChange={(value) => {
+						this.setState({
+							defaultContent: value,
+						})
+					}}
 				/>
 
 				<ImagePicker
@@ -263,7 +267,7 @@ class Fly extends React.Component {
 					onChange={this.onChange}
 					// onImageClick={(index, fs) => console.log(index, fs)}
 					selectable={files.length < 3}
-					multiple={1}
+					multiple={false}
 				/>
 
 				<TagModel

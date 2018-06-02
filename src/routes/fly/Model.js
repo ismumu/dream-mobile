@@ -31,6 +31,8 @@ class TagModel extends React.Component {
 		super(props);
 		this.state = {
 			modal1: false,
+
+			tagVal: '',
 		};
 	}
 
@@ -65,17 +67,15 @@ class TagModel extends React.Component {
 
 	}
 
-	onClose = key => () => {
-		this.setState({
-			[key]: false,
-		});
-	}
-
 	// 添加标签
 	onAddTags = (event) => {
 
 		const { selectTags } = this.props;
-		const val = this.refs.inputTag.value;
+		// const val = this.refs.inputTag.value;
+
+		let val = this.state.tagVal;
+
+		console.log(val)
 
 		if (!selectTags.includes(val) && val) {
 			this.props.onAddTag(val);
@@ -122,13 +122,43 @@ class TagModel extends React.Component {
 					visible={this.state.modal1}
 					transparent
 					maskClosable={false}
-					onClose={this.onClose('modal1')}
-					footer={[{ text: '取消', onPress: () => { this.onClose('modal1')(); } }, { text: '确定', onPress: this.onAddTags }]}
+					onClose={() => {
+						this.setState({
+							modal1: false,
+							tagVal: '',
+						})
+					}}
+					footer={
+						[
+							{
+								text: '取消',
+								onPress: () => {
+									this.setState({
+										modal1: false,
+										tagVal: '',
+									})
+								}
+							},
+							{
+								text: '确定',
+								onPress: this.onAddTags
+							}
+						]
+					}
 					wrapProps={{ onTouchStart: this.onWrapTouchStart }}
 				>
-					<div style={{ minHeight: 50, textAlign: 'left' }}>
-						<input type="text" placeholder="输入标签" ref="inputTag" className={styles.tagInput} />
-					</div>
+
+					<InputItem
+						className={styles.tagInput}
+						type="text"
+						placeholder="输入标签"
+						onChange={(value) => {
+							this.setState({
+								tagVal: value,
+							})
+						}}
+					/>
+
 				</Modal>
 			</div>
 		)

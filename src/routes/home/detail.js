@@ -9,7 +9,7 @@ import {
 	Button,
 	Toast,
 	Modal,
-	ActionSheet
+	ActionSheet,
 } from "antd-mobile";
 import { createForm } from 'rc-form';
 import Clipboard from 'react-clipboard.js';
@@ -36,14 +36,18 @@ class Detail extends React.Component {
 		super(props, context);
 
 		this.state = {
-			modal1: false,
-			placeholder: '开始评论',
+
+			placeholder: '回复原文',
 			review_id: 0,
 
 			delReviewState: 'none',
 			editDreamState: 'none',
 
 			shareModal: false,
+
+			// 回复
+			isShowReviewModal: false,
+			reviewTextAreaVal: '',
 		};
 
 	}
@@ -63,65 +67,24 @@ class Detail extends React.Component {
 				}
 			});
 		}
-
-		// 滚动时候收起键盘
-		window.onscroll = function (e) {
-
-			let _t = _this.scrollTime;
-
-			if ( _this.inputFocus && Date.now() - _t < 300 ) {
-				let _input = document.getElementById("txtId");
-				_input && _input.blur();
-			}
-
-			_this.scrollTime = Date.now();
-		}
-
-	}
-
-	TextareaFocus = () => {
-
-		setTimeout(() => {
-			this.inputFocus = true;
-		}, 800)
-
-	}
-	TextareaBlur = () => {
-
-
-		this.inputFocus = false;
-		this.scrollTime = NaN;
-
-		let id = document.getElementById("reviewTextArea");
-		// id.style.position = 'fixed';
-		id.style.bottom = 0;
 	}
 
 	// 回复输入框
-	showModal = (key, name, review_id) => (e) => {
+	showModal = (name, review_id) => (e) => {
 		e.preventDefault(); // 修复 Android 上点击穿透
 
 		this.setState({
-			[key]: true,
+			isShowReviewModal: true,
 			review_id: review_id ? review_id : 0,
-			placeholder: name
-				? '回复 @' + name
-				: '开始评论'
+			placeholder: name ? '回复 @' + name : '回复原文',
 		});
 
-		document.getElementById('txtId').focus();
-
-	}
-
-	// 关闭
-	onClose = (key) => {
-		this.setState({ [key]: false });
 	}
 
 	// 回复
 	onReview = () => {
-		const textId = document.getElementById('txtId')
-		const val = textId.value;
+
+		const val = this.state.reviewTextAreaVal;
 		if (val == "") {
 			Toast.info("总得输入点什么吧？", 1);
 		}
@@ -139,7 +102,11 @@ class Detail extends React.Component {
 				}
 			});
 
-			this.setState({ "placeholder": '开始评论', "review_id": 0 });
+			this.setState({
+				placeholder: '回复原文',
+				review_id: 0,
+				reviewTextAreaVal: '',
+			});
 
 		}
 	}
@@ -295,7 +262,6 @@ class Detail extends React.Component {
 									?
 									<div>
 										<div className={styles.item}>
-											{/* 梦境详情 */}
 											<div className={styles.head}>
 												<div className={styles.img}>
 													<Link to={{ pathname: this.props.detail.info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + this.props.detail.info.uid }}>
@@ -327,16 +293,18 @@ class Detail extends React.Component {
 												</div>
 											</div>
 
-											{/* 点赞/分享等 */}
 											<div className={styles.icons}>
 												<span className={styles.praise} onClick={this.handleUpdatedigg}>
-													{/* <i className={this.props.detail.info.hasDigg == 0 ? styles.iconfont : styles.iconfontBlue}>&#xe71a;</i> */}
 													{
-														this.props.detail.info.hasDigg == 1 ? <i className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>
+														this.props.detail.info.hasDigg == 1
+														?
+														<i className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i>
+														:
+														<i className={styles.iconfontSmall}>&#xe808;</i>
 													}
 													<label>{this.props.detail.info.digg_count > 0 ? this.props.detail.info.digg_count : null}</label>
 												</span>
-												<span className={styles.review}>
+												<span className={styles.review} onClick={this.showModal()}>
 													<i className={styles.iconfontBlueSmall}>&#xe810;</i>
 													<label>{this.props.detail.info.comment_all_count > 0 ? this.props.detail.info.comment_all_count : null}</label>
 												</span>
@@ -346,7 +314,7 @@ class Detail extends React.Component {
 
 											</div>
 
-											{/* 评论列表 */}
+
 											<div className={styles.reviewList}>
 												{
 													this.props.detail.review.map((item, index) => (
@@ -359,7 +327,7 @@ class Detail extends React.Component {
 																</div>
 															</div>
 															<div className={styles.itemContent}>
-																<div className={styles.cnWrap} onClick={this.showModal("modal1", item.uname, item.review_id)}>
+																<div className={styles.cnWrap} onClick={this.showModal(item.uname, item.review_id)}>
 																	<span className={styles.name}><Link className={styles.bold} to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>{item.uname}</Link></span>
 																	<div className={styles.des}>{item.content}</div>
 																</div>
@@ -384,16 +352,8 @@ class Detail extends React.Component {
 																		{
 																			item.reply.map((item2, index2) => (
 																				<div className={styles.reviewItem2} key={index + "_" + index2}>
-																					{/* <div className={styles.head}>
-                                          <span >
-                                            <Link className={styles.uname} to={{ pathname: "/my/other", 'state': + item2.uid }}>{item2.uname}</Link>:
-                                            回复
-                                            <Link className={styles.uname} to={{ pathname: "/my/other", 'state': + item2.to_uid }}>@{item2.to_uname}</Link>
-                                            :
-                                          </span>
-                                        </div> */}
 																					<div className={styles.itemContent}>
-																						<div className={`${styles.des}`} onClick={this.showModal("modal1", item2.uname, item2.review_id)}>
+																						<div className={`${styles.des}`} onClick={this.showModal(item2.uname, item2.review_id)}>
 																							<div>
 																								<Link className={styles.uname} to={{ pathname: item2.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item2.uid }}>{item2.uname}</Link>
 																								{
@@ -433,7 +393,7 @@ class Detail extends React.Component {
 										</div>
 
 
-										<div className={styles.reviewTextArea} id="reviewTextArea">
+										{/* <div className={styles.reviewTextArea} id="reviewTextArea">
 											<div className={styles.l}>
 												<TextareaItem
 													key={Date.now()}
@@ -450,9 +410,7 @@ class Detail extends React.Component {
 													}}
 													rows={1}
 													placeholder={this.state.placeholder}
-													ref={el => this.customFocusInst = el}
-													onFocus={this.TextareaFocus}
-                          							onBlur={this.TextareaBlur}
+
 													id="txtId"
 												/>
 											</div>
@@ -460,7 +418,7 @@ class Detail extends React.Component {
 											<div className={styles.r}>
 												<div className={styles.rtRight} onClick={this.onReview}><i className={styles.iconfontBlack}>&#xf1d8;</i></div>
 											</div>
-										</div>
+										</div> */}
 
 									</div>
 									:
@@ -486,11 +444,14 @@ class Detail extends React.Component {
 						<DetailNotLogin feedId={this.props.location.query.id} />
 				}
 
-				{/* 分享弹窗 */}
 				<Modal
 					popup
 					visible={this.state.shareModal}
-					onClose={() => { this.setState({ shareModal: false }) }}
+					onClose={() => {
+						this.setState({
+							shareModal: false
+						})
+					}}
 					animationType="slide-up"
 				>
 					<div>
@@ -501,6 +462,50 @@ class Detail extends React.Component {
 						<div style={{ padding: 10 }} id="socialShare"></div>
 					</div>
 				</Modal>
+
+				<Modal
+					className={styles.reviewModal}
+					visible={this.state.isShowReviewModal}
+					transparent
+					maskClosable={true}
+					onClose={() => {
+						this.setState({
+							isShowReviewModal: false,
+						})
+					}}
+					title={this.state.placeholder}
+					footer={[
+						{
+							text: <i
+								onClick={() => {
+
+									if ( !this.state.reviewTextAreaVal ) {
+										// Toast.info("总得输入点什么吧？", 11111);
+										return;
+									}
+									this.setState({
+										isShowReviewModal: false,
+									})
+									this.onReview();
+								}}
+								className={styles.iconfontBlack}>&#xf1d8;</i>,
+						}
+					]}
+					wrapProps={{ onTouchStart: this.onWrapTouchStart }}
+				>
+					<TextareaItem
+						className={styles.modalReviewTextArea}
+						autoHeight
+						placeholder='请输入...'
+						onChange={(value) => {
+							this.setState({
+								reviewTextAreaVal: value,
+							})
+						}}
+					/>
+				</Modal>
+
+
 			</div>
 
 		);
@@ -516,15 +521,3 @@ function mapStateToProps(state) {
 
 const form = createForm()(Detail)
 export default connect(mapStateToProps)(form);
-
-
-/* function getQueryVariable(variable) {
-  var query = window.location.search.substring(1);
-  var vars = query.split("&"); ("&");
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split("=");
-    if (pair[0] == variable) { return pair[1]; }
-  }
-  return (false);
-}
- */
