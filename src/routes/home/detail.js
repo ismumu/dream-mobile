@@ -10,6 +10,7 @@ import {
 	Toast,
 	Modal,
 	ActionSheet,
+	InputItem,
 } from "antd-mobile";
 import { createForm } from 'rc-form';
 import Clipboard from 'react-clipboard.js';
@@ -69,15 +70,21 @@ class Detail extends React.Component {
 		}
 	}
 
+
 	// 回复输入框
 	showModal = (name, review_id) => (e) => {
+
 		e.preventDefault(); // 修复 Android 上点击穿透
+
 
 		this.setState({
 			isShowReviewModal: true,
 			review_id: review_id ? review_id : 0,
 			placeholder: name ? '回复 @' + name : '回复原文',
+		},() => {
+			this.autoFocusInst.focus();
 		});
+
 
 	}
 
@@ -438,6 +445,7 @@ class Detail extends React.Component {
 											<Icon type="loading" size='md' />
 										</div>
 							}
+
 						</div>
 						:
 						// 未登录
@@ -462,12 +470,12 @@ class Detail extends React.Component {
 						<div style={{ padding: 10 }} id="socialShare"></div>
 					</div>
 				</Modal>
-
 				<Modal
 					className={styles.reviewModal}
 					visible={this.state.isShowReviewModal}
 					transparent
-					maskClosable={true}
+					closable={true}
+					maskClosable={false}
 					onClose={() => {
 						this.setState({
 							isShowReviewModal: false,
@@ -494,6 +502,7 @@ class Detail extends React.Component {
 					wrapProps={{ onTouchStart: this.onWrapTouchStart }}
 				>
 					<TextareaItem
+						ref={ref => this.autoFocusInst = ref}
 						className={styles.modalReviewTextArea}
 						autoHeight
 						placeholder='请输入...'

@@ -87,7 +87,7 @@ class Detail extends React.Component {
 										}
 										<label>{this.props.detail.info.digg_count > 0 ? this.props.detail.info.digg_count : null}</label>
 									</span>
-									<span className={styles.review}>
+									<span className={styles.review} onClick={this.showModal("modal1")} >
 										<i className={styles.iconfontBlueSmall}>&#xe810;</i>
 										<label>{this.props.detail.info.comment_all_count > 0 ? this.props.detail.info.comment_all_count : null}</label>
 									</span>
