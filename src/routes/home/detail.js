@@ -335,7 +335,8 @@ class Detail extends React.Component {
 															</div>
 															<div className={styles.itemContent}>
 																<div className={styles.cnWrap} onClick={this.showModal(item.uname, item.review_id)}>
-																	<span className={styles.name}><Link className={styles.bold} to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>{item.uname}</Link></span>
+																	{/* <span className={styles.name}><Link className={styles.bold} to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>{item.uname}</Link></span> */}
+																	<span className={styles.name}>{item.uname}</span>
 																	<div className={styles.des}>{item.content}</div>
 																</div>
 																<div className={`${styles.time} ${styles.clear}`}>
@@ -362,15 +363,13 @@ class Detail extends React.Component {
 																					<div className={styles.itemContent}>
 																						<div className={`${styles.des}`} onClick={this.showModal(item2.uname, item2.review_id)}>
 																							<div>
-																								<Link className={styles.uname} to={{ pathname: item2.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item2.uid }}>{item2.uname}</Link>
+																								{item2.uname}
 																								{
-																									item2.to_uname == item2.uname || item2.to_uname == item.uname ? null :
-																										<span>
-																											：
-																												回复
-                                                <Link className={styles.uname} to={{ pathname: item2.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item2.to_uid }}>@{item2.to_uname}</Link>
-																											：
-                                                </span>
+																									item2.to_uname == item2.uname || item2.to_uname == item.uname
+																									?
+																									null
+																									:
+																									<span>：回复@{item2.to_uname}：</span>
 																								}
 																							</div>
 																							{item2.content}
@@ -398,34 +397,6 @@ class Detail extends React.Component {
 												}
 											</div>
 										</div>
-
-
-										{/* <div className={styles.reviewTextArea} id="reviewTextArea">
-											<div className={styles.l}>
-												<TextareaItem
-													key={Date.now()}
-													style={{
-														width: '98%',
-														height: '28px',
-														border: '1px solid #eee',
-														borderRadius: 5,
-														marginLeft: -10,
-														padding: '5px',
-														fontSize: 14,
-														lineHeight: '28px',
-														zIndex: 9999
-													}}
-													rows={1}
-													placeholder={this.state.placeholder}
-
-													id="txtId"
-												/>
-											</div>
-
-											<div className={styles.r}>
-												<div className={styles.rtRight} onClick={this.onReview}><i className={styles.iconfontBlack}>&#xf1d8;</i></div>
-											</div>
-										</div> */}
 
 									</div>
 									:
@@ -488,7 +459,6 @@ class Detail extends React.Component {
 								onClick={() => {
 
 									if ( !this.state.reviewTextAreaVal ) {
-										// Toast.info("总得输入点什么吧？", 11111);
 										return;
 									}
 									this.setState({
