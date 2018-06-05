@@ -33,6 +33,9 @@ class TagModel extends React.Component {
 			modal1: false,
 
 			tagVal: '',
+
+			isShowErrorTip: false,
+			errorTipText: '',
 		};
 	}
 
@@ -67,18 +70,36 @@ class TagModel extends React.Component {
 
 	}
 
+	// 中文算2个长度，数字 英文算1个长度
+	checkStringLength = ( str ) => {
+		var len = 0;
+		for (var i = 0; i < str.length; i++) {
+			var c = str.charCodeAt(i);
+			//单字节加1
+			if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+				len++;
+			}
+			else {
+				len += 2;
+			}
+		}
+		return len;
+	}
+
 	// 添加标签
 	onAddTags = (event) => {
 
 		const { selectTags } = this.props;
-		// const val = this.refs.inputTag.value;
 
-		let val = this.state.tagVal;
+		let { tagVal, isShowErrorTip } = this.state;
 
-		console.log(val)
+		if ( isShowErrorTip ) {
+			return ;
+		}
 
-		if (!selectTags.includes(val) && val) {
-			this.props.onAddTag(val);
+
+		if (!selectTags.includes(tagVal) && tagVal) {
+			this.props.onAddTag(tagVal);
 		}
 
 		this.setState({
@@ -98,6 +119,7 @@ class TagModel extends React.Component {
 
 		const { selectTags } = this.props;
 
+		let { isShowErrorTip, errorTipText } = this.state;
 
 		return (
 			<div>
@@ -153,12 +175,32 @@ class TagModel extends React.Component {
 						type="text"
 						placeholder="输入标签"
 						onChange={(value) => {
-							this.setState({
-								tagVal: value,
-							})
+
+							if ( !/^[0-9a-zA-Z\u4e00-\u9fa5]+$/.test(value) ) {
+								this.setState({
+									isShowErrorTip: true,
+									errorTipText: '只能输入中文英文和数字',
+								});
+
+							} else {
+								if ( this.checkStringLength( value ) <= 14 ) {
+									// 验证成功
+									this.setState({
+										tagVal: value,
+										isShowErrorTip: false,
+										errorTipText: '',
+									})
+
+								} else {
+									this.setState({
+										isShowErrorTip: true,
+										errorTipText: '最多只能输入7个中文',
+									});
+								}
+							}
 						}}
 					/>
-
+					{ isShowErrorTip && <div className={styles.errorTip}>{errorTipText}</div> }
 				</Modal>
 			</div>
 		)
