@@ -148,6 +148,9 @@ class TagModel extends React.Component {
 						this.setState({
 							modal1: false,
 							tagVal: '',
+
+							isShowErrorTip: false,
+							errorTipText: '',
 						})
 					}}
 					footer={
@@ -158,6 +161,9 @@ class TagModel extends React.Component {
 									this.setState({
 										modal1: false,
 										tagVal: '',
+
+										isShowErrorTip: false,
+										errorTipText: '',
 									})
 								}
 							},
