@@ -3,18 +3,14 @@
 ## 1.下载项目
 
 ```
-git clone https://github.com/zchuhui/dream-mobile.git
+git clone https://github.com/ismumu/dream-mobile.git
 ```
 
 
 ## 2.安装依赖
 
 ```
-cnpm install 
-```
-or
-```
-yarn 
+npm install 
 ```
 
 ## 3.运行
@@ -22,6 +18,4 @@ yarn
 ```
 npm start 
 ```
-打开 `http://localhost:3001/` 即可。
-
-
+打开 `http://localhost:8888/` 即可。
