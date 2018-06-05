@@ -94,15 +94,18 @@ export default modelExtend(model, {
 		},
 
 		// 评论
-		*review({ payload }, { call, put }) {
-			const { data, code } = yield call(review, payload);
+		*review({ payload, callback }, { call, put }) {
+			const reviewData = yield call(review, payload);
 
-			if (code == 200) {
+			if (reviewData.code == 200) {
 				Toast.info("评论成功", 1);
+				callback && callback('success')
 				const { data, code } = yield call(getDreamDetail, payload);
 				if (code == 200) {
 					yield put({ type: 'updateState', payload: { detail: data } });
 				}
+			} else {
+				callback && callback(reviewData.msg || '系统错误，请稍后重试');
 			}
 		},
 

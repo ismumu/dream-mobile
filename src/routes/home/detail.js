@@ -49,6 +49,9 @@ class Detail extends React.Component {
 			// 回复
 			isShowReviewModal: false,
 			reviewTextAreaVal: '',
+
+			isShowErrorTip: false,
+			errorTipText: '',
 		};
 
 	}
@@ -91,31 +94,42 @@ class Detail extends React.Component {
 	// 回复
 	onReview = () => {
 
-		const val = this.state.reviewTextAreaVal;
-		if (val == "") {
-			Toast.info("总得输入点什么吧？", 1);
+		let { reviewTextAreaVal, isShowErrorTip } = this.state;
+
+		if ( isShowErrorTip || !reviewTextAreaVal ) {
+			return ;
 		}
-		else if (val.length > 135) {
-			Toast.info("回复字数不能超过140", 1);
-		}
-		else {
-			const { id } = this.props.location.query; //this.props.location.state;
-			this.props.dispatch({
-				type: 'home/review',
-				payload: {
-					feed_id: id,
-					content: val,
-					review_id: this.state.review_id,
+
+		const { id } = this.props.location.query; //this.props.location.state;
+
+		this.props.dispatch({
+			type: 'home/review',
+			payload: {
+				feed_id: id,
+				content: reviewTextAreaVal,
+				review_id: this.state.review_id,
+			},
+			callback: (d) => {
+
+				if ( d == 'success' ) {
+					this.setState({
+						placeholder: '回复原文',
+						review_id: 0,
+						isShowReviewModal: false,
+						reviewTextAreaVal: '',
+
+						isShowErrorTip: false,
+						errorTipText: '',
+					});
+				} else {
+					this.setState({
+						isShowErrorTip: true,
+						errorTipText: d,
+					});
 				}
-			});
+			}
+		});
 
-			this.setState({
-				placeholder: '回复原文',
-				review_id: 0,
-				reviewTextAreaVal: '',
-			});
-
-		}
 	}
 
 	// 点赞
@@ -257,6 +271,9 @@ class Detail extends React.Component {
 	}
 
 	render() {
+
+		let { isShowErrorTip, errorTipText } = this.state;
+
 		return (
 			<div>
 				{
@@ -450,6 +467,8 @@ class Detail extends React.Component {
 					onClose={() => {
 						this.setState({
 							isShowReviewModal: false,
+							isShowErrorTip: false,
+							errorTipText: '',
 						})
 					}}
 					title={this.state.placeholder}
@@ -459,12 +478,16 @@ class Detail extends React.Component {
 								onClick={() => {
 
 									if ( !this.state.reviewTextAreaVal ) {
-										return;
+										this.setState({
+											isShowErrorTip: true,
+											errorTipText: '总得输入点什么吧？',
+										})
+
+										return ;
 									}
-									this.setState({
-										isShowReviewModal: false,
-									})
+
 									this.onReview();
+
 								}}
 								className={styles.iconfontBlack}>&#xf1d8;</i>,
 						}
@@ -477,11 +500,22 @@ class Detail extends React.Component {
 						autoHeight
 						placeholder='请输入...'
 						onChange={(value) => {
-							this.setState({
-								reviewTextAreaVal: value,
-							})
+							if ( !value ) {
+								this.setState({
+									isShowErrorTip: true,
+									errorTipText: '总得输入点什么吧？',
+									reviewTextAreaVal: value,
+								})
+							} else {
+								this.setState({
+									reviewTextAreaVal: value,
+									isShowErrorTip: false,
+									errorTipText: '',
+								})
+							}
 						}}
 					/>
+					{ isShowErrorTip && <div className={styles.errorTip}>{errorTipText}</div> }
 				</Modal>
 
 
