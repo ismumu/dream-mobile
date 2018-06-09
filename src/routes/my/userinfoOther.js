@@ -48,9 +48,11 @@ class Userinfo extends React.Component {
 	}
 
 	componentDidMount() {
+
 		const uid = this.props.location.state;
 
-		if (uid) {
+		// 登录状态，并且有要查看的人的id
+		if (uid && UID) {
 			// 如果是自己
 			if (uid == UID) {
 				// browserHistory.push('my/userinfo');
