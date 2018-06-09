@@ -20,8 +20,6 @@ import ImageView from 'react-mobile-imgview';
 import 'react-mobile-imgview/dist/react-mobile-imgview.css';
 
 
-console.log(1111)
-
 class Userinfo extends React.Component {
 	constructor(props, context) {
 		super(props, context);
