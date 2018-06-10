@@ -84,7 +84,7 @@ class Userinfo extends React.Component {
 		}
 
 		if (this.state.hasMore) {
-			Toast.info("没有更多了", 1);
+			Toast.info("显示已完毕", 1);
 			return;
 		}
 
