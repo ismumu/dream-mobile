@@ -20,7 +20,7 @@ class Forget extends React.Component {
         <NavBarPage isFly="false" />
         <div className={styles.loginWrap}>
             {/* <div className={styles.title}>
-            <b>连接地球的梦境</b>
+            <b>测试</b>
             <p>
               记录、分享、交流
             </p>
