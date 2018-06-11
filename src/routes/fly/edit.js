@@ -189,7 +189,7 @@ class FlyEdit extends React.Component {
 						rows={10}
 						id="txtId"
 						className={styles.textarea}
-						placeholder="真诚面对梦境，记下吧~~"
+						placeholder="梦境内容"
 
 					/>
 					<ImagePicker

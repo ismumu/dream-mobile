@@ -254,7 +254,7 @@ class Fly extends React.Component {
 					id="txtId"
 					className={styles.textarea}
 					value={defaultContent}
-					placeholder="真诚面对梦境，记下吧~~"
+					placeholder="梦境内容"
 					onChange={(value) => {
 						this.setState({
 							defaultContent: value,
