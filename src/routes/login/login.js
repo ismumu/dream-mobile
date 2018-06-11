@@ -30,7 +30,7 @@ class Login extends React.Component {
               className={styles.text}
               id="username"
               ref={el => this.username = el}
-              placeholder="用户名/邮箱"
+              placeholder="邮箱"
             >
               {/* <div className={styles.iconUser} /> */}
             </InputItem>
