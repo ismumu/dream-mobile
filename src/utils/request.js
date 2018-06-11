@@ -119,7 +119,7 @@ export function post(url, options) {
 		//return;
 	}
 
-	if ( document.domain == 'localhost' || document.domain == '192.168.2.143' ) {
+	if ( document.domain == 'localhost' || document.domain == '192.168.0.7' ) {
 		return request( '/' + url, { ...options, method: 'post' })
 	} else {
 		return request( url, { ...options, method: 'post' })
