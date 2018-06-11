@@ -177,7 +177,7 @@ class FlyEdit extends React.Component {
 				<div>
 					<TextareaItem
 						{...getFieldProps('note0', { initialValue: info.title })}
-						placeholder="梦境标题"
+						placeholder="题梦"
 						data-seed="logId"
 						id="titleId"
 						autoHeight

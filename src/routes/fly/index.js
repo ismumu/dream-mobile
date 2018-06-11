@@ -237,7 +237,7 @@ class Fly extends React.Component {
         		</NavBar>
 
 				<TextareaItem
-					placeholder="梦境标题"
+					placeholder="题梦"
 					id="titleId"
 					value={defaultTitle}
 					autoHeight
