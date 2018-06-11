@@ -277,9 +277,9 @@ class Fly extends React.Component {
 				/>
 
 				<p className={styles.autoSaveMsg}>
-					系统每50秒自动保存一次 <br />
-					可用3张图片展示你的梦境内容 <br />
-					图片通过审核后呈上（感谢你支持过虑不良相关图片）
+					系统每50秒自动保存 <br />
+					可用3附插图展示你的梦境 <br />
+					插图审核后呈上（感谢你支持过虑不良相关图片）
 				</p>
 
 			</div>

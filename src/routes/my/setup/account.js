@@ -78,21 +78,21 @@ class Account extends React.Component {
               })}
               clear
               error={!!getFieldError('oldpassword')}
-              placeholder="输入原密码"
+              placeholder="原密码"
               type="password"
               ref={el => this.autoFocusInst = el}
             >原密码</InputItem>
             <InputItem
               {...getFieldProps('password', {
                 rules: [
-                  { required: true, message: '输入新密码' },
+                  { required: true, message: '新密码' },
                   { validator: this.validatePassoword1 },
                 ],
               })}
               error={!!getFieldError('password')}
               clear
               type="password"
-              placeholder="输入新密码"
+              placeholder="新密码"
               ref={el => this.customFocusInst = el}
             >新密码</InputItem>
             <InputItem

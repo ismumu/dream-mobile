@@ -40,7 +40,7 @@ class About extends React.Component {
                 }}>关于我</NavBar>
 
                 <div>
-                    <h3>『 你的建议 』</h3>
+                    <h3>你的建议 </h3>
                     <TextareaItem
                         placeholder="关于"
                         data-seed="logId"
@@ -55,7 +55,7 @@ class About extends React.Component {
                         autoHeight
                         className={styles.title}
                         ref={el => this.customFocusInst = el}/>
-                    <TextareaItem rows={4} className={styles.textarea} id="contentId" placeholder="详细内容"/>
+                    <TextareaItem rows={4} className={styles.textarea} id="contentId" placeholder="建议内容"/>
                 </div>
 
                 <Button
@@ -64,13 +64,28 @@ class About extends React.Component {
                     style={{ margin: 20}}>提交</Button>
 
                 <div className={styles.iNeedYou}>
-                    <h3>『 我们需要你 』</h3>
-                    我们正在组建队伍 <br/>
-                    如果你喜欢这个idea <br/>
-                    并且认为会给人类增添乐趣、意义、价值 <br/>
-                    就加入我们一起成长 <br/>
-                    <b> 技术员 PHP IOS </b> <br/>
-                    <b>梦境研究 &nbsp; 爱好人士</b> <br/>
+                    <h3>为什么建立</h3>
+                    <b>我们相信连接全世界的梦能产生趣味和价值<br/>
+                       因为梦境是人类大思维最无厘头和最多火花的地方</b>
+                    
+                    <h3>加入我们</h3>
+                    <b>梦的趣味天马行空<br/>
+                        梦的价值具治愈和发现心理真相<br/>
+                        若你和我们一样认同梦这样的积极功能<br/>
+                        立即加入我们<br/>
+                        为之奋斗创造更具趣味和意义价值的现实世界<br/>
+                    
+                        Call me babe<br/>
+                        期待与你畅谈<br/>
+                        idreamin@outlook.com</b>
+
+                
+
+                  
+
+
+
+
                 </div>
             </div>
         )

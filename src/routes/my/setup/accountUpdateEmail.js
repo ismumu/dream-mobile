@@ -83,7 +83,7 @@ class AccountUpdateEmail extends React.Component {
               ],
             })}
             clear
-            placeholder="输入原邮箱并发送确认码"
+            placeholder="发送确认码"
             type="email"
             ref={el => this.autoFocusInst = el}
             id="emailId"
@@ -95,38 +95,38 @@ class AccountUpdateEmail extends React.Component {
           <InputItem
             {...getFieldProps('code', {
               rules: [
-                { required: true, message: '输入确认码' },
+                { required: true, message: '确认码' },
               ],
             })}
             clear
             error={!!getFieldError('code')}
-            placeholder="输入确认码"
+            placeholder="确认码"
             ref={el => this.autoFocusInst = el}
           >确认码</InputItem>
           <InputItem
             {...getFieldProps('newEmail', {
               rules: [
-                { required: true, message: '输入新邮箱' },
+                { required: true, message: '新邮箱' },
                 { validator: this.validateEmail },
               ],
             })}
             clear
             error={!!getFieldError('newEmail')}
-            placeholder="输入新邮箱"
+            placeholder="新邮箱"
             type="email"
             ref={el => this.autoFocusInst = el}
           >新邮箱</InputItem>
           <InputItem
             {...getFieldProps('reEmail', {
               rules: [
-                { required: true, message: '确认新邮箱' },
+                { required: true, message: '新邮箱确认' },
                 { validator: this.validateEmail2 },
 
               ],
             })}
             clear
             error={!!getFieldError('reEmail')}
-            placeholder="确认新邮箱"
+            placeholder="新邮箱确认"
             ref={el => this.autoFocusInst = el}
           >确认邮箱</InputItem>
           <List.Item>

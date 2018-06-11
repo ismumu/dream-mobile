@@ -172,7 +172,7 @@ export default modelExtend(model, {
 
 		// 发送邮箱验证码
 		*sendEmailCode({ payload }, { call, put }) {
-			Toast.loading("发送中...");
+			Toast.loading("发送中");
 			const { data, code, msg } = yield call(sendEmailCode, payload);
 			if (code == 200) {
 				Toast.success(msg, 1);

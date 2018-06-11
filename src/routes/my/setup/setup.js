@@ -50,8 +50,8 @@ class Setup extends React.Component {
   render() {
 
     const data = [
-      { value: 1, label: '公开' },
-      { value: 2, label: '自己查看' },
+      { value: 1, label: '公开我的主页和梦境' },
+      { value: 2, label: '只有自己能查看' },
     ];
 
     const tabs = [

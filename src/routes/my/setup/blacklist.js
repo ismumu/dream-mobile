@@ -36,7 +36,7 @@ class BlackList extends React.Component{
     return (
       <div className={styles.blacklistWrap}>
 
-        <List renderHeader={() => '你已存在的黑名单'}>
+        <List renderHeader={() => '已存在黑名单'}>
           {/* 黑名单列表 */}
           {
             this.props.blackList && this.props.blackList.length > 0 ?
@@ -57,7 +57,7 @@ class BlackList extends React.Component{
               )}/>
               :
               <Item>
-                <div className={styles.null}>您还木有拉黑任何人</div>
+                <div className={styles.null}>暂时未有</div>
               </Item>
 
           }
