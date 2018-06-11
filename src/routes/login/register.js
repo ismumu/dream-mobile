@@ -22,7 +22,7 @@ class Register extends React.Component {
           <div className={styles.title}>
             <b>连接全世界的梦连接</b>
             <p>
-              我们相信这样的连接产生趣味和价值
+            天马行空趣味和积极治愈价值
           </p>
           </div>
           <List>
