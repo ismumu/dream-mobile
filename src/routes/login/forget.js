@@ -20,9 +20,10 @@ class Forget extends React.Component {
         <NavBarPage isFly="false" />
         <div className={styles.loginWrap}>
             {/* <div className={styles.title}>
-            <b>测试</b>
+            <b>记录、分析、交流梦境</b>
             <p>
-              记录、分享、交流
+              连接我们在一起的力量是因为 <br />
+              我们相信梦的趣味、意义、价值
             </p>
           </div> */}
           <List style={{ marginTop: 50 }}>
