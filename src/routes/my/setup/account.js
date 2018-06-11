@@ -29,7 +29,7 @@ class Account extends React.Component {
           payload: this.props.form.getFieldsValue()
         })
       } else {
-        Toast.info("请输入密码", 1);
+        Toast.info("输入密码", 1);
       }
     });
   }
@@ -58,7 +58,7 @@ class Account extends React.Component {
     if (value && value.length >= 6 && value == this.state.password) {
       callback();
     } else {
-      callback(new Error('确认新密码'));
+      callback(new Error('新密码确认'));
     }
   }
 
@@ -67,7 +67,7 @@ class Account extends React.Component {
     return (
       <div className={`${styles.accountWrap}`}>
         <form>
-          <List renderHeader={() => '更改登录密码'}>
+          <List renderHeader={() => '修改登录密码'}>
             <InputItem
               {...getFieldProps('oldpassword', {
                 // initialValue: 'little ant',
@@ -85,7 +85,7 @@ class Account extends React.Component {
             <InputItem
               {...getFieldProps('password', {
                 rules: [
-                  { required: true, message: '请输入新密码' },
+                  { required: true, message: '输入新密码' },
                   { validator: this.validatePassoword1 },
                 ],
               })}
@@ -98,14 +98,14 @@ class Account extends React.Component {
             <InputItem
               {...getFieldProps('repassword', {
                 rules: [
-                  { required: true, message: '确认新密码' },
+                  { required: true, message: '新密码确认' },
                   { validator: this.validatePassoword2 },
                 ],
               })}
               error={!!getFieldError('repassword')}
               clear
               type="password"
-              placeholder="确认新密码"
+              placeholder="新密码确认"
               ref={el => this.customFocusInst = el}
             >确认密码</InputItem>
           </List>

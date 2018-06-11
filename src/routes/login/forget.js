@@ -30,14 +30,14 @@ class Forget extends React.Component {
               className={styles.text}
               id="email"
               ref={el => this.username = el}
-              placeholder="注册邮箱"
+              placeholder="邮箱"
             >
               {/* <div className={styles.iconUser} /> */}
             </InputItem>
           </List>
           <Button className={styles.loginBtn} type="primary" onClick={this.onSubmit}>发送重置密码链接</Button>
 
-          <Link to="/login" className={styles.forgetPwd}><span>返回登录页</span></Link>
+          <Link to="/login" className={styles.forgetPwd}><span>返回</span></Link>
 
         </div>
         {/* <div className={styles.footer}>

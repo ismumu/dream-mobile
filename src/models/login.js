@@ -28,7 +28,7 @@ export default modelExtend(model, {
 	effects: {
 		// 登录
 		* login({ payload }, { call, put }) {
-			Toast.loading('登录中...', 3);
+			Toast.loading('登录中', 3);
 			const { code, data, msg } = yield call(login, payload);
 			if (code == 200) {
 				setTimeout(() => {
@@ -44,11 +44,11 @@ export default modelExtend(model, {
 
 		// 注册
 		* register({ payload }, { call, put }) {
-			Toast.loading('注册中...', 3)
+			Toast.loading('创建中', 3)
 			const { code, data, msg } = yield call(register, payload);
 
 			if (code == 200) {
-				Toast.loading('注册成功,自动登录中..', 3)
+				Toast.loading('创建成功,登录中', 3)
 
 				// 登录
 				const { code, data, msg } = yield call(login, { name: payload.email, password: payload.password });

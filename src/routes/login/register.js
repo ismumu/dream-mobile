@@ -30,21 +30,21 @@ class Register extends React.Component {
               className={styles.text}
               id="username"
               ref={el => this.username = el}
-              placeholder="昵称"
+              placeholder="名字"
             >
             </InputItem>
             <InputItem
               className={styles.text}
               id="email"
               ref={el => this.username = el}
-              placeholder="注册邮箱"
+              placeholder="邮箱"
             >
             </InputItem>
             <InputItem
               className={styles.text}
               id="password"
               type="password"
-              placeholder="设置密码"
+              placeholder="密码"
             >
 
               {/* <div className={styles.iconPwd} /> */}
@@ -53,7 +53,7 @@ class Register extends React.Component {
               className={styles.text}
               id="password2"
               type="password"
-              placeholder="确认密码"
+              placeholder="密码确认"
             >
 
               {/* <div className={styles.iconPwd} /> */}
@@ -61,9 +61,9 @@ class Register extends React.Component {
           </List>
           <Button className={styles.loginBtn} type="primary" onClick={this.onSubmit}>创建</Button>
 
-          <Link to="/login" className={styles.forgetPwd}><span>返回登录</span></Link>
+          <Link to="/login" className={styles.forgetPwd}><span>返回</span></Link>
 
-          {/* <Link to=""><Button type="ghost"  className={styles.registerBtn}><span>注册账号</span></Button></Link> */}
+          {/* <Link to=""><Button type="ghost"  className={styles.registerBtn}><span>创建账号</span></Button></Link> */}
 
         </div>
 
@@ -81,22 +81,22 @@ class Register extends React.Component {
     const reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
 
     if (username == "") {
-      Toast.info("请输入用户名", 1);
+      Toast.info("输入用户名", 1);
     }
     else if (email == "") {
-      Toast.info("请输入邮箱", 1);
+      Toast.info("输入邮箱", 1);
     }
     else if(!reg.test(email)){
-      Toast.info("邮箱格式不正确", 1);
+      Toast.info("邮箱格式不对", 1);
     }
     else if (password == "") {
-      Toast.info("请输入密码", 1);
+      Toast.info("密码", 1);
     }
     else if (password2 == "") {
-      Toast.info("请确认密码", 1);
+      Toast.info("密码确认", 1);
     }
     else if (password2.length <6 || password.length <6) {
-      Toast.info("密码必须大于6位数", 1);
+      Toast.info("密码大于6位数", 1);
     }
     else if (password2 !== password) {
       Toast.info("密码不一致！", 1);

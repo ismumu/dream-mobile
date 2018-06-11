@@ -160,7 +160,7 @@ export default modelExtend(model, {
 
 		// 更新密码
 		*setPassword({ payload }, { call, put }) {
-			Toast.loading("更新中...");
+			Toast.loading("更新中");
 			const { data, code, msg } = yield call(setPassword, payload);
 			if (code == 200) {
 				Toast.success("密码修改成功！", 1);
@@ -181,7 +181,7 @@ export default modelExtend(model, {
 
 		// 更新邮箱
 		*setEmail({ payload }, { call, put }) {
-			Toast.loading("更新中...");
+			Toast.loading("更新中");
 			const { data, code, msg } = yield call(setEmail, payload);
 			if (code == 200) {
 				Toast.success("邮箱修改成功！", 1);
