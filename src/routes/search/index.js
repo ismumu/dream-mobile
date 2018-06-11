@@ -221,7 +221,7 @@ class Index extends React.Component {
 
 		const tabsMe = [
 			{
-				title: <b className={styles.colorBlack}>我的梦境</b>
+				title: <b className={styles.colorBlack}>我的梦</b>
 			}
 		];
 
@@ -283,7 +283,7 @@ class Index extends React.Component {
 						</div>
 						:
 						<div>
-							<NavBarPage iconType="back" title="搜索我的梦境" />
+							<NavBarPage iconType="back" title="搜索我的梦" />
 							<SearchBar
 								style={{ padding: '0 10px', margin: 0, textIndent: 0 }}
 								placeholder="search"

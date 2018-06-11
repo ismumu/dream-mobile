@@ -211,21 +211,21 @@ class Edit extends React.Component {
 						id="inputUsername"
 						clear
 						defaultValue={_user.uname}
-						placeholder="用户名">
+						placeholder="名称">
 						<i className={styles.iconfont}>&#xe80d;</i>
 					</InputItem>
 					<InputItem
 						id="inputAddress"
 						clear
 						defaultValue={_user.location}
-						placeholder="填写地址">
+						placeholder="地域">
 						<i className={styles.iconfont}>&#xe806;</i>
 					</InputItem>
 					<InputItem
 						id="inputProfession"
 						clear
 						defaultValue={_user.job}
-						placeholder="填写职业(职业习惯影响梦境)">
+						placeholder="职业习惯能影响梦">
 						<i className={styles.iconfont}>&#xf32d;</i>
 					</InputItem>
 					<InputItem
@@ -234,7 +234,7 @@ class Edit extends React.Component {
 						id="inputAge"
 						clear
 						defaultValue={parseInt(_user.age || 0)}
-						placeholder="填写年龄(生命有限，把握做梦)">
+						placeholder="生命有限 把握做梦">
 						<i className={styles.iconfont}>&#xf252;</i>
 					</InputItem>
 				</List>
