@@ -56,7 +56,7 @@ export default modelExtend(model, {
 
 
 			} else if (data.code == 400) {
-				Toast.info('该梦着设置了私密~', 1);
+				Toast.info('梦者已闭关静养~', 1);
 				browserHistory.push(-1);
 			}
 

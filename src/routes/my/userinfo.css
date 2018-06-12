@@ -58,7 +58,7 @@ a {
 }
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   color: #212121;
   -webkit-font-smoothing: antialiased;
@@ -67,7 +67,7 @@ a {
 }
 .iconfontBlue {
   font-family: "iconfont" !important;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   color: #2196f3;
   -webkit-font-smoothing: antialiased;
@@ -76,7 +76,7 @@ a {
 }
 .iconfontBlack {
   font-family: "iconfont" !important;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   color: #333;
   -webkit-font-smoothing: antialiased;
@@ -85,7 +85,7 @@ a {
 }
 .iconfontSmall {
   font-family: "iconfont" !important;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   color: #afaeae;
   -webkit-font-smoothing: antialiased;
@@ -94,7 +94,7 @@ a {
 }
 .iconfontBlueSmall {
   font-family: "iconfont" !important;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   color: #2196f3;
   -webkit-font-smoothing: antialiased;
@@ -264,7 +264,7 @@ a {
 }
 .userinfoWrap .dreamWrap .item .icons {
   height: 40px;
-  border-top: 1px solid #eee;
+  border-top: 0px solid #eee;
   margin: 10px -10px -15px -10px;
   margin-bottom: -15px;
   line-height: 40px;
@@ -291,7 +291,7 @@ a {
   width: 100%;
   background-color: #F5F5F9;
   height: 7px;
-  border-top: 1px solid #ECECED;
+  border-top: 0px solid #ECECED;
   border-bottom: 1px solid #ECECED;
 }
 .userinfoWrap .dreamWrap .separator:last-child {
