@@ -22,7 +22,7 @@ class Forget extends React.Component {
             {/* <div className={styles.title}>
             <b>连接全世界的梦</b>
             <p>
-             天马行空趣味和积极治愈价值
+             记录、分享、交流
             </p>
           </div> */}
           <List style={{ marginTop: 50 }}>
