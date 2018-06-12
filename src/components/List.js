@@ -254,9 +254,11 @@ class List extends React.Component {
 							<div
 								className={ styles.des}
 								id={'desShowAll' + obj.feed_id}
+								dangerouslySetInnerHTML={{
+									__html: obj.content
+								}}
 								onClick={this.handleContentSlide.bind(this, obj.feed_id)}
 							>
-								{obj.content}
 							</div>
 							{
 								obj.imgInfo && obj.imgInfo.length > 0 ?
