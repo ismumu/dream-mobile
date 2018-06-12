@@ -45,7 +45,7 @@ class Login extends React.Component {
           </List>
           <Button className={styles.loginBtn} type="primary" onClick={this.onSubmit}>登入</Button>
 
-          <Link to="/forget" className={styles.forgetPwd}><span>忘记密码 ?</span></Link>
+          <Link to="/forget" className={styles.forgetPwd}><span>忘记密码</span></Link>
 
           <Link to="/register"><Button type="ghost" className={styles.registerBtn}><span>创建账户</span></Button></Link>
 
