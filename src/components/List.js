@@ -108,7 +108,7 @@ class List extends React.Component {
 	onShowShareModal = (item) => {
 
 		if (!UID) {
-			Toast.info("请先登录！", 1);
+			Toast.info("请先登入！", 1);
 			return;
 		}
 
@@ -172,7 +172,7 @@ class List extends React.Component {
 		count = count * 1;
 
 		if (!UID) {
-			Toast.info("请先登录！", 1);
+			Toast.info("请先登入！", 1);
 			return;
 		}
 

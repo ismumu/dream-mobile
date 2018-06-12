@@ -75,7 +75,7 @@ class AccountUpdateEmail extends React.Component {
     return (
       <div>
 
-        <List renderHeader={() => '更改登录邮箱'}>
+        <List renderHeader={() => '更改登入邮箱'}>
           <InputItem
             {...getFieldProps('email', {
               rules: [

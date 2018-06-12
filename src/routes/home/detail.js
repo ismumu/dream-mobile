@@ -278,7 +278,7 @@ class Detail extends React.Component {
 			<div>
 				{
 					UID ?
-						// 已登录
+						// 已登入
 						<div className={styles.detailWrap}>
 							<NavBarPage iconType="back" isFixed="true" title="梦境" />
 							{
@@ -297,7 +297,7 @@ class Detail extends React.Component {
 												<span className={styles.name}>
 													<Link className={styles.bold} to={{ pathname: this.props.detail.info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + this.props.detail.info.uid }}>{this.props.detail.info.uname}</Link>
 													{
-														// 是登陆账号的梦境时才能删除跟编辑
+														// 是登入账户的梦境时才能删除跟编辑
 														this.props.detail.info.uid == UID ?
 															<Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream} />
 															: <span></span>
@@ -436,7 +436,7 @@ class Detail extends React.Component {
 
 						</div>
 						:
-						// 未登录
+						// 未登入
 						<DetailNotLogin feedId={this.props.location.query.id} />
 				}
 

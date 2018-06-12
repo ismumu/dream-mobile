@@ -44,12 +44,12 @@ class Detail extends React.Component {
 
 	// 回复输入框
 	showModal = (key, name, review_id) => (e) => {
-		Toast.info("请先登录", 1);
+		Toast.info("请先登入", 1);
 	}
 
 	// 点赞
 	handleUpdatedigg = () => {
-		Toast.info("请先登录", 1);
+		Toast.info("请先登入", 1);
 	}
 
 	render() {

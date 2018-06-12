@@ -18,7 +18,7 @@ export default modelExtend(model, {
 
 	subscriptions: {
 		setup({ dispatch, history }) {
-			// 已登录，跳到首页
+			// 已登入，跳到首页
 			//  if(Storage.get('token')){
 			//   browserHistory.push('/');
 			//  }
@@ -26,13 +26,13 @@ export default modelExtend(model, {
 	},
 
 	effects: {
-		// 登录
+		// 登入
 		* login({ payload }, { call, put }) {
-			Toast.loading('登录中', 3);
+			Toast.loading('登入中', 3);
 			const { code, data, msg } = yield call(login, payload);
 			if (code == 200) {
 				setTimeout(() => {
-					Toast.success("登录成功！", 1);
+					Toast.success("登入成功！", 1);
 					browserHistory.push('/');
 				}, 500);
 
@@ -48,13 +48,13 @@ export default modelExtend(model, {
 			const { code, data, msg } = yield call(register, payload);
 
 			if (code == 200) {
-				Toast.loading('创建成功,登录中', 3)
+				Toast.loading('创建成功,登入中', 3)
 
-				// 登录
+				// 登入
 				const { code, data, msg } = yield call(login, { name: payload.email, password: payload.password });
 				if (code == 200) {
 					setTimeout(() => {
-						Toast.success("登录成功！", 1);
+						Toast.success("登入成功！", 1);
 						browserHistory.push('/');
 					}, 1000);
 

@@ -84,7 +84,7 @@ export default modelExtend(model, {
 			}
 		},
 
-		// 退出登录
+		// 退出登入
 		*logout({ payload }, { call, put }) {
 			Toast.info("退出中...", 1);
 			const { data, code, msg } = yield call(loginout, payload);
@@ -165,7 +165,7 @@ export default modelExtend(model, {
 			if (code == 200) {
 				Toast.success("密码修改成功！", 1);
 
-				// 修改密码成功，退出登录
+				// 修改密码成功，退出登入
 				//yield put({ type: 'logout', payload: {} });
 			}
 		},
@@ -186,7 +186,7 @@ export default modelExtend(model, {
 			if (code == 200) {
 				Toast.success("邮箱修改成功！", 1);
 
-				// 修改密码成功，退出登录
+				// 修改密码成功，退出登入
 				//yield put({ type: 'logout', payload: {} });
 			}
 		},

@@ -70,7 +70,7 @@ module.exports = {
 
 		setPassword: `${devApi}/users/change-pwd`,              // 修改密码
 		sendEmailCode: `${devApi}/users/send-email-code`,       // 发送邮箱验证码
-		setEmail: `${devApi}/users/change-email`,               // 修改登录邮箱
+		setEmail: `${devApi}/users/change-email`,               // 修改登入邮箱
 
 
 	},

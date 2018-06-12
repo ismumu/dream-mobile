@@ -115,7 +115,7 @@ class Setup extends React.Component {
                   style={{
                     textAlign: 'center',
                     color: "red"
-                  }}>退出账号</div>
+                  }}>退出账户</div>
               </Item>
             </List>
 

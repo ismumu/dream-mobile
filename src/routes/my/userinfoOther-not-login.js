@@ -9,7 +9,7 @@ import styles from "./userinfo.less";
 import Util from "../../utils/util";
 import NavBarPage from "../../components/NavBar"
 
-// 登陆id
+// 登入id
 const UID = Storage.get('uid');
 
 function renderTabBar(props) {

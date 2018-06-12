@@ -79,7 +79,7 @@ function saveToken(msg, token, userInfo) {
 	const day_30 = 60 * 24 * 30;  // 计算存储天数，单位是分钟，共30天
 	const day_1 = 60 * 24 * 1;  // 1 day
 
-	if (msg === "登录成功" && userInfo) {
+	if (msg === "登入成功" && userInfo) {
 		Storage.set('token', token, day_30);
 		Storage.set('uname', userInfo.uname, day_30);
 		Storage.set('uid', userInfo.uid, day_30);
@@ -109,11 +109,11 @@ export function get(url, options) {
 export function post(url, options) {
 
 	if (Storage.get('token')) {
-		// 已登录
+		// 已登入
 		options.data.token = Storage.get('token');
 	}
 	else {
-		// 未登录
+		// 未登入
 		//console.log('login');
 		//window.location.href = '#/login';
 		//return;

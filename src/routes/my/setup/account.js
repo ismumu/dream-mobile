@@ -67,7 +67,7 @@ class Account extends React.Component {
     return (
       <div className={`${styles.accountWrap}`}>
         <form>
-          <List renderHeader={() => '修改登录密码'}>
+          <List renderHeader={() => '修改登入密码'}>
             <InputItem
               {...getFieldProps('oldpassword', {
                 // initialValue: 'little ant',

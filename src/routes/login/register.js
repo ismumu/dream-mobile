@@ -63,7 +63,7 @@ class Register extends React.Component {
 
           <Link to="/login" className={styles.forgetPwd}><span>返回</span></Link>
 
-          {/* <Link to=""><Button type="ghost"  className={styles.registerBtn}><span>创建账号</span></Button></Link> */}
+          {/* <Link to=""><Button type="ghost"  className={styles.registerBtn}><span>创建账户</span></Button></Link> */}
 
         </div>
 

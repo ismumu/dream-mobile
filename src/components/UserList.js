@@ -8,7 +8,7 @@ import styles from "./List.less";
 import Util from "../utils/util";
 import Storage from '../utils/storage';
 
-// 登陆id
+// 登入id
 const UID = Storage.get('uid');
 
 class List extends React.Component {

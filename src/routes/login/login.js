@@ -43,13 +43,13 @@ class Login extends React.Component {
               {/* <div className={styles.iconPwd} /> */}
             </InputItem>
           </List>
-          <Button className={styles.loginBtn} type="primary" onClick={this.onSubmit}>登录</Button>
+          <Button className={styles.loginBtn} type="primary" onClick={this.onSubmit}>登入</Button>
 
           <Link to="/forget" className={styles.forgetPwd}><span>忘记密码 ?</span></Link>
 
-          <Link to="/register"><Button type="ghost" className={styles.registerBtn}><span>创建账号</span></Button></Link>
+          <Link to="/register"><Button type="ghost" className={styles.registerBtn}><span>创建账户</span></Button></Link>
 
-          <Link to="/" className={styles.forgetPwd}><span>无登陆浏览</span></Link>
+          <Link to="/" className={styles.forgetPwd}><span>无登入浏览</span></Link>
 
         </div>
       </div>
@@ -57,7 +57,7 @@ class Login extends React.Component {
     )
   }
 
-  // 登录
+  // 登入
   onSubmit=()=>{
 
     const username = document.getElementById("username").value;
@@ -68,8 +68,8 @@ class Login extends React.Component {
     } else if (password == "") {
       Toast.info("输入密码", 1);
     } else {
-      //开始登陆
-      Toast.loading("登录中",5);
+      //开始登入
+      Toast.loading("登入中",5);
       this.props.dispatch({'type':'user/login','payload':{'name':username,'password':password}});
     }
   }

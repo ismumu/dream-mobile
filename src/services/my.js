@@ -29,7 +29,7 @@ export async function addOpinion(params) {
 
 
 /**
- * 退出登录
+ * 退出登入
  */
 export async function loginout(params) {
   return post(my.loginout, { data: params });
