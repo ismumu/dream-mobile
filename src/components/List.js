@@ -125,7 +125,7 @@ class List extends React.Component {
 				sites: ['weibo', 'wechat', 'douban', 'qq'],
 				mode: 'prepend',
 				url: `h5.xiaoyiwo.net/#/home/detail?id=${feed_id}`,
-				description: 'IDream梦食者',
+				description: 'iDream',
 				title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream梦境网）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',

@@ -249,7 +249,7 @@ class Detail extends React.Component {
 				// 这里配置各种参数
 				sites: ['weibo', 'wechat', 'douban', 'qq'],
 				mode: 'prepend',
-				description: 'IDream梦食者',
+				description: 'iDream',
 				url: window.location.href,
 				title: `【${this.props.detail.info.title}】${this.props.detail.info.content.substr(0, 10)}... ${window.location.href}（来自IDream梦境网）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
