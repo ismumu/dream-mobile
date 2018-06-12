@@ -38,7 +38,7 @@ class Login extends React.Component {
               className={styles.text}
               id="password"
               type="password"
-              placeholder="密 码"
+              placeholder="密码"
             >
               {/* <div className={styles.iconPwd} /> */}
             </InputItem>
