@@ -173,11 +173,11 @@ a {
   vertical-align: top;
   margin-right: 20px;
   line-height: 26px;
-  font-size: 22px;
+  font-size: 15px;
 }
 .userinfoWrap .userinfo .opinion {
   padding: 0 40px;
-  color: #999;
+  color: #757575;
   line-height: 20px;
 }
 .userinfoWrap .userinfo .opinion span {

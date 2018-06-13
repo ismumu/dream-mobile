@@ -480,7 +480,7 @@ class Detail extends React.Component {
 									if ( !this.state.reviewTextAreaVal ) {
 										this.setState({
 											isShowErrorTip: true,
-											errorTipText: '总得输入点什么吧？',
+											errorTipText: '回复内容',
 										})
 
 										return ;
@@ -498,12 +498,12 @@ class Detail extends React.Component {
 						ref={ref => this.autoFocusInst = ref}
 						className={styles.modalReviewTextArea}
 						autoHeight
-						placeholder='请输入...'
+						placeholder='内容'
 						onChange={(value) => {
 							if ( !value ) {
 								this.setState({
 									isShowErrorTip: true,
-									errorTipText: '总得输入点什么吧？',
+									errorTipText: '回复内容',
 									reviewTextAreaVal: value,
 								})
 							} else {
