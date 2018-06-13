@@ -121,7 +121,7 @@ class Edit extends React.Component {
 		const intro = document.getElementById('inputIntroId').value;
 		const sex = this.state.sex;
 
-		Toast.loading('保存中...', 5);
+		Toast.loading('保存中', 5);
 
 		this.props.dispatch({
 			type: 'my/editUser', payload: {
@@ -149,7 +149,7 @@ class Edit extends React.Component {
 
 		//用size属性判断文件大小不能超过5M ，前端直接判断的好处，免去服务器的压力。
 		if (file.size > 5 * 1024 * 1024) {
-			Toast.info('图片太大了，请换一张小一点的');
+			Toast.info('图片过大');
 			return;
 		}
 
@@ -234,7 +234,7 @@ class Edit extends React.Component {
 						id="inputAge"
 						clear
 						defaultValue={parseInt(_user.age || 0)}
-						placeholder="生命有限 把握做梦">
+						placeholder="生命有限把握做梦">
 						<i className={styles.iconfont}>&#xf252;</i>
 					</InputItem>
 				</List>

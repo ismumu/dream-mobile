@@ -33,9 +33,9 @@ class Fly extends React.Component {
 
 
 		if (title == "") {
-			Toast.info('请先填写标题', 1);
+			Toast.info('题梦：简明扼要', 1);
 		} else if (content == "") {
-			Toast.info('请多少输入一点吧~~', 1);
+			Toast.info('梦境内容：详细情景', 1);
 		}
 		else {
 
@@ -70,7 +70,7 @@ class Fly extends React.Component {
 						defaultContent: '',
 					});
 
-					Toast.success("发送成功!", 1);
+					Toast.success("发布成功", 1);
 					browserHistory.push('/');
 
 				}
@@ -231,7 +231,7 @@ class Fly extends React.Component {
 					rightContent={[
 						<i key="icon" className={styles.iconfontBlack} onClick={this.handlePublish} >&#xf1d8;</i>
 					]}
-					style={{ borderBottom: "1px solid #eee" }}
+					style={{ borderBottom: "0px solid #eee" }}
 				>
 				iDream
         		</NavBar>

@@ -37,7 +37,7 @@ class About extends React.Component {
                     onLeftClick={() => history.go(-1)}
                     style={{
                     borderBottom: "1px solid #ECECED"
-                }}>关于我</NavBar>
+                }}>关于 iDream</NavBar>
 
                 <div>
                     <h3>你的建议 </h3>
@@ -72,7 +72,7 @@ class About extends React.Component {
                     <b>梦的趣味天马行空<br/>
                         梦的价值具治愈和发现心理真相<br/>
                         若你和我们一样认同梦这样的积极功能<br/>
-                        立即加入我们<br/>
+                        请加入我们<br/>
                         为之奋斗创造更具趣味和意义价值的现实世界<br/>
                     
                         Call me babe<br/>
