@@ -58,9 +58,9 @@ class FlyEdit extends React.Component {
 		const content = contentDom.value;
 
 		if ( !title ) {
-			Toast.info('请先填写标题', 1);
+			Toast.info('题梦：简明扼要', 1);
 		} else if ( !content ) {
-			Toast.info('请多少输入一点吧~~', 1);
+			Toast.info('梦境内容：详细情景', 1);
 		}
 		else {
 

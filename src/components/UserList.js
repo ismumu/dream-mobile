@@ -56,7 +56,7 @@ class List extends React.Component {
       <div
         key={`${sectionID}-${rowID}`}
         style={{
-          backgroundColor: '#F5F5F9',
+          backgroundColor: '#eee',
           height: 7,
           borderTop: '1px solid #ECECED',
           borderBottom: '1px solid #ECECED',

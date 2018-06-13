@@ -386,7 +386,7 @@ class Detail extends React.Component {
 																									?
 																									null
 																									:
-																									<span>：回复@{item2.to_uname}：</span>
+																									<span> | 回复@{item2.to_uname}：</span>
 																								}
 																							</div>
 																							{item2.content}
