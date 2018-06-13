@@ -141,7 +141,7 @@ a {
   display: block;
   width: 100px;
   height: 100px;
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   border-radius: 50%;
   margin: 0 auto;
   overflow: hidden;
@@ -196,7 +196,7 @@ a {
 .userinfoWrap .userinfo .tagsBox .tag {
   display: inline-block;
   padding: 5px 5px;
-  border: 1px solid #eee;
+  border: 0px solid #eee;
   border-radius: 3px;
   margin: 3px;
   font-size: 12px;
