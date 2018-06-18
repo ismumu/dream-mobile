@@ -109,11 +109,11 @@ export function get(url, options) {
 export function post(url, options) {
 
 	if (Storage.get('token')) {
-		// 已登入
+		// 已登录
 		options.data.token = Storage.get('token');
 	}
 	else {
-		// 未登入
+		// 未登录
 		//console.log('login');
 		//window.location.href = '#/login';
 		//return;

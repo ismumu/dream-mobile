@@ -57,7 +57,7 @@ class Login extends React.Component {
     )
   }
 
-  // 登入
+  // 登录
   onSubmit=()=>{
 
     const username = document.getElementById("username").value;
@@ -68,7 +68,7 @@ class Login extends React.Component {
     } else if (password == "") {
       Toast.info("输入密码", 1);
     } else {
-      //开始登入
+      //开始登录
       Toast.loading("登入中",5);
       this.props.dispatch({'type':'user/login','payload':{'name':username,'password':password}});
     }

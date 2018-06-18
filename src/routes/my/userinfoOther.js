@@ -14,7 +14,7 @@ import ListPage from '../../components/List'
 import ImageView from 'react-mobile-imgview';
 import 'react-mobile-imgview/dist/react-mobile-imgview.css';
 
-// 登入id
+// 登录id
 const UID = Storage.get('uid');
 
 
@@ -51,7 +51,7 @@ class Userinfo extends React.Component {
 
 		const uid = this.props.location.state;
 
-		// 登入状态，并且有要查看的人的id
+		// 登录状态，并且有要查看的人的id
 		if (uid && UID) {
 			// 如果是自己
 			if (uid == UID) {

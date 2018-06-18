@@ -69,7 +69,7 @@ class Home extends React.Component {
 			<div>
 				{
 					UID ?
-						//已登入
+						//已登录
 						<div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
 							<TabBar unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white">
 								<TabBar.Item
@@ -114,7 +114,7 @@ class Home extends React.Component {
 							</TabBar>
 						</div>
 						:
-						//未登入
+						//未登录
 						<IndexNotLogin />
 				}
 			</div>

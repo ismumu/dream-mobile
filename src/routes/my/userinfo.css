@@ -39,7 +39,7 @@ a {
 }
 .colorBlack {
   color: #212121;
-  FontSize: 14px;
+  font-size: 14px;
 }
 .bold {
   font-weight: bold !important;
