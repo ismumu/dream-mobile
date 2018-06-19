@@ -108,7 +108,7 @@ class List extends React.Component {
 	onShowShareModal = (item) => {
 
 		if (!UID) {
-			Toast.info("请先登入！", 1);
+			Toast.info("登入后即可发表", 1);
 			return;
 		}
 
@@ -172,7 +172,7 @@ class List extends React.Component {
 		count = count * 1;
 
 		if (!UID) {
-			Toast.info("请先登入！", 1);
+			Toast.info("登入后即可发表", 1);
 			return;
 		}
 
@@ -335,7 +335,7 @@ class List extends React.Component {
 					ref={el => this.lv = el}
 					dataSource={this.props.dataSource}
 					renderFooter={() => (<div style={{ padding: 5, textAlign: 'center' }}>
-						{this.props.isLoading ? "加载中..." : null}
+						{this.props.isLoading ? "读取中" : null}
 					</div>)}
 					renderRow={this.row}
 					renderSeparator={separator}

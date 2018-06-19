@@ -253,7 +253,7 @@ class Userinfo extends React.Component {
 									ref={el => this.lv = el}
 									dataSource={this.state.dataSource}
 									renderFooter={() => (<div style={{ padding: 5, textAlign: 'center' }}>
-										{this.state.isLoading ? "加载中..." : null}
+										{this.state.isLoading ? "读取中" : null}
 									</div>)}
 									renderRow={this.row}
 									renderSeparator={separator}
