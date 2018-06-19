@@ -103,8 +103,8 @@ class Home extends React.Component {
 								</TabBar.Item>
 
 								<TabBar.Item
-									icon={<i className={styles.iconfont} style={{ fontSize: 28 }}>&#xe802;</i>}
-									selectedIcon={<i className={styles.iconfontBlack} style={{ fontSize: 28 }}>&#xe802;</i>}
+									icon={<i className={styles.iconfont}>&#xe802;</i>}
+									selectedIcon={<i className={styles.iconfontBlack}>&#xe802;</i>}
 									// title="探索"
 									key="Friend1"
 									selected={ selectedTab === "tab1" }
