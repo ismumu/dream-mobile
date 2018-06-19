@@ -56,7 +56,7 @@ export default modelExtend(model, {
 
 
 			} else if (data.code == 400) {
-				Toast.info('梦者已闭关静养~', 1);
+				Toast.info('已闭关静养~', 1);
 				browserHistory.push(-1);
 			}
 
@@ -74,7 +74,7 @@ export default modelExtend(model, {
 
 		// 添加意见
 		*addOpinion({ payload }, { call, put }) {
-			Toast.loading("提交中...", 1);
+			Toast.loading("提交中", 1);
 			const { data, code, msg } = yield call(addOpinion, payload);
 			if (code == 200) {
 				Toast.success(msg, 1);
@@ -86,7 +86,7 @@ export default modelExtend(model, {
 
 		// 退出登录
 		*logout({ payload }, { call, put }) {
-			Toast.info("退出中...", 1);
+			Toast.info("退出中", 1);
 			const { data, code, msg } = yield call(loginout, payload);
 
 			if (code == 200) {
@@ -113,7 +113,7 @@ export default modelExtend(model, {
 
 		// 拉黑用户
 		*setBlack({ payload }, { call, put }) {
-			Toast.loading('拉黑中...');
+			Toast.loading('加入黑名单中');
 			const { data, code, msg } = yield call(setBlack, payload);
 
 			if (code == 200) {
@@ -126,7 +126,7 @@ export default modelExtend(model, {
 
 		// 解除拉黑,列表解除
 		*delBlack({ payload }, { call, put }) {
-			Toast.loading('解除中...');
+			Toast.loading('解除黑名单中');
 			const { data, code, msg } = yield call(delBlack, payload);
 			if (code == 200) {
 				Toast.hide()
@@ -139,7 +139,7 @@ export default modelExtend(model, {
 
 		// 解除拉黑，用户界面解除
 		*delBlack2({ payload }, { call, put }) {
-			Toast.loading('解除中...');
+			Toast.loading('解除黑名单中');
 			const { data, code, msg } = yield call(delBlack, payload);
 			if (code == 200) {
 				Toast.hide()
