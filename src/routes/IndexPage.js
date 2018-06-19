@@ -83,8 +83,8 @@ class Home extends React.Component {
 
 								<TabBar.Item
 									key="Life"
-									icon={<i className={styles.iconfont} style={{ fontSize: 28 }}>&#xe800;</i>}
-									selectedIcon={<i className={styles.iconfontBlack} style={{ fontSize: 28 }}>&#xe800;</i>}
+									icon={<i className={styles.iconfont}>&#xe800;</i>}
+									selectedIcon={<i className={styles.iconfontBlack}>&#xe800;</i>}
 									selected={ selectedTab === "tab3" }
 									dot={ unread_count > 0 }
 									onPress={this.onPress.bind(this, 'tab3')}
