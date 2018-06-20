@@ -257,7 +257,7 @@ class Edit extends React.Component {
 						id="inputIntroId"
 						rows={4}
 						placeholder="你怎么看待梦境?"
-						style={{ fontSize: 14, }}
+						style={{ fontSize: 16, }}
 					/>
 				</List>
 
