@@ -290,10 +290,10 @@ a {
 }
 .userinfoWrap .dreamWrap .separator {
   width: 100%;
-  background-color: #F5F5F9;
+  background-color: #eee;
   height: 7px;
   border-top: 0px solid #ECECED;
-  border-bottom: 1px solid #ECECED;
+  border-bottom: 0px solid #ECECED;
 }
 .userinfoWrap .dreamWrap .separator:last-child {
   display: none;
