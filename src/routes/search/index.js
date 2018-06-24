@@ -277,7 +277,7 @@ class Index extends React.Component {
 												<UserList keyword={this.state.keyword} />
 											</div>
 										</Tabs>
-										: <p className={styles.txtCenter}>搜寻与你梦境相关的内容</p>
+										: <p className={styles.txtCenter}>搜你想知的梦</p>
 								}
 							</div>
 						</div>
