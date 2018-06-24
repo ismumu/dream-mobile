@@ -204,7 +204,7 @@ a {
   color: #999;
 }
 .userinfoWrap .dreamWrap {
-  border-top: 10px solid #F5F5F9;
+  border-top: 10px solid rgb(223, 110, 18);
 }
 .userinfoWrap .dreamWrap .item {
   text-align: left;
