@@ -36,7 +36,7 @@ class About extends React.Component {
                     icon={< Icon type = "left" />}
                     onLeftClick={() => history.go(-1)}
                     style={{
-                    borderBottom: "1px solid #ECECED"
+                    borderBottom: "0px solid #ECECED"
                 }}>关于 iDream</NavBar>
 
                 <div>
