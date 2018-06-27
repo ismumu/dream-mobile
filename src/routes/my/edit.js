@@ -225,7 +225,7 @@ class Edit extends React.Component {
 						id="inputProfession"
 						clear
 						defaultValue={_user.job}
-						placeholder="职业习惯能影响梦">
+						placeholder="职业习惯影响梦境">
 						<i className={styles.iconfont}>&#xf32d;</i>
 					</InputItem>
 					<InputItem
@@ -234,12 +234,12 @@ class Edit extends React.Component {
 						id="inputAge"
 						clear
 						defaultValue={parseInt(_user.age || 0)}
-						placeholder="生命有限把握做梦">
+						placeholder="剩下多少生命">
 						<i className={styles.iconfont}>&#xf252;</i>
 					</InputItem>
 				</List>
 
-				<List renderHeader={() => '性别'}>
+				<List renderHeader={() => '性取向'}>
 					{sexs.map(i => (
 						<RadioItem
 							key={i.value}
