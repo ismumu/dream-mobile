@@ -193,7 +193,7 @@ class List extends React.Component {
 
 					let newCount = likeCountNum * 1 + 1;
 
-					likeIcon.style.color = '#05bcff';
+					likeIcon.style.color = '#1F4BA5';
 					if ( newCount <= 0 ) {
 						likeCountLabel.innerHTML = '';
 					} else {
@@ -204,7 +204,7 @@ class List extends React.Component {
 
 					let newCount = likeCountNum * 1 - 1;
 
-					likeIcon.style.color = '#afaeae';
+					likeIcon.style.color = '#bdbdbd';
 					if ( newCount <= 0 ) {
 						likeCountLabel.innerHTML = '';
 					} else {
@@ -291,7 +291,7 @@ class List extends React.Component {
 								{
 									obj.has_digg == 1
 									?
-									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i>
+									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe808;</i>
 									:
 									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall}>&#xe808;</i>
 								}

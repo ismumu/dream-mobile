@@ -322,7 +322,7 @@ class Detail extends React.Component {
 													{
 														this.props.detail.info.hasDigg == 1
 														?
-														<i className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i>
+														<i className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe808;</i>
 														:
 														<i className={styles.iconfontSmall}>&#xe808;</i>
 													}

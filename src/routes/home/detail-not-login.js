@@ -82,7 +82,7 @@ class Detail extends React.Component {
 									<span className={styles.praise} onClick={this.handleUpdatedigg}>
 										{
 											this.props.detail.info.hasDigg == 1 ?
-												<i className={styles.iconfontSmall} style={{ color: '#05bcff' }}>&#xe808;</i>
+												<i className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe808;</i>
 												: <i className={styles.iconfontSmall}>&#xe808;</i>
 										}
 										<label>{this.props.detail.info.digg_count > 0 ? this.props.detail.info.digg_count : null}</label>
