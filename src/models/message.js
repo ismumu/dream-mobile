@@ -28,7 +28,7 @@ export default modelExtend(model, {
 			if (code == 200) {
 				yield put({ type: 'updateState', payload: { msgList: data.msg } });
 				if (data.count == 0) {
-					Toast.info("目前您木有评论喔~", 1);
+					Toast.info("暂时未有消息", 1);
 				}
 			}
 		},
