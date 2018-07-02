@@ -171,7 +171,7 @@ class FlyEdit extends React.Component {
 					mode="light"
 					icon={<Icon type="left" />}
 					onLeftClick={() => history.back()}
-					style={{ borderBottom: "1px solid #eee" }}
+					style={{ borderBottom: "0px solid #eee" }}
 				>iDream</NavBar>
 				<div>
 				<div>
