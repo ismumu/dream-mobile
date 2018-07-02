@@ -237,7 +237,7 @@ class Userinfo extends React.Component {
 								</div>
 							</div>
 							<div className={styles.dreamWrap}>
-								<Tabs tabs={tabs} initalPage={'t2'} swipeable={false}>
+								{/*Tabs tabs={tabs} initalPage={'t2'} swipeable={false} */}
 									<ListPage
 										dataSource={this.state.dataSource}
 										isLoading={this.state.isLoading}
@@ -245,7 +245,7 @@ class Userinfo extends React.Component {
 										isUseBodyScroll={true}
 										imageView={this.imageViewClick}
 									/>
-								</Tabs>
+								{/*Tabs */}
 							</div>
 						</div>
 						:

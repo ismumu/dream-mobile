@@ -192,7 +192,7 @@ class Userinfo extends React.Component {
 					</div>
 
 				<div className={styles.dreamWrap}>
-					<Tabs tabs={tabs} initialPage={this.props.userInfoInitTabs} swipeable={false} onChange={handleInitTabs}>
+					{/* Tabs tabs={tabs} initialPage={this.props.userInfoInitTabs} swipeable={false} onChange={handleInitTabs}  */}
 						{
 							this.state.list.length > 0
 							?
@@ -211,7 +211,7 @@ class Userinfo extends React.Component {
 							<CollectList />
 						</div> */}
 
-					</Tabs>
+					{/* Tabs */}
 				</div>
 
 				{
