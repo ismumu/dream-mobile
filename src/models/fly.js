@@ -32,7 +32,7 @@ export default modelExtend(model, {
 
 			let { payload, callback } = action;
 
-			Toast.loading("发送中...");
+			Toast.loading("发送中");
 			const { data, code, msg } = yield call(publish, payload);
 			if (code == 200) {
 
@@ -69,7 +69,7 @@ export default modelExtend(model, {
 
 		// 更新梦境
 		*updateDream({ payload, callback }, { call, put }) {
-			Toast.loading("更新中...");
+			Toast.loading("更新中");
 
 			const data = yield call(publish, payload);
 			if (data.code == 200) {
