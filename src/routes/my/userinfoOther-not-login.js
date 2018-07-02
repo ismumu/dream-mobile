@@ -247,7 +247,7 @@ class Userinfo extends React.Component {
 				{/* 梦境列表 */}
 				<div className={styles.dreamWrap}>
 					<StickyContainer>
-						<Tabs tabs={tabs} initalPage={'t2'} renderTabBar={renderTabBar} swipeable={false}>
+						{/* Tabs tabs={tabs} initalPage={'t2'} renderTabBar={renderTabBar} swipeable={false}*/}
 							<div>
 								<ListView
 									ref={el => this.lv = el}
@@ -266,7 +266,7 @@ class Userinfo extends React.Component {
 									onEndReachedThreshold={10}
 								/>
 							</div>
-						</Tabs>
+						{/* Tabs */}
 					</StickyContainer>
 				</div>
 			</div>
