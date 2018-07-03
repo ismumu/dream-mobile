@@ -61,7 +61,7 @@ class About extends React.Component {
                 <Button
                     onClick={this.submit.bind(this)}
                     type="primary"
-                    style={{ margin: 20}}>提交</Button>
+                    style={{ margin:10 }}>提交</Button>
 
                 <div className={styles.iNeedYou}>
                     <h3>为什么建立</h3>
