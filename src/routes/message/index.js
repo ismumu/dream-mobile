@@ -86,7 +86,7 @@ class Index extends React.Component {
 				key={`${sectionID}-${rowID}`}
 				style={{
 					backgroundColor: 'rgb(245, 245, 249)',
-					height: 2,
+					height: 1,
 					borderTop: '0px solid #ECECED',
 					borderBottom: '0px solid #ECECED',
 				}}

@@ -322,7 +322,7 @@ class List extends React.Component {
 				key={`${sectionID}-${rowID}`}
 				style={{
 					backgroundColor: '#eee',
-					height: 2,
+					height: 1,
 					borderTop: '0px solid #ECECED',
 					borderBottom: '0px solid #ECECED',
 				}}
