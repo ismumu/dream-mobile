@@ -226,7 +226,7 @@ class Edit extends React.Component {
 						clear
 						defaultValue={_user.job}
 						placeholder="职业习惯影响梦境">
-						<i className={styles.iconfont}>&#xf32d;</i>
+						<i className={styles.iconfont}>&#xe805;</i>
 					</InputItem>
 					<InputItem
 						type="number"
@@ -239,7 +239,7 @@ class Edit extends React.Component {
 					</InputItem>
 				</List>
 
-				<List renderHeader={() => '性取向'}>
+				<List renderHeader={() => '状态'}>
 					{sexs.map(i => (
 						<RadioItem
 							key={i.value}

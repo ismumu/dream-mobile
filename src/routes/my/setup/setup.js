@@ -84,21 +84,21 @@ class Setup extends React.Component {
                   <CheckboxItem defaultChecked={this.state.notice.is_review == 1 ? true : false} onChange={() => this.onChange(0)}>
                     评论
                             </CheckboxItem>
-                  <CheckboxItem defaultChecked={this.state.notice.is_forward == 1 ? true : false} onChange={() => this.onChange(1)}>
+                 {/* <CheckboxItem defaultChecked={this.state.notice.is_forward == 1 ? true : false} onChange={() => this.onChange(1)}>
                     转发
-                            </CheckboxItem>
+            </CheckboxItem>*/}
                   <CheckboxItem defaultChecked={this.state.notice.is_digg == 1 ? true : false} onChange={() => this.onChange(2)}>
                     点赞
                             </CheckboxItem>
-                  <CheckboxItem defaultChecked={this.state.notice.is_store == 1 ? true : false} onChange={() => this.onChange(3)}>
+                  {/* <CheckboxItem defaultChecked={this.state.notice.is_store == 1 ? true : false} onChange={() => this.onChange(3)}>
                     收藏
-                            </CheckboxItem>
-                  <CheckboxItem defaultChecked={this.state.notice.is_personal == 1 ? true : false} onChange={() => this.onChange(4)}>
+                            </CheckboxItem>*/}
+                  {/* <CheckboxItem defaultChecked={this.state.notice.is_personal == 1 ? true : false} onChange={() => this.onChange(4)}>
                     私信
-                            </CheckboxItem>
-                  <CheckboxItem defaultChecked={this.state.notice.is_follow == 1 ? true : false} onChange={() => this.onChange(5)}>
+                            </CheckboxItem>*/}
+                  {/* <CheckboxItem defaultChecked={this.state.notice.is_follow == 1 ? true : false} onChange={() => this.onChange(5)}>
                     新跟随
-                            </CheckboxItem>
+                            </CheckboxItem>*/}
                 </List>
                 :
                 <div style={{ textAlign: 'center', margin: '50px auto' }}> <Icon type="loading" /></div>
@@ -114,7 +114,7 @@ class Setup extends React.Component {
                 <div
                   style={{
                     textAlign: 'center',
-                    color: "red"
+                    color: "#1F4BA5"
                   }}>退出账户</div>
               </Item>
             </List>

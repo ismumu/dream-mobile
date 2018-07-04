@@ -180,7 +180,7 @@ class Userinfo extends React.Component {
 							<li>
 								<i className={styles.iconfont}>&#xe806;</i><span>{_user.location}</span></li>
 							<li>
-								<i className={styles.iconfont}>&#xf32d;</i><span>{_user.job}</span></li>
+								<i className={styles.iconfont}>&#xe805;</i><span>{_user.job}</span></li>
 							<li>
 								<i className={styles.iconfont}>&#xf252;</i><span>{_user.age}</span></li>
 						</ul>
