@@ -38,7 +38,7 @@ class My extends React.Component {
             <Item
               arrow="horizontal"
               thumb={
-                <div style={{ display: 'block', width: 40, height: 40, borderRadius: '50%', border: '1px solid #eee', overflow: 'hidden' }}>
+                <div style={{ display: 'block', width: 40, height: 40, borderRadius: '50%', border: '0px solid #eee', overflow: 'hidden' }}>
                   {
                     this.props.user && this.props.user.avatar !== "" ?
                       <img style={{ width: '100%', height: 'auto' }} src={this.props.user.avatar} alt="" />
