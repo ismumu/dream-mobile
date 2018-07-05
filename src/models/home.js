@@ -105,7 +105,7 @@ export default modelExtend(model, {
 					yield put({ type: 'updateState', payload: { detail: data } });
 				}
 			} else {
-				callback && callback(reviewData.msg || '系统错误，请稍后重试');
+				callback && callback(reviewData.msg || '稍后支持emoji等表情');
 			}
 		},
 

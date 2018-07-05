@@ -46,7 +46,7 @@ export default modelExtend(model, {
 
 				callback && callback();
 			} else {
-				Toast.info(msg || '系统异常', 1);
+				Toast.info(msg || '系统识别出问题，可能是emoji等表情', 1);
 			}
 		},
 

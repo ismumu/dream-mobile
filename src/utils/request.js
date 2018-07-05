@@ -69,7 +69,7 @@ function handleError(error) {
 	if (data.errors) {
 		Toast.fail(`${data.message}：${data.errors}`, 1)
 	} else {
-		Toast.fail('服务器故障', 1);
+		Toast.fail('系统识别出问题', 1);
 	}
 	return { success: false }
 }

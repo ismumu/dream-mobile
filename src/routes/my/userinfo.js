@@ -205,7 +205,7 @@ class Userinfo extends React.Component {
 								imageView={this.imageViewClick}
 							/>
 							:
-							<div style={{ textAlign: 'center', color: '#999', fontSize: '12px', marginTop: 30 }}>开展你的梦</div>
+							<div style={{ textAlign: 'center', color: '#757575', fontSize: '15px', marginTop: 30 }}>开展你的梦</div>
 						}
 						{/* <div>
 							<CollectList />
