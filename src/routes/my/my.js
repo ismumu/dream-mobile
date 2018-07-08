@@ -18,6 +18,9 @@ import Storage from '../../utils/storage';
 const Item = List.Item;
 const Brief = Item.Brief;
 
+
+console.log(1111);
+
 class My extends React.Component {
   constructor(props, context) {
     super(props, context);
