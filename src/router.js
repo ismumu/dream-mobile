@@ -19,7 +19,6 @@ import SearchPage from './routes/search/index';
 function RouterConfig({ history }) {
   return (
       <Router history={history}>
-        <div>
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/forget" component={ForgetPage} />
@@ -33,7 +32,6 @@ function RouterConfig({ history }) {
         <Route path="/my/setup" component={SetupPage} />
         <Route path="/my/about" component={AboutPage} />
         <Route path="/search" component={SearchPage} />
-        </div>
     </Router>
   );
 }

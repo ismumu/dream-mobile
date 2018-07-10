@@ -80,6 +80,10 @@ class Edit extends React.Component {
 		super(props, context);
 
 		this.state = {
+
+			// 用户信息
+			user: {},
+
 			sex: null,
 			img_url: null,
 			cropper_img: null,
@@ -95,17 +99,21 @@ class Edit extends React.Component {
 			payload: {
 				uid: UID,
 				page: 1
+			},
+			callback: (data) => {
+
+				let { user } = data.data;
+
+				this.setState({
+					user: user,
+					sex: user.sex
+				})
 			}
 		});
 	}
 
-	componentWillReceiveProps(nextProps) {
-		this.state.sex = nextProps.user ? nextProps.user.sex : null
-	}
-
 	// 裁剪函数
 	_crop() {
-		//console.log(this.refs.cropper.getCroppedCanvas().toDataURL());
 		this.setState({
 			cropper_img: this.refs.cropper.getCroppedCanvas().toDataURL()
 		})
@@ -186,18 +194,20 @@ class Edit extends React.Component {
 
 	render() {
 
-		const { files } = this.state;
+		const { files, user } = this.state;
 
 
 		let _user = {
-			...this.props.user
+			...user,
+		}
+
+		if ( !_user.uid ) {
+			return <div></div>;
 		}
 
 		return (
 			<div className={styles.editWrap}>
-				<NavBarPage iconType="back" isFly='false' title="编辑个人信息" isFixed="true"/>
-
-
+				<NavBarPage iconType="back" isFly='false' title="编辑个人信息" isFixed="true" />
 				<div className={styles.head}>
 					<div className={styles.img}>
 						<img src={this.state.img_url == null ? (_user.avatar || Util.defaultImg) : this.state.img_url} onClick={this.onUpdateImg} />

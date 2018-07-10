@@ -23,44 +23,29 @@ export default modelExtend(model, {
 
 	effects: {
 		// 用户信息
-		*getUserHome({ payload }, { call, put }) {
-			// 清空数据
-			//yield put({ type: 'updateState', payload: { user: null, list: null, } });
-
-			const { data, code, msg } = yield call(getUserHome, payload);
-			if (code == 200) {
-				yield put({ type: 'updateState', payload: { user: data.user, list: data.feed } });
+		*getUserHome({ payload, callback }, { call, put }) {
+			const data = yield call(getUserHome, payload);
+			if (data.code == 200) {
+				callback && callback(data);
+				// yield put({
+				// 	type: 'updateState',
+				// 	payload: {
+				// 		user: data.user,
+				// 		list: data.feed
+				// 	}
+				// });
 			}
 		},
 
 		// 他人信息
 		*getOtherInfo({ payload, callback }, { call, put }) {
-			// 清空数据
-			// yield put({ type: 'updateState', payload: { otherInfo: null, otherDream: null, } })
-
 			const data = yield call(getUserHome, payload);
-
-
-
 			if (data.code == 200) {
-
 				callback && callback(data);
-
-				// yield put({
-				// 	type: 'updateState',
-				// 	payload: {
-				// 		otherInfo: data.user,
-				// 		otherDream: data.feed
-				// 	}
-				// });
-
-
 			} else if (data.code == 400) {
 				Toast.info('用户已闭关静养~', 1);
 				browserHistory.push(-1);
 			}
-
-
 		},
 
 		// 编辑用户

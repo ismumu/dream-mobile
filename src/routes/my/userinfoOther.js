@@ -109,7 +109,6 @@ class Userinfo extends React.Component {
 		}
 
 		if ( !hasMore ) {
-		//	Toast.info("显示已完毕", 1);
 			return;
 		}
 

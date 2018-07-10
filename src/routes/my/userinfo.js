@@ -1,12 +1,9 @@
-/**
- * 用户主页
- * author: zch
- */
+
 import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
 import { browserHistory } from 'react-router';
-import { List, NavBar, Tabs, Icon, ListView, Toast, Tag, ActionSheet} from "antd-mobile";
+import { List, NavBar, Tabs, Icon, ListView, Toast, Tag, ActionSheet } from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
 import Storage from '../../utils/storage';
 import styles from "./userinfo.less";
@@ -47,51 +44,76 @@ class Userinfo extends React.Component {
 	componentDidMount() {
 		// 获取用户信息
 		const uid = Storage.get('uid');
-		this.props.dispatch({ type: 'my/getUserHome', payload: { uid: uid, page: 1 } });
-
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (this.state.list !== nextProps.list) {
-			this.setState({
-				list: [...this.state.list, ...nextProps.list],
-			})
-
-			setTimeout(() => {
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(this.state.list),
-					isLoading: false,
-				});
-			}, 500)
-
-			// 不足10条，最后一页
-			if (nextProps.list < 10) {
-				this.setState({
-					hasMore: false
-				})
+		this.props.dispatch({
+			type: 'my/getUserHome',
+			payload: {
+				uid: uid,
+				page: 1
+			},
+			callback: (data) => {
+				this.setData(data);
 			}
-		} else {
-			this.setState({
-				isLoading: false,
-			});
-		}
+		});
+
 	}
 
-	// 拉倒底部，再次获取数据
+
+	// 处理搜索数据
+	setData = (data) => {
+
+		const hei = document.body.clientHeight;
+
+		// 不足15条，最后一页
+		if (data.data.feed.length < 15) {
+			this.setState({
+				hasMore: false
+			})
+		}
+
+
+		let { list } = this.state;
+
+		let _list = list.concat(data.data.feed);
+
+		this.setState({
+			list: _list,
+			dataSource: this.state.dataSource.cloneWithRows(_list),
+			isLoading: false,
+			height: hei,
+			userinfo: data.data.user,
+		});
+
+	}
+
 	onEndReached = (event) => {
-		if (this.state.isLoading) {
+
+		let { isLoading, hasMore, currentPage } = this.state;
+
+		if ( isLoading) {
 			return;
 		}
 
-		if (this.state.hasMore) {
-		//	Toast.info("显示已完毕", 1);
+		if ( !hasMore ) {
 			return;
 		}
 
-		this.setState({ isLoading: true });
-		this.state.currentPage = this.state.currentPage + 1;
+		this.setState({
+			isLoading: true,
+			currentPage: currentPage + 1,
+		});
+
 		const uid = Storage.get('uid');
-		this.props.dispatch({ type: 'my/getUserHome', payload: { uid: uid, page: this.state.currentPage } });
+
+		this.props.dispatch({
+			type: 'my/getUserHome',
+			payload: {
+				uid: uid,
+				page: currentPage + 1,
+			},
+			callback: (d) => {
+				this.setData(d);
+			}
+		});
 	}
 
 	// 性别识别
@@ -135,7 +157,7 @@ class Userinfo extends React.Component {
 	render() {
 		const tabs = [
 			{
-			title: <b className={styles.colorBlack}>我的梦</b>
+				title: <b className={styles.colorBlack}>我的梦</b>
 			},
 			// 暂时隐藏我的收藏
 			// {
@@ -164,37 +186,31 @@ class Userinfo extends React.Component {
 
 				<NavBarPage iconType="back" isSearch='true' isFixed="true" />
 
-					<div className={styles.userinfo}>
-						<div className={styles.title}>
-							<div className={styles.img}>
-								<img src={_user.avatar || Util.defaultImg} alt={_user.uname} />
-							</div>
-							<div>
-								<b>{_user.uname}</b>
-							</div>
+				<div className={styles.userinfo}>
+					<div className={styles.title}>
+						<div className={styles.img}>
+							<img src={_user.avatar || Util.defaultImg} alt={_user.uname} />
 						</div>
-						<div className={styles.opinion}>{_user.intro}</div>
-						<ul>
-							<li>
-								<i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_user.sex)}</span></li>
-							<li>
-								<i className={styles.iconfont}>&#xe806;</i><span>{_user.location}</span></li>
-							<li>
-								<i className={styles.iconfont}>&#xe805;</i><span>{_user.job}</span></li>
-							<li>
-								<i className={styles.iconfont}>&#xf252;</i><span>{_user.age}</span></li>
-						</ul>
-						<div className={styles.tagsBox}>
-							{
-								Object.keys(tags).map((tag) => (<span className={styles.tag} key={tag}>{tags[tag]}</span>))
-							}
+						<div>
+							<b>{_user.uname}</b>
 						</div>
 					</div>
+					<div className={styles.opinion}>{_user.intro}</div>
+					<ul>
+						<li><i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_user.sex)}</span></li>
+						<li><i className={styles.iconfont}>&#xe806;</i><span>{_user.location}</span></li>
+						<li><i className={styles.iconfont}>&#xe805;</i><span>{_user.job}</span></li>
+						<li><i className={styles.iconfont}>&#xf252;</i><span>{_user.age}</span></li>
+					</ul>
+					<div className={styles.tagsBox}>
+						{Object.keys(tags).map((tag) => (<span className={styles.tag} key={tag}>{tags[tag]}</span>))}
+					</div>
+				</div>
 
 				<div className={styles.dreamWrap}>
 					{/* Tabs tabs={tabs} initialPage={this.props.userInfoInitTabs} swipeable={false} onChange={handleInitTabs}  */}
-						{
-							this.state.list.length > 0
+					{
+						this.state.list.length > 0
 							?
 							<ListPage
 								dataSource={this.state.dataSource}
@@ -206,8 +222,8 @@ class Userinfo extends React.Component {
 							/>
 							:
 							<div style={{ textAlign: 'center', color: '#757575', fontSize: '15px', marginTop: 30 }}>开展你的梦</div>
-						}
-						{/* <div>
+					}
+					{/* <div>
 							<CollectList />
 						</div> */}
 
