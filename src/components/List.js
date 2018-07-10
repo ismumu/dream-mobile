@@ -155,7 +155,7 @@ class List extends React.Component {
 		let dom = document.getElementById(id);
 
 
-	// 双击
+		// 双击
 		if(Date.now() - this.time < 200) {
 			dom.setAttribute('style','max-height: 40px');
 		} else {
@@ -252,7 +252,7 @@ class List extends React.Component {
 								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.title}</Link>
 							</div>
 							<div
-								className={ styles.des}
+								className={ styles.des }
 								id={'desShowAll' + obj.feed_id}
 								dangerouslySetInnerHTML={{
 									__html: obj.content
