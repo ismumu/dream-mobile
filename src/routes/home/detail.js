@@ -307,7 +307,9 @@ class Detail extends React.Component {
 											</div>
 											<div className={styles.itemContent}>
 												<h1 className={styles.title}>{this.props.detail.info.title}</h1>
-												<div className={styles.des}><pre>{this.props.detail.info.content}</pre></div>
+												<div className={styles.des} dangerouslySetInnerHTML={{
+													__html: this.props.detail.info.content
+												}}></div>
 												<div className={styles.imgs}>
 													{
 														this.props.detail.info.imgInfo.map((img, index) => (
@@ -354,7 +356,9 @@ class Detail extends React.Component {
 																<div className={styles.cnWrap} onClick={this.showModal(item.uname, item.review_id)}>
 																	{/* <span className={styles.name}><Link className={styles.bold} to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>{item.uname}</Link></span> */}
 																	<span className={styles.name}>{item.uname}</span>
-																	<div className={styles.des}>{item.content}</div>
+																	<div className={styles.des} dangerouslySetInnerHTML={{
+																		__html: item.content
+																	}}></div>
 																</div>
 																<div className={`${styles.time} ${styles.clear}`}>
 																	<span className={styles.fl}>{item.ctime}</span>
@@ -389,7 +393,9 @@ class Detail extends React.Component {
 																								<span> | 回复@{item2.to_uname}：</span>
 																							}
 																							<br />
-																							{item2.content}
+																							<div dangerouslySetInnerHTML={{
+																								__html: item2.content
+																							}}></div>
 																						</div>
 																						<div className={styles.clear}>
 																							<span className={`${styles.time} ${styles.fl}`}>{item2.ctime}</span>

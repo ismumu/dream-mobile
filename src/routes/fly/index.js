@@ -1,10 +1,27 @@
 import React from "react";
 import { connect } from "dva";
-import { List, TextareaItem, NavBar, Icon, Button, Toast, ImagePicker, Tag, Modal } from "antd-mobile";
+import {
+	List,
+	TextareaItem,
+	NavBar,
+	Icon,
+	Button,
+	Toast,
+	ImagePicker,
+	Tag,
+	Modal,
+	InputItem,
+} from "antd-mobile";
 import styles from "./index.less";
 import { createForm } from 'rc-form';
 import Storage from '../../utils/storage'
 import TagModel from "./Model";
+
+
+// 富文本编辑器
+import BraftEditor from 'braft-editor'
+import 'braft-editor/dist/braft.css'
+
 
 import { browserHistory } from 'react-router';
 
@@ -17,24 +34,24 @@ class Fly extends React.Component {
 			selectTags: [],
 
 			defaultTitle: '',
-			defaultContent: '',
+			editorContent: '',
 		};
 	}
 
 	// 发布
 	handlePublish = () => {
 
-		let titleDom =  document.getElementById("titleId");
-		let contentDom =  document.getElementById("txtId");
+		let titleDom = document.getElementById("titleId");
+
+		let { editorContent } = this.state;
 
 
 		const title = titleDom.value;
-		const content = contentDom.value;
 
 
 		if (title == "") {
 			Toast.info('题梦：简明扼要', 1);
-		} else if (content == "") {
+		} else if (editorContent == "") {
 			Toast.info('梦境内容：详细情景', 1);
 		}
 		else {
@@ -51,7 +68,7 @@ class Fly extends React.Component {
 				type: 'fly/publishDream',
 				payload: {
 					'title': title,
-					'content': content,
+					'content': editorContent,
 					'img_url': imgStr,
 					'tags': tagStr
 				},
@@ -67,7 +84,7 @@ class Fly extends React.Component {
 						selectTags: [],
 
 						defaultTitle: '',
-						defaultContent: '',
+						editorContent: '',
 					});
 
 					Toast.success("发布成功", 1);
@@ -123,14 +140,15 @@ class Fly extends React.Component {
 	// 自动缓存到本地
 	autoSaveSet = () => {
 
-		let { defaultTitle, defaultContent, files, selectTags } = this.state;
+		let { defaultTitle, editorContent, files, selectTags } = this.state;
 		let timer = 1000 * 60 * 60 * 24; // 存储时间，24小时
+
 
 		if (defaultTitle) {
 			Storage.set('title', defaultTitle, timer)
 		}
-		if (defaultContent) {
-			Storage.set('content', defaultContent, timer)
+		if (editorContent) {
+			Storage.set('content', editorContent, timer)
 		}
 		if (files && files.length > 0) {
 			Storage.set('files', JSON.stringify(files), timer)
@@ -156,9 +174,12 @@ class Fly extends React.Component {
 		}
 		if (content) {
 			this.setState({
-				defaultContent: content,
+				editorContent: content,
 			})
+			// 回填值
+			this.editorInstance.setContent(content, 'html');
 		}
+
 		if (files) {
 			this.setState({
 				files: JSON.parse(files),
@@ -169,6 +190,7 @@ class Fly extends React.Component {
 				selectTags: JSON.parse(tags)
 			});
 		}
+
 	}
 
 	componentDidMount() {
@@ -180,11 +202,12 @@ class Fly extends React.Component {
 		setInterval(() => {
 			this.autoSaveSet();
 		}, 1000 * 50);
+
 	}
 
 	componentWillReceiveProps(nextProps) {
 
-		if ( nextProps.images.length > 0 ) {
+		if (nextProps.images.length > 0) {
 
 			let _files = this.state.files;
 
@@ -219,8 +242,8 @@ class Fly extends React.Component {
 
 	render() {
 
-		const { getFieldProps } = this.props.form;
-		const { files, selectTags, defaultTitle, defaultContent } = this.state;
+
+		const { files, selectTags, defaultTitle } = this.state;
 
 		return (
 			<div className={styles.flyWrap}>
@@ -232,11 +255,9 @@ class Fly extends React.Component {
 						<i key="icon" className={styles.iconfontBlack} onClick={this.handlePublish} >&#xf1d8;</i>
 					]}
 					style={{ borderBottom: "0px solid #eee" }}
-				>
-				iDream
-        		</NavBar>
+				>iDream</NavBar>
 
-				<TextareaItem
+				<InputItem
 					placeholder="题梦"
 					id="titleId"
 					value={defaultTitle}
@@ -249,18 +270,22 @@ class Fly extends React.Component {
 					}}
 				/>
 
-				<TextareaItem
-					rows={10}
-					id="txtId"
-					className={styles.textarea}
-					value={defaultContent}
-					placeholder="梦境内容"
-					onChange={(value) => {
-						this.setState({
-							defaultContent: value,
-						})
-					}}
-				/>
+
+				<div className={styles.textarea}>
+					<BraftEditor
+						ref={instance => this.editorInstance = instance}
+						controls={[]}
+						height='300'
+						contentFormat='html'
+						placeholder="梦境内容"
+						onChange={(html) => {
+							this.setState({
+								editorContent: html,
+							})
+						}}
+					/>
+				</div>
+
 
 				<ImagePicker
 					files={files}
@@ -276,12 +301,11 @@ class Fly extends React.Component {
 					onClose={this.onClose}
 				/>
 
-				<p className={styles.autoSaveMsg}>
+				<p ref="tipMsg" className={styles.autoSaveMsg}>
 					系统每50秒自动保存 <br />
 					可用3附插图展示你的梦境 <br />
 					插图审核后呈上（感谢你支持过虑不良相关图片）
 				</p>
-
 			</div>
 		)
 	}

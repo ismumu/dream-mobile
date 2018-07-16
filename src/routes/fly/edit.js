@@ -7,6 +7,10 @@ import TagModel from "./Model";
 
 import { browserHistory } from 'react-router';
 
+// 富文本编辑器
+import BraftEditor from 'braft-editor'
+import 'braft-editor/dist/braft.css'
+
 class FlyEdit extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -16,6 +20,8 @@ class FlyEdit extends React.Component {
 
 			files: [],
 			selectTags: [],
+
+			editorContent: '',
 		};
 	}
 
@@ -30,8 +36,9 @@ class FlyEdit extends React.Component {
 			},
 			callback: (editDetail) => {
 				let _array = [];
+				let { imgInfo, tags, content } = editDetail.data.info;
 
-				editDetail.data.info.imgInfo.map((url) => {
+				imgInfo.map((url) => {
 					_array.push({
 						url: url,
 					})
@@ -39,8 +46,11 @@ class FlyEdit extends React.Component {
 				this.setState({
 					editDetail: editDetail,
 					files: _array,
-					selectTags: editDetail.data.info.tags,
+					selectTags: tags,
+					editorContent: content,
 				})
+				// 回填值
+				this.editorInstance.setContent(content, 'html');
 			}
 		});
 
@@ -52,14 +62,13 @@ class FlyEdit extends React.Component {
 		const id = this.props.params.id;
 
 		let titleDom =  document.getElementById("titleId");
-		let contentDom =  document.getElementById("txtId");
 
 		const title = titleDom.value;
-		const content = contentDom.value;
+		let { editorContent } = this.state;
 
 		if ( !title ) {
 			Toast.info('题梦：简明扼要', 1);
-		} else if ( !content ) {
+		} else if ( !editorContent ) {
 			Toast.info('梦境内容：详细情景', 1);
 		}
 		else {
@@ -77,7 +86,7 @@ class FlyEdit extends React.Component {
 			this.props.dispatch({
 				type: 'fly/updateDream', payload: {
 					'title': title,
-					'content': content,
+					'content': editorContent,
 					'feed_id': id,
 					'img_url': imgStr,
 					'tags': tagStr
@@ -85,7 +94,9 @@ class FlyEdit extends React.Component {
 				callback: () => {
 
 					titleDom.value = '';
-					contentDom.value = '';
+					this.setState({
+						editorContent: '',
+					})
 					Toast.success("更新成功!", 1);
 
 					history.go(-1);
@@ -184,14 +195,31 @@ class FlyEdit extends React.Component {
 						className={styles.title}
 						ref={el => this.customFocusInst = el}
 					/>
-					<TextareaItem
+
+					{/* <TextareaItem
 						{...getFieldProps('note1', { initialValue: info.content })}
 						rows={10}
 						id="txtId"
 						className={styles.textarea}
 						placeholder="梦境内容"
 
-					/>
+					/> */}
+
+					<div className={styles.textarea}>
+						<BraftEditor
+							ref={instance => this.editorInstance = instance}
+							controls={[]}
+							height='300'
+							contentFormat='html'
+							placeholder="梦境内容"
+							onChange={(html) => {
+								this.setState({
+									editorContent: html,
+								})
+							}}
+						/>
+					</div>
+
 					<ImagePicker
 						files={files}
 						onChange={this.onChange}
