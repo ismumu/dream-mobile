@@ -102,6 +102,7 @@ class Index extends React.Component {
 				<List
 					dataSource={this.state.dataSource}
 					isLoading={this.state.isLoading}
+					isNotLogin={true}
 					height={this.state.height}
 					onEndReached={this.onEndReached}
 					imageView={this.imageViewClick}

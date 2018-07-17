@@ -111,11 +111,9 @@ class Userinfo extends React.Component {
 			<div className={styles.item}>
 				<div className={styles.head}>
 					<div className={styles.img}>
-						<Link to={{ pathname: "/my/other", 'state': + obj.uid }}>
-							<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
-						</Link>
+						<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
 					</div>
-					<span className={styles.name}><Link to={{ pathname: "/my/other", 'state': + obj.uid }}>{obj.uname}</Link></span>
+					<span className={styles.name}>{obj.uname}</span>
 					<span className={styles.time}>{obj.publish_time}</span>
 				</div>
 				<div className={styles.itemContent}>
@@ -123,7 +121,9 @@ class Userinfo extends React.Component {
 						<div className={styles.title}>
 							{obj.title}
 						</div>
-						<div className={styles.des}>{obj.content}</div>
+						<div className={styles.des} dangerouslySetInnerHTML={{
+							__html: obj.content
+						}}></div>
 					</Link>
 				</div>
 				<div className={styles.icons}>

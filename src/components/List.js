@@ -230,26 +230,50 @@ class List extends React.Component {
 			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal', display: 'none' }}>&#xe80b;</i>;
 		}
 
+		// 未登录情况下不允许跳转到个人详情和文章详情
+		let { isNotLogin } = this.props;
+
 		return (
 			<div>
 				{
 					<div className={styles.item}>
 						<div className={styles.head}>
 							<div className={styles.img}>
-								<Link to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>
+								{
+									isNotLogin
+									?
 									<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
-								</Link>
+									:
+									<Link to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>
+										<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
+									</Link>
+								}
+
 							</div>
 							<div className={styles.name}>
 								{obj.uid === UID && <Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream.bind(this, obj.feed_id, obj.show_type)} />}
-								<Link className={styles.userName} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link>
+								{
+									isNotLogin
+									?
+									obj.uname
+									:
+									<Link className={styles.userName} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link>
+								}
+
 								<span className={styles.time}>{obj.publish_time}</span>
 							</div>
 						</div>
 						<div className={styles.itemContent}>
 							<div className={styles.title}>
 								{ secretDom }
-								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.title}</Link>
+								{
+									isNotLogin
+									?
+									obj.title
+									:
+									<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.title}</Link>
+								}
+
 							</div>
 							<div
 								className={ styles.des }
@@ -298,10 +322,20 @@ class List extends React.Component {
 								<label id={"likeCount" + obj.feed_id}>{obj.digg_count > 0 ? obj.digg_count : null}</label>
 							</span>
 							<span className={styles.review}>
-								<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
-									<i className={styles.iconfontSmall}>&#xe810;</i>
-									<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
-								</Link>
+								{
+									isNotLogin
+									?
+									<div to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
+										<i className={styles.iconfontSmall}>&#xe810;</i>
+										<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
+									</div>
+									:
+									<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
+										<i className={styles.iconfontSmall}>&#xe810;</i>
+										<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
+									</Link>
+								}
+
 							</span>
 
 							{(this.props.isShare !== false) && <span><i className={styles.iconfontSmall} onClick={this.onShowShareModal.bind(this, obj)}>&#xe811;</i></span>}
