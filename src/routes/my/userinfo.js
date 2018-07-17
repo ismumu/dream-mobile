@@ -34,20 +34,32 @@ class Userinfo extends React.Component {
 			currentPage: 1,
 			hasMore: true,
 
+			// tag
+			tagText: '',
+			tagPageIndex: 1,
+			tagHasMore: true,
+			tagIndex: '',
+
+
+			type: '', // 类型，区分是否是tag过来的
+			isFirst: '', // 是否第一次点击tag
+
 			// ImageView
 			showViewer: false,
 			imagelist: null,
 			imagelistCurrent: 0,
 		};
+
+		this.uid = Storage.get('uid');
+
 	}
 
 	componentDidMount() {
 		// 获取用户信息
-		const uid = Storage.get('uid');
 		this.props.dispatch({
 			type: 'my/getUserHome',
 			payload: {
-				uid: uid,
+				uid: this.uid,
 				page: 1
 			},
 			callback: (data) => {
@@ -58,62 +70,118 @@ class Userinfo extends React.Component {
 	}
 
 
-	// 处理搜索数据
+	/**
+	 * 处理搜索数据
+	 */
 	setData = (data) => {
 
 		const hei = document.body.clientHeight;
 
-		// 不足15条，最后一页
-		if (data.data.feed.length < 15) {
+		let { type, isFirst } = this.state;
+
+		if ( type == 'tag' ) {
+			// 不足15条，最后一页
+			if (data.data.feed.length < 15) {
+				this.setState({
+					tagHasMore: false
+				})
+			}
+
+			let list = [];
+
+			if ( !isFirst ) {
+				list = this.state.list
+			}
+
+			let _list = list.concat(data.data.feed);
+
 			this.setState({
-				hasMore: false
-			})
+				list: _list,
+				dataSource: this.state.dataSource.cloneWithRows(_list),
+				isLoading: false,
+				height: hei,
+				isFirst: false,
+			});
+
+		} else {
+			// 不足15条，最后一页
+			if (data.data.feed.length < 15) {
+				this.setState({
+					hasMore: false
+				})
+			}
+
+			let { list } = this.state;
+
+			let _list = list.concat(data.data.feed);
+
+			this.setState({
+				list: _list,
+				dataSource: this.state.dataSource.cloneWithRows(_list),
+				isLoading: false,
+				height: hei,
+				userinfo: data.data.user,
+			});
 		}
 
 
-		let { list } = this.state;
 
-		let _list = list.concat(data.data.feed);
-
-		this.setState({
-			list: _list,
-			dataSource: this.state.dataSource.cloneWithRows(_list),
-			isLoading: false,
-			height: hei,
-			userinfo: data.data.user,
-		});
 
 	}
 
 	onEndReached = (event) => {
 
-		let { isLoading, hasMore, currentPage } = this.state;
+		let { isLoading, hasMore, tagHasMore, currentPage, tagPageIndex, type, tagText } = this.state;
+		let { dispatch } = this.props;
 
 		if ( isLoading) {
 			return;
 		}
 
-		if ( !hasMore ) {
-			return;
+		if ( type == 'tag' ) {
+			if ( !tagHasMore ) {
+				return;
+			}
+
+			this.setState({
+				isLoading: true,
+				tagPageIndex: tagPageIndex + 1,
+			});
+
+			dispatch({
+				type: 'my/getUserHome',
+				payload: {
+					uid: this.uid,
+					tag_name: tagText,
+					page: tagPageIndex + 1,
+				},
+				callback: (d) => {
+					this.setData(d);
+				}
+			});
+		} else {
+			if ( !hasMore ) {
+				return;
+			}
+
+			this.setState({
+				isLoading: true,
+				currentPage: currentPage + 1,
+			});
+
+			dispatch({
+				type: 'my/getUserHome',
+				payload: {
+					uid: this.uid,
+					page: currentPage + 1,
+				},
+				callback: (d) => {
+					this.setData(d);
+				}
+			});
 		}
 
-		this.setState({
-			isLoading: true,
-			currentPage: currentPage + 1,
-		});
 
-		const uid = Storage.get('uid');
-
-		this.props.dispatch({
-			type: 'my/getUserHome',
-			payload: {
-				uid: uid,
-				page: currentPage + 1,
-			},
-			callback: (d) => {
-				this.setData(d);
-			}
-		});
 	}
 
 	// 性别识别
@@ -152,6 +220,30 @@ class Userinfo extends React.Component {
 		})
 	}
 
+
+
+	tagClick = (e, type, isFirst, tagIndex) => {
+		let tagText = e.target.innerHTML;
+
+		this.setState({
+			tagText: tagText,
+			type: type,
+			isFirst: isFirst,
+			tagIndex: tagIndex,
+		})
+
+		this.props.dispatch({
+			type: 'home/getTagFeedList',
+			payload: {
+				uid: this.uid,
+				tag_name: tagText,
+				page: 1,
+			},
+			callback: (d) => {
+				this.setData(d, 'tag', true);
+			}
+		});
+	}
 
 
 	render() {
@@ -203,7 +295,29 @@ class Userinfo extends React.Component {
 						<li><i className={styles.iconfont}>&#xf252;</i><span>{_user.age}</span></li>
 					</ul>
 					<div className={styles.tagsBox}>
-						{Object.keys(tags).map((tag) => (<span className={styles.tag} key={tag}>{tags[tag]}</span>))}
+						{tags.map((text, index) => {
+
+							let { tagIndex } = this.state;
+
+							if ( tagIndex === index ) {
+								return (
+									<span
+										className={styles.tagOn}
+										key={index}
+										onClick={ (e) => this.tagClick(e, 'tag', true, index )}
+									>{text}</span>
+								)
+							} else {
+								return (
+									<span
+										className={styles.tag}
+										key={index}
+										onClick={ (e) => this.tagClick(e, 'tag', true, index )}
+									>{text}</span>
+								)
+							}
+
+						})}
 					</div>
 				</div>
 

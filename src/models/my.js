@@ -27,13 +27,6 @@ export default modelExtend(model, {
 			const data = yield call(getUserHome, payload);
 			if (data.code == 200) {
 				callback && callback(data);
-				// yield put({
-				// 	type: 'updateState',
-				// 	payload: {
-				// 		user: data.user,
-				// 		list: data.feed
-				// 	}
-				// });
 			}
 		},
 

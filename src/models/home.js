@@ -16,7 +16,8 @@ import {
 	delDreamReview,
 	colletDream,
 	colletDreamList,
-	setSecret
+	setSecret,
+	getTagFeedList,
 } from '../services/home.js';
 import Storage from '../utils/storage';
 
@@ -50,13 +51,7 @@ export default modelExtend(model, {
 
 			const { data, code, msg } = yield call(updatedigg, action.payload);
 			if (code == 200) {
-
 				action.callback && action.callback(msg)
-				// yield put({
-				// 	type: 'getDreamList',
-				// 	payload: {}
-				// })
-
 			}
 		},
 
@@ -125,18 +120,6 @@ export default modelExtend(model, {
 				yield put({ type: 'updateState', payload: { editDetail: false, editDetailLoading: false } });
 			}
 		},
-
-		// 更新梦境
-		/* *updateDream({ payload }, { call, put }) {
-		  Toast.loading("更新中...");
-		  console.log('params:',payload);
-
-		  const { data, code, msg } = yield call(publish, payload);
-		  if (code == 200) {
-			Toast.success("更新成功!");
-			history.go(-1);
-		  }
-		}, */
 
 		// 删除梦境
 		*delDream({ payload }, { call, put }) {
@@ -212,6 +195,19 @@ export default modelExtend(model, {
 				action.callback && action.callback();
 			}
 		},
+
+
+		// 根据tag获取文章列表
+		*getTagFeedList({ payload, callback }, { call, put }) {
+			const data = yield call(getTagFeedList, payload);
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				Toast.fail(msg || '获取数据失败，请稍后重试', 1);
+			}
+		},
+
+
 
 	},
 

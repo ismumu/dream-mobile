@@ -93,3 +93,7 @@ export async function colletDreamList(params) {
 export async function setSecret(params) {
 	return post(dream.setSecret, { data: params });
 }
+
+export async function getTagFeedList(params) {
+	return post(dream.getTagFeedList, { data: params });
+}

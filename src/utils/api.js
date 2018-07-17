@@ -46,6 +46,7 @@ module.exports = {
 		publish: `${devApi}/feed/publish`,        // 发梦
 		uploadImg: `${devApi}/feed/upload-img`,   // 上传图片
 		getTags: `${devApi}/feed/get-tags`,      // 获取自定义标签
+		getTagFeedList: `${devApi}/feed/get-tag-feed-list`, // 根据tag获取文章列表
 
 	},
 	user: {
