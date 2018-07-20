@@ -21,6 +21,10 @@ import Storage from '../../utils/storage';
 import NavBarPage from "../../components/NavBar"
 import DetailNotLogin from "./detail-not-login"
 
+
+import { initList } from "../../utils/topic";
+
+
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
 if (isIPhone) {
@@ -79,16 +83,18 @@ class Detail extends React.Component {
 
 		e.preventDefault(); // 修复 Android 上点击穿透
 
-
-		this.setState({
-			isShowReviewModal: true,
-			review_id: review_id ? review_id : 0,
-			placeholder: name ? '回复 @' + name : '回复原文',
-		},() => {
-			this.autoFocusInst.focus();
-		});
-
-
+		// 点击到了话题先跳转去话题，不弹评论
+		let dom = e.target;
+		let _class = dom.getAttribute('class');
+		if ( !_class.includes('J-topic') ) {
+			this.setState({
+				isShowReviewModal: true,
+				review_id: review_id ? review_id : 0,
+				placeholder: name ? '回复 @' + name : '回复原文',
+			},() => {
+				this.autoFocusInst.focus();
+			});
+		}
 	}
 
 	// 回复
@@ -251,7 +257,8 @@ class Detail extends React.Component {
 				mode: 'prepend',
 				description: 'iDream',
 				url: window.location.href,
-				title: `【${this.props.detail.info.title}】${this.props.detail.info.content.substr(0, 10)}... ${window.location.href}（来自iDream）`,
+				// title: `【${_info.title}】${_info.content.substr(0, 10)}... ${window.location.href}（来自iDream）`,
+				title: `【${this.props.detail.info.title}】${window.location.href}（来自iDream）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
 			});
@@ -270,9 +277,45 @@ class Detail extends React.Component {
 		this.setState({ shareModal: false })
 	}
 
+
+	componentDidMount () {
+		// 采用browserHistory跳转链接
+		document.onclick = function (e) {
+			let dom = e.target;
+			let _class = dom.getAttribute('class');
+			if ( _class.includes('J-topic') ) {
+				browserHistory.push(dom.getAttribute('to'));
+			}
+
+		}
+	}
+
+
 	render() {
 
 		let { isShowErrorTip, errorTipText } = this.state;
+		let { info, review } = this.props.detail || {};
+
+		let _info = {}, _review = [];
+
+		// 话题相关
+		if ( info ) {
+			_info = {
+				...initList([info])[0],
+			}
+		}
+		if ( review ) {
+			_review = initList(review);
+
+			// 遍历二级评论
+			if ( _review.length > 0 ) {
+				_review.map((d) => {
+					d.reply = initList(d.reply)
+				})
+			}
+
+		}
+
 
 		return (
 			<div>
@@ -288,31 +331,31 @@ class Detail extends React.Component {
 										<div className={styles.item}>
 											<div className={styles.head}>
 												<div className={styles.img}>
-													<Link to={{ pathname: this.props.detail.info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + this.props.detail.info.uid }}>
-														<img src={this.props.detail.info.avatar
-															? this.props.detail.info.avatar
-															: Util.defaultImg} alt={this.props.detail.info.uname} />
+													<Link to={{ pathname: _info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + _info.uid }}>
+														<img src={_info.avatar
+															? _info.avatar
+															: Util.defaultImg} alt={_info.uname} />
 													</Link>
 												</div>
 												<span className={styles.name}>
-													<Link className={styles.bold} to={{ pathname: this.props.detail.info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + this.props.detail.info.uid }}>{this.props.detail.info.uname}</Link>
+													<Link className={styles.bold} to={{ pathname: _info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + _info.uid }}>{_info.uname}</Link>
 													{
 														// 是登录账户的梦境时才能删除跟编辑
-														this.props.detail.info.uid == UID ?
+														_info.uid == UID ?
 															<Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream} />
 															: <span></span>
 													}
 												</span>
-												<span className={styles.time}>{this.props.detail.info.publish_time}</span>
+												<span className={styles.time}>{_info.publish_time}</span>
 											</div>
 											<div className={styles.itemContent}>
-												<h1 className={styles.title}>{this.props.detail.info.title}</h1>
+												<h1 className={styles.title}>{_info.title}</h1>
 												<div className={styles.des} dangerouslySetInnerHTML={{
-													__html: this.props.detail.info.content
+													__html: _info.content
 												}}></div>
 												<div className={styles.imgs}>
 													{
-														this.props.detail.info.imgInfo.map((img, index) => (
+														_info.img_info && _info.img_info.map((img, index) => (
 															<img src={img} key={index} alt="" />
 														))
 													}
@@ -322,17 +365,17 @@ class Detail extends React.Component {
 											<div className={styles.icons}>
 												<span className={styles.praise} onClick={this.handleUpdatedigg}>
 													{
-														this.props.detail.info.hasDigg == 1
+														_info.hasDigg == 1
 														?
 														<i className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe808;</i>
 														:
 														<i className={styles.iconfontSmall}>&#xe808;</i>
 													}
-													<label>{this.props.detail.info.digg_count > 0 ? this.props.detail.info.digg_count : null}</label>
+													<label>{_info.digg_count > 0 ? _info.digg_count : null}</label>
 												</span>
 												<span className={styles.review} onClick={this.showModal()}>
 													<i className={styles.iconfontBlueSmall}>&#xe810;</i>
-													<label>{this.props.detail.info.comment_all_count > 0 ? this.props.detail.info.comment_all_count : null}</label>
+													<label>{_info.comment_all_count > 0 ? _info.comment_all_count : null}</label>
 												</span>
 												<span>
 													<i className={styles.iconfontSmall} onClick={this.onShowShareModal}>&#xe811;</i>
@@ -343,7 +386,7 @@ class Detail extends React.Component {
 
 											<div className={styles.reviewList}>
 												{
-													this.props.detail.review.map((item, index) => (
+													_review.map((item, index) => (
 														<div className={styles.reviewItem} key={index}>
 															<div className={styles.head}>
 																<div className={styles.img}>
@@ -354,7 +397,6 @@ class Detail extends React.Component {
 															</div>
 															<div className={styles.itemContent}>
 																<div className={styles.cnWrap} onClick={this.showModal(item.uname, item.review_id)}>
-																	{/* <span className={styles.name}><Link className={styles.bold} to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>{item.uname}</Link></span> */}
 																	<span className={styles.name}>{item.uname}</span>
 																	<div className={styles.des} dangerouslySetInnerHTML={{
 																		__html: item.content
@@ -365,9 +407,9 @@ class Detail extends React.Component {
 
 																	{
 																		// 添加删除评论，只有自己或梦住才能删除
-																		item.uid == UID || this.props.detail.info.uid == UID ?
+																		item.uid == UID || _info.uid == UID ?
 																			<Icon className={` ${styles.more} ${styles.fl}`} type="ellipsis" size="xxs"
-																				onClick={this.delReview.bind(this, this.props.detail.info.feed_id, item.review_id)} />
+																				onClick={this.delReview.bind(this, _info.feed_id, item.review_id)} />
 																			: null
 																	}
 
@@ -401,9 +443,9 @@ class Detail extends React.Component {
 																							<span className={`${styles.time} ${styles.fl}`}>{item2.ctime}</span>
 																							{
 																								// 添加删除评论，只有自己或梦住才能删除
-																								item2.uid == UID || this.props.detail.info.uid == UID ?
+																								item2.uid == UID || _info.uid == UID ?
 																									<Icon className={` ${styles.more} ${styles.fl}`} type="ellipsis" size="xxs"
-																										onClick={this.delReview.bind(this, this.props.detail.info.feed_id, item2.review_id)} />
+																										onClick={this.delReview.bind(this, _info.feed_id, item2.review_id)} />
 																									: null
 																							}
 																						</div>

@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "dva";
-import { Link } from "dva/router"
+import { Link, browserHistory } from "dva/router"
 import { ListView, Icon, NavBar, Tabs, ActionSheet, Toast, Modal, Button } from "antd-mobile";
-import { StickyContainer, Sticky } from 'react-sticky';
-import { browserHistory } from 'react-router';
 import Clipboard from 'react-clipboard.js';
 
 
@@ -11,6 +9,8 @@ import Clipboard from 'react-clipboard.js';
 import styles from "./List.less";
 import Util from "../utils/util";
 import Storage from '../utils/storage';
+
+import { initList } from "../utils/topic";
 
 
 const UID = Storage.get('uid');
@@ -126,7 +126,8 @@ class List extends React.Component {
 				mode: 'prepend',
 				url: `h5.xiaoyiwo.net/#/home/detail?id=${feed_id}`,
 				description: 'iDream',
-				title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream）`,
+				// title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream）`,
+				title: `【${title}】http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
 			});
@@ -221,7 +222,10 @@ class List extends React.Component {
 	// 行
 	row = (rowData, sectionID, rowID) => {
 
-		const obj = rowData;
+		let obj = {
+			...initList([rowData])[0],
+		}
+
 
 		let secretDom = ''
 		if ( obj.uid == UID && obj.show_type == '2' ) {
@@ -347,6 +351,19 @@ class List extends React.Component {
 
 		);
 	};
+
+
+	componentDidMount () {
+		// 采用browserHistory跳转链接
+		document.onclick = function (e) {
+			let dom = e.target;
+			let _class = dom.getAttribute('class');
+			if ( _class.includes('J-topic') ) {
+				browserHistory.push(dom.getAttribute('to'));
+			}
+		}
+	}
+
 
 
 	render() {

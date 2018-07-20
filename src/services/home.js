@@ -97,3 +97,7 @@ export async function setSecret(params) {
 export async function getTagFeedList(params) {
 	return post(dream.getTagFeedList, { data: params });
 }
+
+export async function getTopicList(params) {
+	return post(dream.getTopicList, { data: params });
+}

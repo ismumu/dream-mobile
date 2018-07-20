@@ -18,17 +18,31 @@ import {
 	colletDreamList,
 	setSecret,
 	getTagFeedList,
+	getTopicList,
 } from '../services/home.js';
-import Storage from '../utils/storage';
+
 
 
 export default modelExtend(model, {
 	namespace: 'home',
 	state: {
 		loading: true,
+		topicText: '',
 	},
 
 	subscriptions: {
+		setup({ dispatch, history }) {
+			history.listen((location) => {
+				if (location.pathname == "/topic") {
+					dispatch({
+						type: 'changeState',
+						payload: {
+							topicText: location.query.text,
+						}
+					})
+				}
+			});
+		}
 	},
 
 	effects: {
@@ -207,12 +221,26 @@ export default modelExtend(model, {
 			}
 		},
 
+		// 根据话题获取文章列表
+		*getTopicList({ payload, callback }, { call, put }) {
+			const data = yield call(getTopicList, payload);
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				Toast.fail(msg || '获取数据失败，请稍后重试', 1);
+			}
+		},
+
+
+
 
 
 	},
 
 	reducers: {
-
+		changeState(state, action) {
+			return { ...state, ...action.payload };
+		},
 	},
 
 });

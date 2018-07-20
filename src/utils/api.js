@@ -47,6 +47,9 @@ module.exports = {
 		uploadImg: `${devApi}/feed/upload-img`,   // 上传图片
 		getTags: `${devApi}/feed/get-tags`,      // 获取自定义标签
 		getTagFeedList: `${devApi}/feed/get-tag-feed-list`, // 根据tag获取文章列表
+		getTopicList: `${devApi}/feed/get-topic-list`, // 根据话题获取文章列表
+
+
 
 	},
 	user: {
