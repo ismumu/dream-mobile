@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from "dva/router"
-import { ListView, Icon, NavBar, Tabs, PullToRefresh, List } from "antd-mobile";
+import { ListView, Icon, NavBar, Tabs, PullToRefresh, List, Modal } from "antd-mobile";
 import { StickyContainer, Sticky } from 'react-sticky';
 import NavBarPage from "../../components/NavBar"
 import styles from "./index.less";
 
 import Util from "../../utils/util";
+
+import logoFace from '../../assets/images/logo_face.png';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -28,6 +30,8 @@ class Index extends React.Component {
 			isLoading: true,
 			height: document.body.clientHeight - 95,
 			currentPage: 1,
+
+			showModal: false,
 		};
 	}
 
@@ -64,19 +68,48 @@ class Index extends React.Component {
 	}
 
 	row = (rowData, sectionID, rowID) => {
-		return (
-			<div className={styles.message}>
-				{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
-				<Link to={{ pathname: "/my/other", 'state': + rowData.fromUser.uid }}><img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} /></Link>
-				<Link to={{ pathname: "/home/detail", query: { id: rowData.feed.feed_id } }}>
-					<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
-						<p className={rowData.fromUser.reviewContent ? styles.head : styles.head + ' ' + styles.noReviewContent }><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>
-						{rowData.fromUser.reviewContent && <p className={styles.des} dangerouslySetInnerHTML={{__html: rowData.fromUser.reviewContent}} ></p>}
-					</div>
-				</Link>
-			</div>
-		)
 
+		if ( rowData.type == '建议回复' ) {
+			return (
+				<div className={styles.message} onClick={ () => {
+					this.setState({
+						showModal: true,
+						modalText: rowData.opinion_review,
+					})
+				}}>
+					{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
+					<img className={styles.avatar} src={logoFace} />
+					<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
+						<p className={styles.head}><span className={styles.time}>{rowData.fromUser.add_time}</span>系统消息 | 建议回复</p>
+						<p className={styles.des} dangerouslySetInnerHTML={{__html: rowData.opinion_review}}></p>
+					</div>
+				</div>
+			)
+		} else if ( rowData.type == '注册通知' ) {
+			return (
+				<div className={styles.message}>
+					{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
+					<img className={styles.avatar} src={logoFace} />
+					<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
+						<p className={styles.head}><span className={styles.time}>{rowData.fromUser.add_time}</span>欢迎来到iDream食梦</p>
+						<p className={styles.des} dangerouslySetInnerHTML={{__html: rowData.sys_content}}></p>
+					</div>
+				</div>
+			)
+		} else {
+			return (
+				<div className={styles.message}>
+					{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
+					<Link to={{ pathname: "/my/other", 'state': + rowData.fromUser.uid }}><img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} /></Link>
+					<Link to={{ pathname: "/home/detail", query: { id: rowData.feed.feed_id } }}>
+						<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
+							<p className={rowData.fromUser.reviewContent ? styles.head : styles.head + ' ' + styles.noReviewContent }><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>
+							{rowData.fromUser.reviewContent && <p className={styles.des} dangerouslySetInnerHTML={{__html: rowData.fromUser.reviewContent}} ></p>}
+						</div>
+					</Link>
+				</div>
+			)
+		}
 	};
 
 
@@ -94,20 +127,23 @@ class Index extends React.Component {
 		);
 
 
+		let { showModal, modalText, isLoading, height, dataSource } = this.state;
+
+
 		return (
 			<div className={styles.chatWrap}>
 				<NavBarPage isFly="true" />
 				<StickyContainer>
 					<ListView
 						ref={el => this.lv = el}
-						dataSource={this.state.dataSource}
+						dataSource={dataSource}
 						renderFooter={() => (<div style={{ padding: 5, textAlign: 'center' }}>
-							{this.state.isLoading ? "读取中" : ''}
+							{isLoading ? "读取中" : ''}
 						</div>)}
 						renderRow={this.row}
 						renderSeparator={separator}
 						style={{
-							height: this.state.height,
+							height: height,
 							overflow: 'auto',
 						}}
 						pageSize={4}
@@ -117,6 +153,20 @@ class Index extends React.Component {
 						onEndReachedThreshold={10}
 					/>
 				</StickyContainer>
+				<Modal
+					visible={showModal}
+					transparent
+					maskClosable={true}
+					closable={true}
+					// title="系统消息 | 建议回复"
+					onClose={ () => {
+						this.setState({
+							showModal: false,
+						})
+					}}
+					>
+					<div className={styles.modal} dangerouslySetInnerHTML={{__html: modalText}}></div>
+				</Modal>
 			</div>
 		)
 	}
