@@ -34,6 +34,8 @@ class Topic extends React.Component {
 			showViewer: false,
 			imagelist: null,
 			imagelistCurrent: 0,
+
+			isRequest: false, // 默认展示空白，当接口没有返回数据时候再展示无数据状态
 		};
 	}
 
@@ -78,6 +80,7 @@ class Topic extends React.Component {
 			isLoading: false,
 			height: hei,
 			userinfo: data.data.user,
+			isRequest: true,
 		});
 
 	}
@@ -132,33 +135,35 @@ class Topic extends React.Component {
 
 
 		let { topicText } = this.props;
-		let { list, dataSource, isLoading, height, showViewer, imagelist, imagelistCurrent } = this.state;
+		let { list, dataSource, isLoading, height, showViewer, imagelist, imagelistCurrent, isRequest } = this.state;
+
+		let content = '';
+
+		if ( list.length > 0 && isRequest ) {
+			content = <List
+				dataSource={dataSource}
+				isLoading={isLoading}
+				height={height}
+				onEndReached={this.onEndReached}
+				imageView={this.imageViewClick}
+			/>
+		} else if ( list.length <= 0 && isRequest ) {
+			content = <div
+				style={{
+					textAlign: 'center',
+					marginTop: 50,
+					lineHeight: '100px',
+					fontSize: '12px',
+					color: '#999'
+				}}>
+				该话题暂无相关内容 (꒦_꒦)
+			</div>
+		}
 
 		return (
 			<div className={styles.chatWrap}>
 				<NavBarPage iconType="back" title={'#' + topicText} isTopic="true" />
-				{
-					list.length > 0
-					?
-					<List
-						dataSource={dataSource}
-						isLoading={isLoading}
-						height={height}
-						onEndReached={this.onEndReached}
-						imageView={this.imageViewClick}
-					/>
-					:
-					<div
-						style={{
-							textAlign: 'center',
-							marginTop: 50,
-							lineHeight: '100px',
-							fontSize: '12px',
-							color: '#999'
-						}}>
-						该话题暂无相关内容 (꒦_꒦)
-					</div>
-				}
+				{ content }
 
 				{
 					showViewer &&
