@@ -270,8 +270,11 @@ class Userinfo extends React.Component {
 		}
 
 		let _user = {
-			...this.props.user,
+			...this.state.userinfo,
 		}
+
+
+		console.log(_user)
 
 		return (
 			<div className={styles.userinfoWrap}>
