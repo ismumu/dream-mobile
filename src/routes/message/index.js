@@ -113,6 +113,13 @@ class Index extends React.Component {
 	};
 
 
+
+	closeModal = () => {
+		this.setState({
+			showModal: false,
+		})
+	}
+
 	render() {
 		const separator = (sectionID, rowID) => (
 			<div
@@ -157,13 +164,15 @@ class Index extends React.Component {
 					visible={showModal}
 					transparent
 					maskClosable={true}
-					closable={true}
-					// title="系统消息 | 建议回复"
-					onClose={ () => {
-						this.setState({
-							showModal: false,
-						})
-					}}
+					footer={[
+						{
+							text: '确认',
+							onPress: () => {
+								this.closeModal();
+							}
+						}
+					]}
+					onClose={this.closeModal}
 					>
 					<div className={styles.modal} dangerouslySetInnerHTML={{__html: modalText}}></div>
 				</Modal>
