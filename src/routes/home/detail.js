@@ -86,7 +86,7 @@ class Detail extends React.Component {
 		// 点击到了话题先跳转去话题，不弹评论
 		let dom = e.target;
 		let _class = dom.getAttribute('class');
-		if ( !_class.includes('J-topic') ) {
+		if ( _class && !_class.includes('J-topic') ) {
 			this.setState({
 				isShowReviewModal: true,
 				review_id: review_id ? review_id : 0,
@@ -283,7 +283,7 @@ class Detail extends React.Component {
 		document.onclick = function (e) {
 			let dom = e.target;
 			let _class = dom.getAttribute('class');
-			if ( _class.includes('J-topic') ) {
+			if ( _class && _class.includes('J-topic') ) {
 				browserHistory.push(dom.getAttribute('to'));
 			}
 

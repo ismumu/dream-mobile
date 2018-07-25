@@ -274,8 +274,6 @@ class Userinfo extends React.Component {
 		}
 
 
-		console.log(_user)
-
 		return (
 			<div className={styles.userinfoWrap}>
 

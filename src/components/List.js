@@ -358,7 +358,7 @@ class List extends React.Component {
 		document.onclick = function (e) {
 			let dom = e.target;
 			let _class = dom.getAttribute('class');
-			if ( _class.includes('J-topic') ) {
+			if ( _class && _class.includes('J-topic') ) {
 				browserHistory.push(dom.getAttribute('to'));
 			}
 		}
