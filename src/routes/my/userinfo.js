@@ -289,10 +289,10 @@ class Userinfo extends React.Component {
 					</div>
 					<div className={styles.opinion}>{_user.intro}</div>
 					<ul>
-						<li><i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_user.sex)}</span></li>
-						<li><i className={styles.iconfont}>&#xe806;</i><span>{_user.location}</span></li>
-						<li><i className={styles.iconfont}>&#xe805;</i><span>{_user.job}</span></li>
-						<li><i className={styles.iconfont}>&#xf252;</i><span>{_user.age}</span></li>
+						<li><i className={styles.iconfont}>&#xf226;</i>{this.sexsRender(_user.sex) ? <span>{this.sexsRender(_user.sex)}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
+						<li><i className={styles.iconfont}>&#xe806;</i>{_user.location ? <span>{_user.location}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
+						<li><i className={styles.iconfont}>&#xe805;</i>{_user.job ? <span>{_user.job}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
+						<li><i className={styles.iconfont}>&#xf252;</i>{_user.age ? <span>{_user.age}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
 					</ul>
 					<div className={styles.tagsBox}>
 						{tags.map((text, index) => {
