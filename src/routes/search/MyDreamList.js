@@ -5,13 +5,10 @@
 import React from "react";
 import { connect } from "dva";
 import { Link } from 'dva/router';
-import { browserHistory } from 'react-router';
 import { NavBar, Icon, ListView } from "antd-mobile";
-import { StickyContainer, Sticky } from 'react-sticky';
 import styles from "./MyDreamList.less";
 
 import List from '../../components/List';
-import Util from "../../utils/util";
 
 import ImageView from 'react-mobile-imgview';
 import 'react-mobile-imgview/dist/react-mobile-imgview.css';
@@ -30,7 +27,7 @@ class MyDreamList extends React.Component {
 			dataSource,
 			list: [],
 			isLoading: true,
-			height: document.body.clientHeight - 95,
+			height: document.body.clientHeight - 89,
 			currentPage: 1,
 
 			// ImageView
@@ -116,7 +113,7 @@ class MyDreamList extends React.Component {
 				<List
 					dataSource={this.state.dataSource}
 					isLoading={false}
-					height={this.state.height}
+					height="calc(100vh - 89px)"
 					onEndReached={this.onEndReached}
 					imageView={this.imageViewClick}
 				/>
