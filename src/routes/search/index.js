@@ -266,7 +266,7 @@ class Index extends React.Component {
 													dataSource={this.state.dataSource}
 													isLoading={this.state.isLoading}
 													// height={this.state.height}
-													height="calc(100vh - 888px)"
+													height="calc(100vh - 88px)"
 													onEndReached={this.onEndReached}
 													imageView={this.imageViewClick}
 												/>
