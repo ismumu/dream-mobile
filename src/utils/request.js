@@ -119,11 +119,13 @@ export function post(url, options) {
 		//return;
 	}
 
-	if ( document.domain == 'localhost' || document.domain == '10.50.37.42' ) {
-		return request( '/' + url, { ...options, method: 'post' })
-	} else {
-		return request( url, { ...options, method: 'post' })
-	}
+	// if ( document.domain == 'localhost' || document.domain == '10.50.37.42' ) {
+	// 	return request( '/' + url, { ...options, method: 'post' })
+	// } else {
+	// 	return request( url, { ...options, method: 'post' })
+	// }
+
+	return request( url, { ...options, method: 'post' })
 
 
 }

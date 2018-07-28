@@ -1,30 +1,31 @@
-let devApi = 'api',
-	buildApi = 'http://api.idream.name/index.php?r=',
-	xiaoyiwo = 'http://h5.xiaoyiwo.net/index.php?r=';
+// let devApi = 'api',
+// 	buildApi = 'http://api.idream.name/index.php?r=',
+// 	xiaoyiwo = 'http://h5.xiaoyiwo.net/index.php?r=';
 
 
 
 
-if (document.domain === 'www.idream.name') {
-	devApi = buildApi
-}
+// if (document.domain === 'www.idream.name') {
+// 	devApi = buildApi
+// }
 
-if (document.domain === 'api.idream.name') {
-	devApi = buildApi
-}
+// if (document.domain === 'api.idream.name') {
+// 	devApi = buildApi
+// }
 
-if (document.domain === 'h5.xiaoyiwo.net') {
-	devApi = xiaoyiwo
-}
-
-
-if (document.domain === '118.31.61.9') {
-	devApi = 'http://118.31.61.9:7171/index.php?r='
-}
+// if (document.domain === 'h5.xiaoyiwo.net') {
+// 	devApi = xiaoyiwo
+// }
 
 
+// if (document.domain === '118.31.61.9') {
+// 	devApi = 'http://118.31.61.9:7171/index.php?r='
+// }
 
 
+
+
+let devApi = 'http://mapi.idream.kim/index.php?r=';
 
 
 module.exports = {

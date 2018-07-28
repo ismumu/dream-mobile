@@ -34,6 +34,8 @@ class Userinfo extends React.Component {
 			currentPage: 1,
 			hasMore: true,
 
+			userinfo: {},
+
 			// tag
 			tagText: '',
 			tagPageIndex: 1,
@@ -54,8 +56,8 @@ class Userinfo extends React.Component {
 
 	}
 
-	componentDidMount() {
-		// 获取用户信息
+
+	defaultGetData = () => {
 		this.props.dispatch({
 			type: 'my/getUserHome',
 			payload: {
@@ -66,7 +68,10 @@ class Userinfo extends React.Component {
 				this.setData(data);
 			}
 		});
+	}
 
+	componentDidMount() {
+		this.defaultGetData();
 	}
 
 
@@ -245,34 +250,28 @@ class Userinfo extends React.Component {
 		});
 	}
 
+	// 获取所有梦境
+	iDream = () => {
+		this.setState({
+			list: [],
+			tagIndex: '',
+		})
+		this.defaultGetData();
+	}
 
 	render() {
-		const tabs = [
-			{
-				title: <b className={styles.colorBlack}>我的梦</b>
-			},
-			// 暂时隐藏我的收藏
-			// {
-			// 	title: <b className={styles.colorBlack}>收藏夹</b>
-			// }
-		];
 
 		const { tags } = this.props;
-
-		const handleInitTabs = (val) => {
-			const tabsInitPage = this.props.userInfoInitTabs;
-			this.props.dispatch({
-				type: 'my/changeUserInfoInitTabs',
-				payload: {
-					userInfoInitTabs: tabsInitPage == 0 ? 1 : 0
-				}
-			})
-		}
 
 		let _user = {
 			...this.state.userinfo,
 		}
 
+		const tabs = [
+			{
+				title: <b className={styles.colorBlack}>{_user.uname}的梦境</b>
+			},
+		];
 
 		return (
 			<div className={styles.userinfoWrap}>
@@ -323,26 +322,26 @@ class Userinfo extends React.Component {
 				</div>
 
 				<div className={styles.dreamWrap}>
-					{/* Tabs tabs={tabs} initialPage={this.props.userInfoInitTabs} swipeable={false} onChange={handleInitTabs}  */}
-					{
-						this.state.list.length > 0
-							?
-							<ListPage
-								dataSource={this.state.dataSource}
-								isLoading={this.state.isLoading}
-								onEndReached={this.onEndReached}
-								isUseBodyScroll={true}
-								isShare={true}
-								imageView={this.imageViewClick}
-							/>
-							:
-							<div style={{ textAlign: 'center', color: '#757575', fontSize: '15px', marginTop: 30 }}>开展你的梦</div>
-					}
-					{/* <div>
-							<CollectList />
-						</div> */}
-
-					{/* Tabs */}
+					<Tabs
+						tabs={tabs}
+						swipeable={false}
+						onTabClick={this.iDream}
+					>
+						{
+							this.state.list.length > 0
+								?
+								<ListPage
+									dataSource={this.state.dataSource}
+									isLoading={this.state.isLoading}
+									onEndReached={this.onEndReached}
+									isUseBodyScroll={true}
+									isShare={true}
+									imageView={this.imageViewClick}
+								/>
+								:
+								<div style={{ textAlign: 'center', color: '#757575', fontSize: '15px', marginTop: 30 }}>开展你的梦</div>
+						}
+					</Tabs>
 				</div>
 
 				{
