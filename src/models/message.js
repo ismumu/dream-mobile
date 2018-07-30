@@ -35,6 +35,7 @@ export default modelExtend(model, {
 
 		// 获取设置信息
 		*getNotice({ payload }, { call, put }) {
+
 			yield put({ type: 'updateState', payload: { notice: null } });
 
 			const { data, code, msg } = yield call(getNotice, payload);

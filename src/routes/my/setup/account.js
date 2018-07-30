@@ -11,123 +11,123 @@ import { createForm } from 'rc-form'
 import AccountUpdateEmail from './accountUpdateEmail'
 
 class Account extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+	constructor(props, context) {
+		super(props, context);
 
-    this.state = {
-      password: null,
-    }
-  }
+		this.state = {
+			password: null,
+		}
+	}
 
-  // 更新密码
-  setNewPassword = () => {
-    this.props.form.validateFields({ force: true }, (error) => {
-      if (!error) {
-        //console.log(this.props.form.getFieldsValue());
-        this.props.dispatch({
-          type: 'my/setPassword',
-          payload: this.props.form.getFieldsValue()
-        })
-      } else {
-        Toast.info("输入密码", 1);
-      }
-    });
-  }
+	// 更新密码
+	setNewPassword = () => {
+		this.props.form.validateFields({ force: true }, (error) => {
+			if (!error) {
+				//console.log(this.props.form.getFieldsValue());
+				this.props.dispatch({
+					type: 'my/setPassword',
+					payload: this.props.form.getFieldsValue()
+				})
+			} else {
+				Toast.info("输入密码", 1);
+			}
+		});
+	}
 
-  // 验证密码
-  validatePassoword = (rule, value, callback) => {
-    if (value && value.length >= 6) {
-      callback();
-    } else {
-      callback(new Error('原始密码'));
-    }
-  }
+	// 验证密码
+	validatePassoword = (rule, value, callback) => {
+		if (value && value.length >= 6) {
+			callback();
+		} else {
+			callback(new Error('原始密码'));
+		}
+	}
 
-  // 验证新密码
-  validatePassoword1 = (rule, value, callback) => {
-    this.setState({ password: value });
-    if (value && value.length >= 6) {
-      callback();
-    } else {
-      callback(new Error('新密码'));
-    }
-  }
+	// 验证新密码
+	validatePassoword1 = (rule, value, callback) => {
+		this.setState({ password: value });
+		if (value && value.length >= 6) {
+			callback();
+		} else {
+			callback(new Error('新密码'));
+		}
+	}
 
-  // 验证重复密码
-  validatePassoword2 = (rule, value, callback) => {
-    if (value && value.length >= 6 && value == this.state.password) {
-      callback();
-    } else {
-      callback(new Error('新密码确认'));
-    }
-  }
+	// 验证重复密码
+	validatePassoword2 = (rule, value, callback) => {
+		if (value && value.length >= 6 && value == this.state.password) {
+			callback();
+		} else {
+			callback(new Error('新密码确认'));
+		}
+	}
 
-  render() {
-    const { getFieldProps, getFieldError } = this.props.form;
-    return (
-      <div className={`${styles.accountWrap}`}>
-        <form>
-          <List renderHeader={() => '修改登入密码'}>
-            <InputItem
-              {...getFieldProps('oldpassword', {
-                // initialValue: 'little ant',
-                rules: [
-                  { required: true, message: '请输入密码' },
-                  { validator: this.validatePassoword },
-                ],
-              })}
-              clear
-              error={!!getFieldError('oldpassword')}
-              placeholder="原密码"
-              type="password"
-              ref={el => this.autoFocusInst = el}
-            >原密码</InputItem>
-            <InputItem
-              {...getFieldProps('password', {
-                rules: [
-                  { required: true, message: '新密码' },
-                  { validator: this.validatePassoword1 },
-                ],
-              })}
-              error={!!getFieldError('password')}
-              clear
-              type="password"
-              placeholder="新密码"
-              ref={el => this.customFocusInst = el}
-            >新密码</InputItem>
-            <InputItem
-              {...getFieldProps('repassword', {
-                rules: [
-                  { required: true, message: '新密码确认' },
-                  { validator: this.validatePassoword2 },
-                ],
-              })}
-              error={!!getFieldError('repassword')}
-              clear
-              type="password"
-              placeholder="新密码确认"
-              ref={el => this.customFocusInst = el}
-            >确认密码</InputItem>
-          </List>
-          <List.Item>
-            <Button type="primary" onClick={this.setNewPassword}>保存</Button>
-          </List.Item>
-        </form>
+	render() {
+		const { getFieldProps, getFieldError } = this.props.form;
+		return (
+			<div className={`${styles.accountWrap}`}>
+				<form>
+					<List renderHeader={() => '修改登入密码'}>
+						<InputItem
+							{...getFieldProps('oldpassword', {
+								// initialValue: 'little ant',
+								rules: [
+									{ required: true, message: '请输入密码' },
+									{ validator: this.validatePassoword },
+								],
+							})}
+							clear
+							error={!!getFieldError('oldpassword')}
+							placeholder="原密码"
+							type="password"
+							ref={el => this.autoFocusInst = el}
+						>原密码</InputItem>
+						<InputItem
+							{...getFieldProps('password', {
+								rules: [
+									{ required: true, message: '新密码' },
+									{ validator: this.validatePassoword1 },
+								],
+							})}
+							error={!!getFieldError('password')}
+							clear
+							type="password"
+							placeholder="新密码"
+							ref={el => this.customFocusInst = el}
+						>新密码</InputItem>
+						<InputItem
+							{...getFieldProps('repassword', {
+								rules: [
+									{ required: true, message: '新密码确认' },
+									{ validator: this.validatePassoword2 },
+								],
+							})}
+							error={!!getFieldError('repassword')}
+							clear
+							type="password"
+							placeholder="新密码确认"
+							ref={el => this.customFocusInst = el}
+						>确认密码</InputItem>
+					</List>
+					<List.Item>
+						<Button type="primary" onClick={this.setNewPassword}>保存</Button>
+					</List.Item>
+				</form>
 
-        <WhiteSpace />
-        <AccountUpdateEmail />
-        <WhiteSpace />
+				<WhiteSpace />
+				<AccountUpdateEmail />
+				<WhiteSpace />
 
-      </div>
-    )
-  }
+			</div>
+		)
+	}
 }
 
 
 const mapStateToProps = (state) => {
-  return {
-    ...state.my
-  }
+	return {
+		...state.my
+	}
 }
 
 const form = createForm()(Account)

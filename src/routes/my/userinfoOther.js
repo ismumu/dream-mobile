@@ -202,28 +202,28 @@ class Userinfo extends React.Component {
 			...this.state.userinfo,
 		}
 
-
-		const uname = _otherInfo.uname;
 		const tabs = [
 			{
-				title: <b className={styles.colorBlack}> {uname}的梦</b>
+				title: <b className={styles.colorBlack}> {_otherInfo.uname}的梦</b>
 			}
 		];
+
+
 
 		return (
 			<div>
 				{
 					UID ?
 						<div className={styles.userinfoWrap}>
-							<NavBarPage iconType="back" isFly='false' isFixed="true" isOther="true" title={uname} addBlackList={this.addBlackList.bind(this, _otherInfo.is_black || null)} />
+							<NavBarPage iconType="back" isFly='false' isFixed="true" isOther="true" title={_otherInfo.uname} addBlackList={this.addBlackList.bind(this, _otherInfo.is_black || null)} />
 							<div className={styles.userinfo}>
 								<div>
 									<div className={styles.title}>
 										<div className={styles.img}>
-											<img src={_otherInfo.avatar || Util.defaultImg} alt={uname} />
+											<img src={_otherInfo.avatar || Util.defaultImg} alt={_otherInfo.uname} />
 										</div>
 										<div>
-											<b>{uname}</b>
+											<b>{_otherInfo.uname}</b>
 										</div>
 									</div>
 									<div className={styles.opinion}>{_otherInfo.intro}</div>
@@ -236,7 +236,10 @@ class Userinfo extends React.Component {
 								</div>
 							</div>
 							<div className={styles.dreamWrap}>
-								{/*Tabs tabs={tabs} initalPage={'t2'} swipeable={false} */}
+								<Tabs
+									tabs={tabs}
+									swipeable={false}
+								>
 									<ListPage
 										dataSource={this.state.dataSource}
 										isLoading={this.state.isLoading}
@@ -244,7 +247,7 @@ class Userinfo extends React.Component {
 										isUseBodyScroll={true}
 										imageView={this.imageViewClick}
 									/>
-								{/*Tabs */}
+								</Tabs>
 							</div>
 						</div>
 						:

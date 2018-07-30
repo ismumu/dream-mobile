@@ -269,7 +269,7 @@ class Userinfo extends React.Component {
 
 		const tabs = [
 			{
-				title: <b className={styles.colorBlack}>{_user.uname}的梦境</b>
+				title: <b className={styles.colorBlack}>我的梦境</b>
 			},
 		];
 
