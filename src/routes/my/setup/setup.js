@@ -20,34 +20,62 @@ const Item = List.Item,
 class Setup extends React.Component {
 	constructor(props, context) {
 		super(props, context);
-
 		this.state = {
 			notice: {
-				is_digg: 1,
-				is_follow: 1,
-				is_forward: 1,
-				is_personal: 2,
-				is_review: 1,
-				is_store: 1,
+				is_digg: '',
+				is_review: '',
 			},
-
-			is_show: this.props.user ? this.props.user.is_show : 1,
+			is_show: '',
 		}
 	}
 
 	componentWillMount() {
 		this.props.dispatch({
-			type: 'message/getNotice',
-			payload: {}
+			type: 'message/getTags',
+			payload: {},
+			callback: (d) => {
+				let { notice } = this.state;
+				notice.is_digg = d.userInfo.notice.is_digg;
+				notice.is_review = d.userInfo.notice.is_review;
+
+				this.setState({
+					notice,
+					is_show: d.userInfo.is_show || '1',
+				})
+			}
 		});
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.state.notice !== nextProps.notice) {
-			this.setState({
-				notice: nextProps.notice
-			})
+	onChange = (v) => {
+
+		let { notice } = this.state;
+
+		if ( v === 0 ) {
+			if ( notice.is_review == 1 ) {
+				notice.is_review = 2;
+			} else {
+				notice.is_review = 1;
+			}
+		} else if ( v === 2 ) {
+			if ( notice.is_digg == 1 ) {
+				notice.is_digg = 2;
+			} else {
+				notice.is_digg = 1;
+			}
 		}
+
+		this.setState({
+			notice,
+		})
+
+		this.props.dispatch({
+			type: 'message/setNotice',
+			payload: {
+				is_review: notice.is_review,
+				is_digg: notice.is_digg,
+			}
+		});
+
 	}
 
 	render() {
@@ -72,27 +100,23 @@ class Setup extends React.Component {
 			}
 		];
 
+		let { notice, is_show } = this.state;
 
-		console.log(this);
 
 		return (
 			<div className={styles.editWrap}>
 
 				<NavBarPage iconType="back" isFly='false' title="设置" />
 				<Tabs tabs={tabs} swipeable={false}>
-					{/* 通知 */}
 					<div>
 						<WhiteSpace />
 						{
-							this.props.notice ?
-								<List>
-									<CheckboxItem defaultChecked={this.state.notice.is_review == 1 ? true : false} onChange={() => this.onChange(0)}>评论</CheckboxItem>
-									<CheckboxItem defaultChecked={this.state.notice.is_digg == 1 ? true : false} onChange={() => this.onChange(2)}>点赞</CheckboxItem>
-								</List>
-								:
-								<div style={{ textAlign: 'center', margin: '50px auto' }}> <Icon type="loading" /></div>
+							notice.is_review &&
+							<List>
+								<CheckboxItem defaultChecked={notice.is_review == 1 ? true : false} onChange={() => this.onChange(0)}>评论</CheckboxItem>
+								<CheckboxItem defaultChecked={notice.is_digg == 1 ? true : false} onChange={() => this.onChange(2)}>点赞</CheckboxItem>
+							</List>
 						}
-
 						<List className={styles.listItem}>
 							<Item
 								style={{
@@ -109,31 +133,33 @@ class Setup extends React.Component {
 						</List>
 
 					</div>
-
-					{/* 隐私 */}
 					<div>
 						<WhiteSpace />
 						{
-							this.props.notice ?
-								<List>
-									{data.map(i => (
-										<RadioItem key={i.value} checked={this.state.is_show == i.value} onChange={() => this.onRadioChange(i.value)}>
-											{i.label}
-										</RadioItem>
-									))}
-								</List>
-								:
-								<div style={{ textAlign: 'center', margin: '50px auto' }}> <Icon type="loading" /></div>
+							is_show &&
+							<List>
+								{data.map(i => (
+									<RadioItem key={i.value} checked={is_show == i.value} onChange={() => {
+										this.setState({
+											is_show: i.value
+										})
+
+										this.props.dispatch({
+											type: 'message/setSecrets',
+											payload: {
+												is_show: i.value
+											}
+										});
+									}}>
+										{i.label}
+									</RadioItem>
+								))}
+							</List>
 						}
-
 					</div>
-
-					{/* 账户 */}
 					<div>
 						<Account />
 					</div>
-
-					{/* 账户 */}
 					<div>
 						<Blacklist />
 					</div>
@@ -141,64 +167,6 @@ class Setup extends React.Component {
 			</div>
 		)
 	}
-
-	onChange = (v) => {
-		switch (v) {
-			case 0:
-				this.props.notice.is_review == 1 ? this.state.notice.is_review = 2 : this.state.notice.is_review = 1;
-				break;
-			case 1:
-				this.props.notice.is_forward == 1 ? this.state.notice.is_forward = 2 : this.state.notice.is_forward = 1;
-				break;
-			case 2:
-				this.props.notice.is_digg == 1 ? this.state.notice.is_digg = 2 : this.state.notice.is_digg = 1;
-				break;
-			case 3:
-				this.props.notice.is_store == 1 ? this.state.notice.is_store = 2 : this.state.notice.is_store = 1;
-				break;
-			case 4:
-				this.props.notice.is_personal == 1 ? this.state.notice.is_personal = 2 : this.state.notice.is_personal = 1;
-				break;
-			case 5:
-				this.props.notice.is_follow == 1 ? this.state.notice.is_follow = 2 : this.state.notice.is_follow = 1;
-				break;
-		}
-
-		this.props.dispatch({
-			type: 'message/setNotice',
-			payload: {
-				is_review: this.state.notice.is_review,
-				is_digg: this.state.notice.is_digg,
-				is_forward: this.state.notice.is_forward,
-				is_follow: this.state.notice.is_follow,
-				is_store: this.state.notice.is_store,
-				is_personal: this.state.notice.is_personal,
-			}
-		});
-
-	}
-
-	onRadioChange = (value) => {
-
-		this.setState({
-			is_show: value
-		})
-
-		this.props.dispatch({
-			type: 'message/setSecrets',
-			payload: {
-				is_show: value
-			}
-		});
-
-	};
 }
 
-function mapStateToProps(state) {
-	return {
-		...state.message,
-		user: state.my.user
-	};
-}
-
-export default connect(mapStateToProps)(Setup);
+export default connect()(Setup);

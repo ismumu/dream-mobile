@@ -2,6 +2,7 @@ import modelExtend from 'dva-model-extend';
 import { model } from './common.js';
 import { browserHistory } from 'react-router';
 import { getMessageList, setNotice, getNotice } from '../services/message';
+import { getTags } from '../services/fly.js';
 import { setSecret } from '../services/user';
 import Storage from '../utils/storage';
 import { Toast } from 'antd-mobile';
@@ -44,6 +45,13 @@ export default modelExtend(model, {
 			}
 		},
 
+		// 获取标签
+		*getTags({ payload, callback }, { call, put }) {
+			const data = yield call(getTags, payload);
+			if (data.code === 200) {
+				callback && callback(data);
+			}
+		},
 		// 设置通知信息
 		*setNotice({ payload }, { call, put }) {
 			const { data, code, msg } = yield call(setNotice, payload);
