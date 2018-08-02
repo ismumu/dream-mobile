@@ -278,6 +278,7 @@ class Fly extends React.Component {
 						height='300'
 						contentFormat='html'
 						placeholder="梦境内容"
+						pasteMode="text" // 指定粘贴模式，如果为text，则粘贴的时候会过滤掉HTML格式，默认为空
 						onChange={(html) => {
 							this.setState({
 								editorContent: html,
