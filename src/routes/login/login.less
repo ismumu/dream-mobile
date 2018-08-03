@@ -31,7 +31,8 @@ body{
     .loginBtn {
         margin-top: 25px;
         border-radius: 10px;
-        font-size: 16px;
+		font-size: 16px;
+		background-color: #1f4ba5;
     }
     .registerBtn {
         width: 120px;
@@ -39,8 +40,12 @@ body{
         height: 40px;
         line-height: 40px;
         font-size: 14px;
-        font-weight: bold;
-    }
+		font-weight: bold;
+		color: #1f4ba5;
+	}
+	.registerBtn::before {
+		border-color: #1f4ba5 !important;
+	}
     .forgetPwd {
         display: block;
         color: #757575;
@@ -52,7 +57,7 @@ body{
         text-align: center;
         b {
             font-size: 18px;
-            font-weight: 400;   
+            font-weight: 400;
         }
         p {
             line-height: 24px;
