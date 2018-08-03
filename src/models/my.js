@@ -26,6 +26,10 @@ export default modelExtend(model, {
 		*getUserHome({ payload, callback }, { call, put }) {
 			const data = yield call(getUserHome, payload);
 			if (data.code == 200) {
+				// 处理老数据\n换行问题
+				data.data.feed.map((d) => {
+					d.content = d.content.replace(/\n/g,"<br>");
+				})
 				callback && callback(data);
 			}
 		},
@@ -34,6 +38,10 @@ export default modelExtend(model, {
 		*getOtherInfo({ payload, callback }, { call, put }) {
 			const data = yield call(getUserHome, payload);
 			if (data.code == 200) {
+				// 处理老数据\n换行问题
+				data.data.feed.map((d) => {
+					d.content = d.content.replace(/\n/g,"<br>");
+				})
 				callback && callback(data);
 			} else if (data.code == 400) {
 				Toast.info('用户已闭关静养~', 1);
