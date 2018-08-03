@@ -87,7 +87,12 @@ class Index extends React.Component {
 			)
 		} else if ( rowData.type == '注册通知' ) {
 			return (
-				<div className={styles.message}>
+				<div className={styles.message} onClick={ () => {
+					this.setState({
+						showModal: true,
+						modalText: rowData.sys_content,
+					})
+				}}>
 					{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
 					<img className={styles.avatar} src={logoFace} />
 					<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>

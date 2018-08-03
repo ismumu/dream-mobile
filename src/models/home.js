@@ -51,12 +51,6 @@ export default modelExtend(model, {
 		*getDreamList({ payload }, { call, put }) {
 			const { data, code } = yield call(getDreamList, payload);
 			if (code == 200) {
-
-				// 处理老数据\n换行问题
-				data.data.map((d) => {
-					d.content = d.content.replace(/\n/g,"<br>");
-				})
-
 				yield put({
 					type: 'updateState',
 					payload: {

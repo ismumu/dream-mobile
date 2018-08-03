@@ -39,6 +39,8 @@ export default modelExtend(model, {
 				setTimeout(() => {
 					window.location.reload();
 				}, 600);
+			} else {
+				Toast.fail(msg || "登入失败！", 1);
 			}
 		},
 
@@ -61,7 +63,11 @@ export default modelExtend(model, {
 					setTimeout(() => {
 						window.location.reload();
 					}, 1100);
+				} else {
+					Toast.fail(msg || "登入失败！", 1);
 				}
+			} else {
+				Toast.fail(msg || "登入失败！", 1);
 			}
 		},
 
@@ -71,6 +77,8 @@ export default modelExtend(model, {
 			if (code == 200) {
 				Toast.success("密码已重置，请查看邮箱", 1);
 				yield put({ type: 'updateState', payload: { data: data } });
+			} else {
+				Toast.fail(msg || "登入失败！", 1);
 			}
 		},
 
