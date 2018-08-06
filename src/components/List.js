@@ -259,9 +259,9 @@ class List extends React.Component {
 								{
 									isNotLogin
 									?
-									obj.uname
+									(obj.uname || obj.email)
 									:
-									<Link className={styles.userName} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link>
+									<Link className={styles.userName} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname || obj.email}</Link>
 								}
 
 								<span className={styles.time}>{obj.publish_time}</span>
