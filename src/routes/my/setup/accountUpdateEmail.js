@@ -88,7 +88,7 @@ class AccountUpdateEmail extends React.Component {
             ref={el => this.autoFocusInst = el}
             id="emailId"
           >原邮箱</InputItem>
-          <Button type="primary" inline size="small" style={{ float: 'right', marginRight: '5px', marginTop: '-37px' }} onClick={this.sendEmailCode}>发送</Button>
+          <Button type="primary" inline size="small" style={{ float: 'right', marginRight: '5px', marginTop: '-37px', backgroundColor: '#1f4ba5' }} onClick={this.sendEmailCode}>发送</Button>
         </List>
 
         <List renderHeader={() => ''} style={{ marginTop: -25 }}>
@@ -130,7 +130,7 @@ class AccountUpdateEmail extends React.Component {
             ref={el => this.autoFocusInst = el}
           >确认邮箱</InputItem>
           <List.Item>
-            <Button type="primary" onClick={this.setEmail}>保存</Button>
+            <Button className={styles.save} type="primary" onClick={this.setEmail}>保存</Button>
           </List.Item>
         </List>
 

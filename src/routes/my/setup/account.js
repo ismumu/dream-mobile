@@ -1,7 +1,3 @@
-/**
- * 账户设置页面
- * author:zch
- */
 
 import React from 'react'
 import { connect } from 'dva'
@@ -110,7 +106,7 @@ class Account extends React.Component {
 						>确认密码</InputItem>
 					</List>
 					<List.Item>
-						<Button type="primary" onClick={this.setNewPassword}>保存</Button>
+						<Button className={styles.save} type="primary" onClick={this.setNewPassword}>保存</Button>
 					</List.Item>
 				</form>
 
