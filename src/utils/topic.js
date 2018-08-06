@@ -18,12 +18,18 @@ module.exports = {
 			// 	});
 			// }
 			if ( i.content ) {
-				i.content = i.content.replace(/&nbsp;/g, ' ');
-				i.content = i.content.replace(/(?:#([^#\s]+)\s)/g, '<a href="javascript:;" class="J-topic" to="/topic?text=$1">#$1 </a>');
+				if(!i.content.includes('J-topic')) {
+					i.content = i.content.replace(/&nbsp;/g, ' ');
+					i.content = i.content.replace(/(?:#([^#\s]+)\s)/g, '<a href="javascript:;" class="J-topic" to="/topic?text=$1">#$1 </a>');
+				}
+
 			}
 			if ( i.review_content ) {
-				i.review_content = i.review_content.replace(/&nbsp;/g, ' ');
-				i.review_content = i.review_content.replace(/(?:#([^#\s]+)\s)/g, '<a href="javascript:;" class="J-topic" to="/topic?text=$1">#$1 </a>');
+				if(!i.review_content.includes('J-topic')) {
+					i.review_content = i.review_content.replace(/&nbsp;/g, ' ');
+					i.review_content = i.review_content.replace(/(?:#([^#\s]+)\s)/g, '<a href="javascript:;" class="J-topic" to="/topic?text=$1">#$1 </a>');
+				}
+
 			}
 			return i;
 		});
