@@ -48,13 +48,7 @@ class About extends React.Component {
                         autoHeight
                         className={styles.title}
                         ref={el => this.customFocusInst = el}/>
-                    <TextareaItem
-                        placeholder="你的联系方式"
-                        data-seed="logId"
-                        id="contactId"
-                        autoHeight
-                        className={styles.title}
-                        ref={el => this.customFocusInst = el}/>
+                    
                     <TextareaItem rows={4} className={styles.textarea} id="contentId" placeholder="建议内容"/>
                 </div>
 
