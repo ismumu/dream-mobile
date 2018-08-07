@@ -115,7 +115,8 @@ class Home extends React.Component {
 						</div>
 						:
 						//未登录
-						<IndexNotLogin />
+						// <IndexNotLogin />
+						browserHistory.push('/login')
 				}
 			</div>
 		)
