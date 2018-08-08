@@ -25,7 +25,14 @@
 
 
 
-let devApi = 'http://mapi.idream.kim/index.php?r=';
+let devApi = '';
+if ( document.domain.includes('idream') ) {
+	devApi = 'http://mapi.idream.kim/index.php?r=';
+} else {
+	devApi = 'http://118.31.61.9:7171/index.php?r='
+}
+
+
 
 
 module.exports = {
