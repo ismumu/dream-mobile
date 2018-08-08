@@ -125,7 +125,19 @@ export function post(url, options) {
 	// 	return request( url, { ...options, method: 'post' })
 	// }
 
-	return request( url, { ...options, method: 'post' })
+	// if ( document.domain == 'localhost' || document.domain == '10.50.37.42' ) {
+
+	// } else
+	// if ( document.domain.includes('idream') ) {
+	// 	return request( url, { ...options, method: 'post' })
+	// } else {
+	// 	return request( '/' + url, { ...options, method: 'post' })
+	// }
+
+
+	return request( url, { ...options, method: 'post' });
+
+
 
 
 }
