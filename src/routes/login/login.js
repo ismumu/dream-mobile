@@ -49,7 +49,7 @@ class Login extends React.Component {
 
           <Link to="/register"><Button type="ghost" className={styles.registerBtn}><span>创建账户</span></Button></Link>
 
-          <Link to="/" className={styles.forgetPwd}><span>无登入浏览</span></Link>
+          {/* <Link to="/" className={styles.forgetPwd}><span>无登入浏览</span></Link> */}
 
         </div>
       </div>

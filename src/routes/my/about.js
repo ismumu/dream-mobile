@@ -48,13 +48,7 @@ class About extends React.Component {
                         autoHeight
                         className={styles.title}
                         ref={el => this.customFocusInst = el}/>
-                    <TextareaItem
-                        placeholder="你的联系方式"
-                        data-seed="logId"
-                        id="contactId"
-                        autoHeight
-                        className={styles.title}
-                        ref={el => this.customFocusInst = el}/>
+                    
                     <TextareaItem rows={4} className={styles.textarea} id="contentId" placeholder="建议内容"/>
                 </div>
 
@@ -67,22 +61,30 @@ class About extends React.Component {
 					}}>提交</Button>
 
                 <div className={styles.iNeedYou}>
-                    <h3>为什么建立</h3>
-                    <b>我们相信连接全世界的梦能产生趣味和价值<br/>
-                       因为梦境是人类大思维最无厘头和最多火花的地方</b>
+                    <br/>
+                    <h3>我们是谁</h3>
+                    <p>我们是着迷梦境的人类<br/>
+                    因为我们相信梦中有着乐趣和启发<br/>
+                    </p><br/>
 
-                    <h3>加入我们</h3>
-                    <b>梦的趣味天马行空<br/>
-                        梦的价值具治愈和发现心理真相<br/>
-                        若你和我们一样认同梦这样的积极功能<br/>
-                        请加入我们<br/>
-                        为之奋斗创造更具趣味和意义价值的现实世界<br/>
-
-                        Call me babe<br/>
-                        期待与你畅谈<br/>
-                        idreamin@outlook.com</b>
-
-
+                    <h3>我们从哪里来</h3>
+                    <p>梦伴随着我们人类从古至今·从生至死<br/>
+                    我们生命1/4时间在睡眠中度过<br/>
+                    其中1/4睡眠时间在做梦<br/>
+                    做梦占据我们生命的1/8时间<br/>
+                    为什么不去认识我们生命的1/8<br/>
+                    </p><br/>
+                        
+                    <h3>我们到哪里去</h3>
+                    <p>集合连接全世界的梦<br/>
+                    从梦中愉悦、启发、甚至悲伤中感悟人生<br/>
+                    甚至量子纠缠让我们相信梦中情景存在真实联系<br/>
+                    <br/>
+                    
+                    梦也是私隐性极高的人生探秘<br/>
+                    我们努力不懈为大家发现梦境的意义与价值<br/>
+                    idreamin@outlook.com<br/>
+                    </p>
 
 
 
