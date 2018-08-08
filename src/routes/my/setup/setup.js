@@ -114,7 +114,7 @@ class Setup extends React.Component {
 							notice.is_review &&
 							<List>
 								<CheckboxItem defaultChecked={notice.is_review == 1 ? true : false} onChange={() => this.onChange(0)}>评论</CheckboxItem>
-								<CheckboxItem defaultChecked={notice.is_digg == 1 ? true : false} onChange={() => this.onChange(2)}>点赞</CheckboxItem>
+								<CheckboxItem defaultChecked={notice.is_digg == 1 ? true : false} onChange={() => this.onChange(2)}>喜欢</CheckboxItem>
 							</List>
 						}
 						<List className={styles.listItem}>
