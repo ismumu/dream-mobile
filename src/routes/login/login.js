@@ -21,9 +21,6 @@ class Login extends React.Component {
         <div className={styles.loginWrap}>
           <div className={styles.title}>
             <b>连接全世界的梦</b>
-            <p>
-            记录、分享、交流
-            </p>
           </div>
           <List>
             <InputItem

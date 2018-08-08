@@ -20,10 +20,7 @@ class Register extends React.Component {
         <NavBarPage isFly="false" />
         <div className={styles.loginWrap}>
           <div className={styles.title}>
-            <b>连接全世界的梦连接</b>
-            <p>
-            记录、分享、交流
-          </p>
+            <b>记录  分享  交流</b>
           </div>
           <List>
             <InputItem

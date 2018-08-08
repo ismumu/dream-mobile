@@ -19,12 +19,9 @@ class Forget extends React.Component {
       <div>
         <NavBarPage isFly="false" />
         <div className={styles.loginWrap}>
-            {/* <div className={styles.title}>
-            <b>连接全世界的梦</b>
-            <p>
-             记录、分享、交流
-            </p>
-          </div> */}
+            <div className={styles.title}>
+            <b>填写你的邮箱</b>
+          </div>
           <List style={{ marginTop: 50 }}>
             <InputItem
               className={styles.text}
