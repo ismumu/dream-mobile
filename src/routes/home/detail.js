@@ -296,6 +296,8 @@ class Detail extends React.Component {
 		let { isShowErrorTip, errorTipText } = this.state;
 		let { info, review } = this.props.detail || {};
 
+
+
 		let _info = {}, _review = [];
 
 		// 话题相关
@@ -355,7 +357,7 @@ class Detail extends React.Component {
 												}}></div>
 												<div className={styles.imgs}>
 													{
-														_info.img_info && _info.img_info.map((img, index) => (
+														_info.imgInfo && _info.imgInfo.map((img, index) => (
 															<img src={img} key={index} alt="" />
 														))
 													}
