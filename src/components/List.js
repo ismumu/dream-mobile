@@ -190,7 +190,7 @@ class List extends React.Component {
 				let likeCountNum = document.getElementById('likeCount' + id).innerHTML || 0;
 
 
-				if ( msg == '已喜欢' ) {
+				if ( msg == '点赞成功' ) {
 
 					let newCount = likeCountNum * 1 + 1;
 
