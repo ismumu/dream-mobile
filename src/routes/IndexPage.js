@@ -73,8 +73,8 @@ class Home extends React.Component {
 						<div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
 							<TabBar unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white">
 								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xe80d;</i>}
-									selectedIcon={<i className={styles.iconfontBlack}>&#xe80d;</i>}
+									icon={<i className={styles.iconfont}>&#xe804;</i>}
+									selectedIcon={<i className={styles.iconfontBlack}>&#xe804;</i>}
 									key="my"
 									selected={ selectedTab === "tab4" }
 									onPress={this.onPress.bind(this, 'tab4')} >
@@ -93,8 +93,8 @@ class Home extends React.Component {
 								</TabBar.Item>
 
 								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xe803;</i>}
-									selectedIcon={<i className={styles.iconfontBlack} >&#xe803;</i>}
+									icon={<i className={styles.iconfont}>&#xe811;</i>}
+									selectedIcon={<i className={styles.iconfontBlack} >&#xe811;</i>}
 									key="Koubei"
 									selected={ selectedTab === "tab2" }
 									onPress={this.onPress.bind(this, 'tab2')}
@@ -103,8 +103,8 @@ class Home extends React.Component {
 								</TabBar.Item>
 
 								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xe802;</i>}
-									selectedIcon={<i className={styles.iconfontBlack}>&#xe802;</i>}
+									icon={<i className={styles.iconfont}>&#xf018;</i>}
+									selectedIcon={<i className={styles.iconfontBlack}>&#xf018;</i>}
 									// title="探索"
 									key="Friend1"
 									selected={ selectedTab === "tab1" }

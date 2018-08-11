@@ -369,18 +369,18 @@ class Detail extends React.Component {
 													{
 														_info.hasDigg == 1
 														?
-														<i className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe808;</i>
+														<i className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe803;</i>
 														:
-														<i className={styles.iconfontSmall}>&#xe808;</i>
+														<i className={styles.iconfontSmall}>&#xe803;</i>
 													}
 													<label>{_info.digg_count > 0 ? _info.digg_count : null}</label>
 												</span>
 												<span className={styles.review} onClick={this.showModal()}>
-													<i className={styles.iconfontBlueSmall}>&#xe810;</i>
+													<i className={styles.iconfontBlueSmall}>&#xf4ac;</i>
 													<label>{_info.comment_all_count > 0 ? _info.comment_all_count : null}</label>
 												</span>
 												<span>
-													<i className={styles.iconfontSmall} onClick={this.onShowShareModal}>&#xe811;</i>
+													<i className={styles.iconfontSmall} onClick={this.onShowShareModal}>&#xe805;</i>
 												</span>
 
 											</div>
@@ -539,7 +539,7 @@ class Detail extends React.Component {
 									this.onReview();
 
 								}}
-								className={styles.iconfontBlack}>&#xf1d8;</i>,
+								className={styles.iconfontBlack}>&#xe80a;</i>,
 						}
 					]}
 					wrapProps={{ onTouchStart: this.onWrapTouchStart }}

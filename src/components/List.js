@@ -229,7 +229,7 @@ class List extends React.Component {
 
 		let secretDom = ''
 		if ( obj.uid == UID && obj.show_type == '2' ) {
-			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80b;</i>;
+			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80d;</i>;
 		} else {
 			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal', display: 'none' }}>&#xe80b;</i>;
 		}
@@ -318,9 +318,9 @@ class List extends React.Component {
 								{
 									obj.has_digg == 1
 									?
-									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe808;</i>
+									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe803;</i>
 									:
-									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall}>&#xe808;</i>
+									<i id={'likeIcon' + obj.feed_id} className={styles.iconfontSmall}>&#xe803;</i>
 								}
 								<label id={"likeCount" + obj.feed_id}>{obj.digg_count > 0 ? obj.digg_count : null}</label>
 							</span>
@@ -329,19 +329,19 @@ class List extends React.Component {
 									isNotLogin
 									?
 									<div to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
-										<i className={styles.iconfontSmall}>&#xe810;</i>
+										<i className={styles.iconfontSmall}>&#xf4ac;</i>
 										<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
 									</div>
 									:
 									<Link to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
-										<i className={styles.iconfontSmall}>&#xe810;</i>
+										<i className={styles.iconfontSmall}>&#xf4ac;</i>
 										<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
 									</Link>
 								}
 
 							</span>
 
-							{(this.props.isShare !== false) && <span><i className={styles.iconfontSmall} onClick={this.onShowShareModal.bind(this, obj)}>&#xe811;</i></span>}
+							{(this.props.isShare !== false) && <span><i className={styles.iconfontSmall} onClick={this.onShowShareModal.bind(this, obj)}>&#xe805;</i></span>}
 						</div>
 					</div>
 				}

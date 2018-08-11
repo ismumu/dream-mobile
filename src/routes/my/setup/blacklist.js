@@ -51,7 +51,7 @@ class BlackList extends React.Component{
                     </div>
                   </div>
                   <div style={{ height: '50%' }}>
-                    <i className={`${styles.iconfont}`} onClick={this.delBlack.bind(this,dataItem.uid)}>&#xe611;</i>
+                    <i className={`${styles.iconfont}`} onClick={this.delBlack.bind(this,dataItem.uid)}>&#xe812;</i>
                   </div>
                 </div>
               )}/>

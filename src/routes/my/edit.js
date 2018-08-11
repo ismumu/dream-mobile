@@ -222,21 +222,21 @@ class Edit extends React.Component {
 						clear
 						defaultValue={_user.uname}
 						placeholder="名称">
-						<i className={styles.iconfont}>&#xe80d;</i>
+						<i className={styles.iconfont}>&#xe804;</i>
 					</InputItem>
 					<InputItem
 						id="inputAddress"
 						clear
 						defaultValue={_user.location}
 						placeholder="地域">
-						<i className={styles.iconfont}>&#xe806;</i>
+						<i className={styles.iconfont}>&#xe80c;</i>
 					</InputItem>
 					<InputItem
 						id="inputProfession"
 						clear
 						defaultValue={_user.job}
 						placeholder="职业习惯影响梦境">
-						<i className={styles.iconfont}>&#xe805;</i>
+						<i className={styles.iconfont}>&#xe807;</i>
 					</InputItem>
 					<InputItem
 						type="number"
@@ -245,7 +245,7 @@ class Edit extends React.Component {
 						clear
 						defaultValue={parseInt(_user.age || 0)}
 						placeholder="剩下多少生命">
-						<i className={styles.iconfont}>&#xf252;</i>
+						<i className={styles.iconfont}>&#xe813;</i>
 					</InputItem>
 				</List>
 

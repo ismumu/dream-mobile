@@ -129,7 +129,7 @@ class Userinfo extends React.Component {
 				<div className={styles.icons}>
 					<span className={styles.praise}>
 						{
-							obj.hasDigg == 1 ? <i className={styles.iconfont}>&#xe808;</i> : <i className={styles.iconfontSmall}>&#xe808;</i>
+							obj.hasDigg == 1 ? <i className={styles.iconfont}>&#xe803;</i> : <i className={styles.iconfontSmall}>&#xe803;</i>
 						}
 						<label>{obj.digg_count > 0 ? obj.digg_count : null}</label>
 					</span>
@@ -235,9 +235,9 @@ class Userinfo extends React.Component {
 							<div className={styles.opinion}>{this.props.otherInfo.intro}</div>
 							<ul>
 								<li><i className={styles.iconfont}>&#xf226;</i><span>{this.props.otherInfo.sex}</span></li>
-								<li><i className={styles.iconfont}>&#xe806;</i><span>{this.props.otherInfo.location}</span></li>
+								<li><i className={styles.iconfont}>&#xe80c;</i><span>{this.props.otherInfo.location}</span></li>
 								<li><i className={styles.iconfont}>&#xf32d;</i><span>{this.props.otherInfo.job}</span></li>
-								<li><i className={styles.iconfont}>&#xf252;</i><span>{this.props.otherInfo.age}</span></li>
+								<li><i className={styles.iconfont}>&#xe813;</i><span>{this.props.otherInfo.age}</span></li>
 							</ul>
 
 						</div>
