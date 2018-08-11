@@ -11,6 +11,8 @@ import NavBarPage from "../../../components/NavBar"
 import Account from "./account"
 import Blacklist from "./blacklist"
 
+import Storage from '../../../utils/storage'
+
 
 const Item = List.Item,
 	CheckboxItem = Checkbox.CheckboxItem,
@@ -32,7 +34,9 @@ class Setup extends React.Component {
 	componentWillMount() {
 		this.props.dispatch({
 			type: 'message/getTags',
-			payload: {},
+			payload: {
+				uid: Storage.get('uid'),
+			},
 			callback: (d) => {
 				let { notice } = this.state;
 				notice.is_digg = d.userInfo.notice.is_digg;
@@ -78,6 +82,15 @@ class Setup extends React.Component {
 
 	}
 
+	logout = () => {
+		this.props.dispatch({
+			type: 'my/logout',
+			payload: {
+				token: null
+			}
+		})
+	}
+
 	render() {
 
 		const data = [
@@ -86,9 +99,9 @@ class Setup extends React.Component {
 		];
 
 		const tabs = [
-			{
-				title: <b className={styles.colorBlack}>通知</b>,
-			},
+			// {
+			// 	title: <b className={styles.colorBlack}>通知</b>,
+			// },
 			{
 				title: <b className={styles.colorBlack}>隐私</b>,
 			},
@@ -106,9 +119,9 @@ class Setup extends React.Component {
 		return (
 			<div className={styles.editWrap}>
 
-				<NavBarPage iconType="back" isFly='false' title="设置" />
+				<NavBarPage iconType="back" isSetup='true' logout={this.logout} title="设置" />
 				<Tabs tabs={tabs} swipeable={false}>
-					<div>
+					{/* <div>
 						<WhiteSpace />
 						{
 							notice.is_review &&
@@ -132,7 +145,7 @@ class Setup extends React.Component {
 							</Item>
 						</List>
 
-					</div>
+					</div> */}
 					<div>
 						<WhiteSpace />
 						{

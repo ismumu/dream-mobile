@@ -25,6 +25,7 @@ import 'braft-editor/dist/braft.css'
 
 import { browserHistory } from 'react-router';
 
+
 class Fly extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -194,6 +195,13 @@ class Fly extends React.Component {
 	}
 
 	componentDidMount() {
+
+		this.props.dispatch({
+			type: 'fly/getTags',
+			payload: {
+				uid: Storage.get('uid'),
+			},
+		})
 
 		// 获取未发布的信息
 		this.autoSaveGet()

@@ -144,7 +144,7 @@ class Index extends React.Component {
 
 		return (
 			<div className={styles.chatWrap}>
-				<NavBarPage isFly="true" />
+				<NavBarPage />
 				<StickyContainer>
 					<ListView
 						ref={el => this.lv = el}

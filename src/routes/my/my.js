@@ -68,7 +68,7 @@ class My extends React.Component {
 							style={{ minHeight: 78 }}
 							onClick={() => { }}
 						>
-							{user.uname || "***"}
+							{user.uname}
 							<Brief>我的主页</Brief>
 						</Item>
 					</Link>

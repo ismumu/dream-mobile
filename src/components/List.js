@@ -259,12 +259,11 @@ class List extends React.Component {
 								{
 									isNotLogin
 									?
-									(obj.uname || obj.email)
+									obj.uname
 									:
-									<Link className={styles.userName} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname || obj.email}</Link>
+									<Link className={styles.userName} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link>
 								}
-
-								<span className={styles.time}>{obj.publish_time}</span>
+								<Link className={styles.time} to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>{obj.publish_time}</Link>
 							</div>
 						</div>
 						<div className={styles.itemContent}>

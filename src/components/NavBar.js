@@ -34,8 +34,19 @@ class NavBarPage extends React.Component {
 
 	render() {
 
-		let { iconType, isFixed, isFly, isLogin, isSearch, isOther, isTopic, title, addBlackList } = this.props;
-
+		let {
+			iconType,
+			isFixed,
+			isFly,
+			isLogin,
+			isSearch,
+			isOther,
+			isTopic,
+			title,
+			addBlackList,
+			isSetup,
+			logout,
+		} = this.props;
 
 
 		let _rightContent = '';
@@ -50,6 +61,8 @@ class NavBarPage extends React.Component {
 			_rightContent = <i onClick={addBlackList} className={styles.iconfontBlack}>&#xf141;</i>
 		} else if ( isTopic == 'true' ) {
 			_rightContent = '';
+		} else if ( isSetup == 'true' ) {
+			_rightContent = <i onClick={logout} className={styles.iconfontBlack}>&#xe809;</i>
 		}
 
 		return (

@@ -18,10 +18,10 @@ export default modelExtend(model, {
 
 	subscriptions: {
 		setup({ dispatch, history }) {
-			dispatch({
-				type: 'getTags',
-				payload: {},
-			})
+			// dispatch({
+			// 	type: 'getTags',
+			// 	payload: {},
+			// })
 		},
 	},
 
