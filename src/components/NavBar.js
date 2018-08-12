@@ -1,10 +1,17 @@
 import React from 'react'
 import { Link, browserHistory } from 'dva/router'
-import { NavBar, Icon, ActionSheet } from 'antd-mobile'
+import { NavBar, Icon, ActionSheet, Modal } from 'antd-mobile'
 import styles from '../assets/styles/base.less'
 
 
 class NavBarPage extends React.Component {
+
+	constructor () {
+		super();
+		this.state = {
+			showModal: false,
+		}
+	}
 
 	showActionSheet = () => {
 
@@ -30,6 +37,12 @@ class NavBarPage extends React.Component {
 		if(isSearch == "true") {
 			ActionSheet.close()
 		}
+	}
+
+	closeModal = () => {
+		this.setState({
+			showModal: false,
+		})
 	}
 
 	render() {
@@ -62,16 +75,44 @@ class NavBarPage extends React.Component {
 		} else if ( isTopic == 'true' ) {
 			_rightContent = '';
 		} else if ( isSetup == 'true' ) {
-			_rightContent = <i onClick={logout} className={styles.iconfontBlack}>&#xe809;</i>
+			_rightContent = <i onClick={() => {
+				this.setState({
+					showModal: true,
+				})
+			}} className={styles.iconfontBlack}>&#xe809;</i>
 		}
 
 		return (
-			<NavBar
-				mode="light"
-				icon={iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className={styles.iconfontBlue}></i>}
-				rightContent={ _rightContent }
-				className={isFixed ? styles.navBar : styles.navBar2}
-			>{title ? title : 'iDream'}</NavBar>
+			<div>
+				<NavBar
+					mode="light"
+					icon={iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className={styles.iconfontBlue}></i>}
+					rightContent={ _rightContent }
+					className={isFixed ? styles.navBar : styles.navBar2}
+				>{title ? title : 'iDream'}</NavBar>
+				<Modal
+					visible={this.state.showModal}
+					transparent
+					maskClosable={true}
+					footer={[
+						{
+							text: '取消',
+							onPress: () => {
+								this.closeModal();
+							}
+						},
+						{
+							text: '确认',
+							onPress: () => {
+								logout();
+							}
+						}
+					]}
+					onClose={this.closeModal}
+				>
+					<div style={{fontSize: 20, color: '#000'}}>退出账号？</div>
+				</Modal>
+			</div>
 		);
 	}
 };
