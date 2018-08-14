@@ -84,17 +84,17 @@ class Detail extends React.Component {
 									<span className={styles.praise} onClick={this.handleUpdatedigg}>
 										{
 											this.props.detail.info.hasDigg == 1 ?
-												<i className={styles.iconfontSmall} style={{ color: '#1F4BA5' }}>&#xe808;</i>
-												: <i className={styles.iconfontSmall}>&#xe808;</i>
+												<i className='icon-cog icon-idream-small' style={{ color: '#1F4BA5' }}></i>
+												: <i className='icon-cog icon-idream-small'></i>
 										}
 										<label>{this.props.detail.info.digg_count > 0 ? this.props.detail.info.digg_count : null}</label>
 									</span>
 									<span className={styles.review} onClick={this.showModal("modal1")} >
-										<i className={styles.iconfontBlueSmall}>&#xe810;</i>
+										<i className='icon-comment icon-idream-small icon-idream-blue'></i>
 										<label>{this.props.detail.info.comment_all_count > 0 ? this.props.detail.info.comment_all_count : null}</label>
 									</span>
 									<span onClick={this.handleUpdatedigg}>
-										<i className={styles.iconfontSmall}>&#xe811;</i>
+										<i className='icon-search icon-idream-small'></i>
 									</span>
 
 								</div>

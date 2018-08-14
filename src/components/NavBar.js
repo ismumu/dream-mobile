@@ -65,13 +65,13 @@ class NavBarPage extends React.Component {
 		let _rightContent = '';
 
 		if ( isFly == 'true' ) {
-			_rightContent = <Link to="/fly"><i className={styles.iconfontBlack}>&#xe80a;</i></Link>;
+			_rightContent = <Link to="/fly"><i className='icon-paper-plane icon-idream-small icon-idream-black'></i></Link>;
 		} else if ( isLogin == 'true' ) {
 			_rightContent = <Link to="/login">登入</Link>;
 		} else if ( isSearch == 'true' ) {
-			_rightContent = <i onClick={this.showActionSheet} className={styles.iconfontBlack}>&#xf008;</i>
+			_rightContent = <i onClick={this.showActionSheet} className='icon-menu icon-idream-small icon-idream-black'></i>
 		} else if ( isOther == 'true' ) {
-			_rightContent = <i onClick={addBlackList} className={styles.iconfontBlack}>&#xf008;</i>
+			_rightContent = <i onClick={addBlackList} className='icon-menu icon-idream-small icon-idream-black'></i>
 		} else if ( isTopic == 'true' ) {
 			_rightContent = '';
 		} else if ( isSetup == 'true' ) {
@@ -79,14 +79,14 @@ class NavBarPage extends React.Component {
 				this.setState({
 					showModal: true,
 				})
-			}} className={styles.iconfontBlack}>&#xe809;</i>
+			}} className='icon-logout icon-idream-small icon-idream-black'></i>
 		}
 
 		return (
 			<div>
 				<NavBar
 					mode="light"
-					icon={iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className={styles.iconfontBlue}></i>}
+					icon={iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className='icon-idream-blue'></i>}
 					rightContent={ _rightContent }
 					className={isFixed ? styles.navBar : styles.navBar2}
 				>{title ? title : 'iDream'}</NavBar>

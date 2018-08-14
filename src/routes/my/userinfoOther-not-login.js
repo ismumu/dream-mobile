@@ -129,18 +129,18 @@ class Userinfo extends React.Component {
 				<div className={styles.icons}>
 					<span className={styles.praise}>
 						{
-							obj.hasDigg == 1 ? <i className={styles.iconfont}>&#xe803;</i> : <i className={styles.iconfontSmall}>&#xe803;</i>
+							obj.hasDigg == 1 ? <i className='icon-heart icon-idream-small icon-idream-blue'></i> : <i className='icon-heart icon-idream-small'></i>
 						}
 						<label>{obj.digg_count > 0 ? obj.digg_count : null}</label>
 					</span>
 					<span className={styles.review}>
 						<Link to={"/home/detail?id=" + obj.feed_id}>
-							<i className={styles.iconfontSmall}>&#xe810;</i>
+							<i className='icon-comment icon-idream-small'></i>
 							<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
 						</Link>
 					</span>
 					<span>
-						<i className={styles.iconfontSmall}>&#xe811;</i>
+						<i className='icon-forward icon-idream-small'></i>
 					</span>
 
 				</div>

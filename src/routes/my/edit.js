@@ -222,7 +222,7 @@ class Edit extends React.Component {
 						clear
 						defaultValue={_user.uname}
 						placeholder="名称">
-						<i className={styles.iconfont}>&#xe804;</i>
+						<i className='icon-tag'></i>
 					</InputItem>
 					<InputItem
 						id="inputAddress"
@@ -249,13 +249,14 @@ class Edit extends React.Component {
 					</InputItem>
 				</List>
 
-				<List renderHeader={() => '状态'}>
+				<List renderHeader={() => '状态'} className={styles.iconWrap}>
 					{sexs.map(i => (
 						<RadioItem
 							key={i.value}
 							checked={this.state.sex === i.value}
 							onChange={() => this.onSelectSex(i.value)}>
-							<img src={i.icon} style={{ marginRight: 10 }} />
+							<img src={i.icon} className={styles.imgIcon} />
+							{/* <i className={styles.iconfont}>&#xe813;</i> */}
 							{i.label}
 						</RadioItem>
 					))}

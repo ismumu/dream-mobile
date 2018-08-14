@@ -73,8 +73,8 @@ class Home extends React.Component {
 						<div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
 							<TabBar unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white">
 								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xe804;</i>}
-									selectedIcon={<i className={styles.iconfontBlack}>&#xe804;</i>}
+									icon={<i className='icon-user'></i>}
+									selectedIcon={<i className='icon-user icon-idream-black'></i>}
 									key="my"
 									selected={ selectedTab === "tab4" }
 									onPress={this.onPress.bind(this, 'tab4')} >
@@ -83,8 +83,8 @@ class Home extends React.Component {
 
 								<TabBar.Item
 									key="Life"
-									icon={<i className={styles.iconfont}>&#xe800;</i>}
-									selectedIcon={<i className={styles.iconfontBlack}>&#xe800;</i>}
+									icon={<i className='icon-bell'></i>}
+									selectedIcon={<i className='icon-bell icon-idream-black'></i>}
 									selected={ selectedTab === "tab3" }
 									dot={ unread_count > 0 }
 									onPress={this.onPress.bind(this, 'tab3')}
@@ -93,8 +93,8 @@ class Home extends React.Component {
 								</TabBar.Item>
 
 								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xe811;</i>}
-									selectedIcon={<i className={styles.iconfontBlack} >&#xe811;</i>}
+									icon={<i className='icon-search'></i>}
+									selectedIcon={<i className='icon-search icon-idream-black'></i>}
 									key="Koubei"
 									selected={ selectedTab === "tab2" }
 									onPress={this.onPress.bind(this, 'tab2')}
@@ -103,9 +103,8 @@ class Home extends React.Component {
 								</TabBar.Item>
 
 								<TabBar.Item
-									icon={<i className={styles.iconfont}>&#xf018;</i>}
-									selectedIcon={<i className={styles.iconfontBlack}>&#xf018;</i>}
-									// title="探索"
+									icon={<i className='icon-globe'></i>}
+									selectedIcon={<i className='icon-globe icon-idream-black'></i>}
 									key="Friend1"
 									selected={ selectedTab === "tab1" }
 									onPress={this.onPress.bind(this, 'tab1')}>
