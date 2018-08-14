@@ -229,9 +229,9 @@ class List extends React.Component {
 
 		let secretDom = ''
 		if ( obj.uid == UID && obj.show_type == '2' ) {
-			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal' }}>&#xe80d;</i>;
+			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont + ' icon-eye-off'} style={{ float: 'right', 'fontWeight': 'normal' }}></i>;
 		} else {
-			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont} style={{ float: 'right', 'fontWeight': 'normal', display: 'none' }}>&#xe80b;</i>;
+			secretDom = <i id={'secret' + obj.feed_id} className={styles.iconfont + ' icon-eye-off'} style={{ float: 'right', 'fontWeight': 'normal', display: 'none' }}></i>;
 		}
 
 		// 未登录情况下不允许跳转到个人详情和文章详情

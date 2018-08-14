@@ -229,14 +229,14 @@ class Edit extends React.Component {
 						clear
 						defaultValue={_user.location}
 						placeholder="地域">
-						<i className={styles.iconfont}>&#xe80c;</i>
+						<i className={styles.iconfont + ' icon-location'}></i>
 					</InputItem>
 					<InputItem
 						id="inputProfession"
 						clear
 						defaultValue={_user.job}
 						placeholder="职业习惯影响梦境">
-						<i className={styles.iconfont}>&#xe807;</i>
+						<i className={styles.iconfont + ' icon-briefcase'}></i>
 					</InputItem>
 					<InputItem
 						type="number"
@@ -245,7 +245,7 @@ class Edit extends React.Component {
 						clear
 						defaultValue={parseInt(_user.age || 0)}
 						placeholder="剩下多少生命">
-						<i className={styles.iconfont}>&#xe813;</i>
+						<i className={styles.iconfont + ' icon-clock'}></i>
 					</InputItem>
 				</List>
 
@@ -256,7 +256,7 @@ class Edit extends React.Component {
 							checked={this.state.sex === i.value}
 							onChange={() => this.onSelectSex(i.value)}>
 							<img src={i.icon} className={styles.imgIcon} />
-							{/* <i className={styles.iconfont}>&#xe813;</i> */}
+							{/* <i className={styles.iconfont + ' icon-clock'}></i> */}
 							{i.label}
 						</RadioItem>
 					))}

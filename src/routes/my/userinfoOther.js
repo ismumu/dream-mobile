@@ -228,10 +228,10 @@ class Userinfo extends React.Component {
 									</div>
 									<div className={styles.opinion}>{_otherInfo.intro}</div>
 									<ul>
-										<li><i className={styles.iconfont}>&#xf226;</i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
-										<li><i className={styles.iconfont}>&#xe80c;</i><span>{_otherInfo.location}</span></li>
-										<li><i className={styles.iconfont}>&#xe807;</i><span>{_otherInfo.job}</span></li>
-										<li><i className={styles.iconfont}>&#xe813;</i><span>{_otherInfo.age}</span></li>
+										<li><i className={styles.iconfont + ' icon-venus-mars'}></i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
+										<li><i className={styles.iconfont + ' icon-location'}></i><span>{_otherInfo.location}</span></li>
+										<li><i className={styles.iconfont + ' icon-briefcase'}></i><span>{_otherInfo.job}</span></li>
+										<li><i className={styles.iconfont + ' icon-clock'}></i><span>{_otherInfo.age}</span></li>
 									</ul>
 								</div>
 							</div>

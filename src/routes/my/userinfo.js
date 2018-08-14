@@ -289,10 +289,10 @@ class Userinfo extends React.Component {
 					</div>
 					<div className={styles.opinion}>{_user.intro}</div>
 					<ul>
-						<li><i className={styles.iconfont}>&#xf226;</i>{this.sexsRender(_user.sex) ? <span>{this.sexsRender(_user.sex)}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
-						<li><i className={styles.iconfont}>&#xe80c;</i>{_user.location ? <span>{_user.location}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
-						<li><i className={styles.iconfont}>&#xe807;</i>{_user.job ? <span>{_user.job}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
-						<li><i className={styles.iconfont}>&#xe813;</i>{_user.age ? <span>{_user.age}</span> : <span className={styles.defaultTip}>未填写</span> }</li>
+						<li><i className={styles.iconfont + ' icon-venus-mars'}></i>{this.sexsRender(_user.sex) ? <span>{this.sexsRender(_user.sex)}</span> : <span className={styles.defaultTip}>未公布</span> }</li>
+						<li><i className={styles.iconfont + ' icon-location'}></i>{_user.location ? <span>{_user.location}</span> : <span className={styles.defaultTip}>未公布</span> }</li>
+						<li><i className={styles.iconfont + ' icon-briefcase'}></i>{_user.job ? <span>{_user.job}</span> : <span className={styles.defaultTip}>未公布</span> }</li>
+						<li><i className={styles.iconfont + ' icon-clock'}></i>{_user.age ? <span>{_user.age}</span> : <span className={styles.defaultTip}>未公布</span> }</li>
 					</ul>
 					<div className={styles.tagsBox}>
 						{tags.map((text, index) => {
