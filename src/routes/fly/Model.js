@@ -127,7 +127,7 @@ class TagModel extends React.Component {
 					className={styles.tagWrap}
 					onClick={this.showModal('modal1')}
 				>
-					<span className={styles.tagBtn}><i className={styles.iconfont}>&#xe802;</i> </span>
+					<span className={styles.tagBtn}><i className='icon-tag icon-idream-small'></i> </span>
 					<span className={styles.tagTip}>自定义标签(最多填写7个标签，每个标签最多7个中文字)</span>
 				</p>
 
