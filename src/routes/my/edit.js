@@ -23,14 +23,6 @@ import NavBarPage from "../../components/NavBar"
 
 import 'cropperjs/dist/cropper.css';
 
-import SexM from './image/sex_m.png';
-import SexW from './image/sex_w.png';
-import SexMM from './image/sex_mm.png';
-import SexWW from './image/sex_ww.png';
-import SexYx from './image/sex_yx.png';
-import SexNo from './image/sex_no.png';
-import SexWn from './image/sex_wn.png';
-
 const Item = List.Item;
 const Brief = Item.Brief;
 const RadioItem = Radio.RadioItem;
@@ -45,31 +37,31 @@ const sexs = [
 	{
 		value: 0,
 		label: '男',
-		icon: SexM,
+		icon: 'icon-mars',
 	}, {
 		value: 1,
 		label: '女',
-		icon: SexW,
+		icon: 'icon-venus',
 	}, {
 		value: 2,
 		label: '男男',
-		icon: SexMM,
+		icon: 'icon-mars-double',
 	}, {
 		value: 3,
 		label: '女女',
-		icon: SexWW,
+		icon: 'icon-venus-double',
 	}, {
 		value: 4,
 		label: '异性',
-		icon: SexYx,
+		icon: 'icon-venus-mars',
 	}, {
 		value: 5,
 		label: '双性',
-		icon: SexWn
+		icon: 'icon-transgender'
 	}, {
 		value: 6,
 		label: '无性',
-		icon: SexNo
+		icon: 'icon-neuter'
 	}
 ];
 
@@ -255,8 +247,7 @@ class Edit extends React.Component {
 							key={i.value}
 							checked={this.state.sex === i.value}
 							onChange={() => this.onSelectSex(i.value)}>
-							<img src={i.icon} className={styles.imgIcon} />
-							{/* <i className={styles.iconfont + ' icon-clock'}></i> */}
+							<i className={styles.iconfont + ' icon-idream-blue ' + i.icon}></i>
 							{i.label}
 						</RadioItem>
 					))}
@@ -284,7 +275,7 @@ class Edit extends React.Component {
 									guides={false}
 									crop={this._crop.bind(this)}
 								/>
-								<Button type="primary" onClick={this.handleCropperImg} style={{ margin: '20px' }}>裁剪</Button>
+								<Button type="primary" onClick={this.handleCropperImg} style={{ margin: '20px', backgroundColor: '#1F4BA5' }}>裁剪</Button>
 							</div>
 
 						</div> : null
@@ -295,7 +286,8 @@ class Edit extends React.Component {
 					onClick={this.submit.bind(this)}
 					type="primary"
 					style={{
-						margin: 20
+						margin: 20,
+						backgroundColor: '#1F4BA5',
 					}}>保存</Button>
 			</div>
 		)
