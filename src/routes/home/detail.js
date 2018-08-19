@@ -376,7 +376,7 @@ class Detail extends React.Component {
 													<label>{_info.digg_count > 0 ? _info.digg_count : null}</label>
 												</span>
 												<span className={styles.review} onClick={this.showModal()}>
-													<i className='icon-comment icon-idream-small icon-idream-blue'></i>
+													<i className='icon-comment icon-idream-small'></i>
 													<label>{_info.comment_all_count > 0 ? _info.comment_all_count : null}</label>
 												</span>
 												<span>

@@ -260,7 +260,7 @@ class Fly extends React.Component {
 					icon={<Icon type="left" />}
 					onLeftClick={() => history.back()}
 					rightContent={[
-						<i key="icon" className='icon-paper-plane icon-idream-small icon-idream-blue' onClick={this.handlePublish} ></i>
+						<i key="icon" className='icon-paper-plane icon-idream-small icon-idream-black' onClick={this.handlePublish} ></i>
 					]}
 					style={{ borderBottom: "0px solid #eee" }}
 				>iDream</NavBar>

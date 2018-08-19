@@ -52,18 +52,20 @@ a {
 
 	[class^="icon-"]:before, [class*=" icon-"]:before {
 		font-size: 20px;
+		color: #bdbdbd; // 默认icon颜色
 	}
 
 	[class^="icon-idream-small"]:before, [class*=" icon-idream-small"]:before {
 		font-size: 14px;
 	}
 
-
-	.icon-idream-black {
+	// 全局黑色
+	.icon-idream-black, .icon-idream-black::before {
         color: #212121;
 	}
-	.icon-idream-blue {
-		color: #212121;
+	// 全局蓝色
+	.icon-idream-blue, .icon-idream-blue:before {
+		color: #1F4BA5;
 	}
 
 }

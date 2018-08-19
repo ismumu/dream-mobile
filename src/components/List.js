@@ -194,7 +194,7 @@ class List extends React.Component {
 
 					let newCount = likeCountNum * 1 + 1;
 
-					likeIcon.style.color = '#1F4BA5';
+					likeIcon.setAttribute('class', 'icon-heart icon-idream-small icon-idream-blue');
 					if ( newCount <= 0 ) {
 						likeCountLabel.innerHTML = '';
 					} else {
@@ -205,7 +205,7 @@ class List extends React.Component {
 
 					let newCount = likeCountNum * 1 - 1;
 
-					likeIcon.style.color = '#bdbdbd';
+					likeIcon.setAttribute('class', 'icon-heart icon-idream-small');
 					if ( newCount <= 0 ) {
 						likeCountLabel.innerHTML = '';
 					} else {
