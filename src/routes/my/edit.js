@@ -214,7 +214,7 @@ class Edit extends React.Component {
 						clear
 						defaultValue={_user.uname}
 						placeholder="名称">
-						<i className='icon-tag'></i>
+						<i className='icon-user'></i>
 					</InputItem>
 					<InputItem
 						id="inputAddress"
