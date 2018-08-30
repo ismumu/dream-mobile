@@ -312,8 +312,8 @@ class Fly extends React.Component {
 
 				<p ref="tipMsg" className={styles.autoSaveMsg}>
 					系统每50秒自动保存 <br />
-					可用3附插图展示你的梦境 <br />
-					插图审核后呈上（感谢你支持过虑不良相关图片）
+					可用3幅插画展现你梦境 <br />
+					插图审核后呈上（感谢你支持过虑不良图片）
 				</p>
 			</div>
 		)

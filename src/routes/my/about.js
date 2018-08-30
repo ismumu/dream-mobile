@@ -37,7 +37,7 @@ class About extends React.Component {
                     onLeftClick={() => history.go(-1)}
                     style={{
                     borderBottom: "0px solid #ECECED"
-                }}>关于 iDream</NavBar>
+                }}>iDream</NavBar>
 
                 <div>
                     <h3>你的建议 </h3>
