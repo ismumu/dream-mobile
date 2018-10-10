@@ -126,8 +126,8 @@ class List extends React.Component {
 				mode: 'prepend',
 				url: `m.idream.site/#/home/detail?id=${feed_id}`,
 				description: 'iDream',
-				// title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream）`,
-				title: `【${title}】http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream）`,
+				// title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/#/home/detail?id=${feed_id}（食梦者iDream）`,
+				title: `【${title}】http://${window.location.host}/#/home/detail?id=${feed_id}（食梦者iDream）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
 			});

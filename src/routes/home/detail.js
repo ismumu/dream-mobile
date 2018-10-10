@@ -257,8 +257,8 @@ class Detail extends React.Component {
 				mode: 'prepend',
 				description: 'iDream',
 				url: window.location.href,
-				// title: `【${_info.title}】${_info.content.substr(0, 10)}... ${window.location.href}（来自iDream）`,
-				title: `【${this.props.detail.info.title}】${window.location.href}（来自iDream）`,
+				// title: `【${_info.title}】${_info.content.substr(0, 10)}... ${window.location.href}（食梦者iDream）`,
+				title: `【${this.props.detail.info.title}】${window.location.href}（食梦者iDream）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
 			});
