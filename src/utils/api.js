@@ -1,6 +1,6 @@
 // let devApi = 'api',
 // 	buildApi = 'http://api.idream.name/index.php?r=',
-// 	xiaoyiwo = 'http://h5.xiaoyiwo.net/index.php?r=';
+// 	xiaoyiwo = 'http://m.idream.site/index.php?r=';
 
 
 
@@ -13,7 +13,7 @@
 // 	devApi = buildApi
 // }
 
-// if (document.domain === 'h5.xiaoyiwo.net') {
+// if (document.domain === 'm.idream.site') {
 // 	devApi = xiaoyiwo
 // }
 

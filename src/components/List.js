@@ -124,7 +124,7 @@ class List extends React.Component {
 			window.socialShare('#socialShare', {
 				sites: ['weibo', 'wechat', 'douban', 'qq'],
 				mode: 'prepend',
-				url: `h5.xiaoyiwo.net/#/home/detail?id=${feed_id}`,
+				url: `m.idream.site/#/home/detail?id=${feed_id}`,
 				description: 'iDream',
 				// title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream）`,
 				title: `【${title}】http://${window.location.host}/#/home/detail?id=${feed_id}（来自IDream）`,
