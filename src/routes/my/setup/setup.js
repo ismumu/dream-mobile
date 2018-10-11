@@ -54,14 +54,14 @@ class Setup extends React.Component {
 
 		let { notice } = this.state;
 
-		if ( v === 0 ) {
-			if ( notice.is_review == 1 ) {
+		if (v === 0) {
+			if (notice.is_review == 1) {
 				notice.is_review = 2;
 			} else {
 				notice.is_review = 1;
 			}
-		} else if ( v === 2 ) {
-			if ( notice.is_digg == 1 ) {
+		} else if (v === 2) {
+			if (notice.is_digg == 1) {
 				notice.is_digg = 2;
 			} else {
 				notice.is_digg = 1;
@@ -121,31 +121,6 @@ class Setup extends React.Component {
 
 				<NavBarPage iconType="back" isSetup='true' logout={this.logout} title="设置" />
 				<Tabs tabs={tabs} swipeable={false}>
-					{/* <div>
-						<WhiteSpace />
-						{
-							notice.is_review &&
-							<List>
-								<CheckboxItem defaultChecked={notice.is_review == 1 ? true : false} onChange={() => this.onChange(0)}>评论</CheckboxItem>
-								<CheckboxItem defaultChecked={notice.is_digg == 1 ? true : false} onChange={() => this.onChange(2)}>喜欢</CheckboxItem>
-							</List>
-						}
-						<List className={styles.listItem}>
-							<Item
-								style={{
-									marginTop: 10
-								}}
-								multipleLine
-								onClick={() => { this.props.dispatch({ type: 'my/logout', payload: { token: null } }) }}>
-								<div
-									style={{
-										textAlign: 'center',
-										color: "#1F4BA5"
-									}}>退出账户</div>
-							</Item>
-						</List>
-
-					</div> */}
 					<div>
 						<WhiteSpace />
 						{

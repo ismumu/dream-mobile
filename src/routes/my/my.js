@@ -12,10 +12,10 @@ import {
 } from "antd-mobile";
 import styles from "./my.less";
 import NavBarPage from "../../components/NavBar"
-import Util from "../../utils/util";
 import Storage from '../../utils/storage';
 
 import defaultAvatar from '../../assets/images/avatar.png';
+import DownloadApp from '../../components/DownloadApp';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -60,9 +60,9 @@ class My extends React.Component {
 								<div style={{ display: 'block', width: 40, height: 40, borderRadius: '50%', border: '0px solid #eee', overflow: 'hidden' }}>
 									{
 										user.avatar ?
-										<img style={{ width: '100%', height: 'auto' }} src={user.avatar} />
-										:
-										<img style={{ width: '100%', height: 'auto' }} src={defaultAvatar} />
+											<img style={{ width: '100%', height: 'auto' }} src={user.avatar} />
+											:
+											<img style={{ width: '100%', height: 'auto' }} src={defaultAvatar} />
 									}
 								</div>
 							}
@@ -85,19 +85,6 @@ class My extends React.Component {
                         </Item>
 					</Link>
 				</List>
-				{/* <List className={styles.listItem}>
-                    <Item
-                        arrow="horizontal"
-                        thumb={< img src = {
-                        PromptPng
-                    }
-                    alt = "" />}
-                        multipleLine
-                        onClick={() => {}}>
-                        使用与帮助
-                    </Item>
-                </List> */}
-
 				<List className={styles.listItem}>
 					<Link to="/my/about">
 						<Item
@@ -108,21 +95,7 @@ class My extends React.Component {
                         </Item>
 					</Link>
 				</List>
-
-				{/* <List className={styles.listItem}>
-                    <Item
-                        style={{
-                        marginTop: 10
-                    }}
-                        multipleLine
-                        onClick={() => {}}>
-                        <div
-                            style={{
-                            textAlign: 'center',
-                            color: "red"
-                        }}>退出</div>
-                    </Item>
-                </List> */}
+				<DownloadApp domClass={styles.downloadAppStyle} />
 			</div>
 		)
 	}
