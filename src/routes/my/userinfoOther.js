@@ -14,6 +14,8 @@ import ListPage from '../../components/List'
 import ImageView from 'react-mobile-imgview';
 import 'react-mobile-imgview/dist/react-mobile-imgview.css';
 
+import defaultAvatar from '../../assets/images/avatar.png';
+
 // 登录id
 const UID = Storage.get('uid');
 
@@ -220,7 +222,7 @@ class Userinfo extends React.Component {
 								<div>
 									<div className={styles.title}>
 										<div className={styles.img}>
-											<img src={_otherInfo.avatar || Util.defaultImg} alt={_otherInfo.uname} />
+											<img src={_otherInfo.avatar || defaultAvatar} alt={_otherInfo.uname} />
 										</div>
 										<div>
 											<b>{_otherInfo.uname}</b>

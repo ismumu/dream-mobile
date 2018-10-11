@@ -23,6 +23,8 @@ import NavBarPage from "../../components/NavBar"
 
 import 'cropperjs/dist/cropper.css';
 
+import defaultAvatar from '../../assets/images/avatar.png';
+
 const Item = List.Item;
 const Brief = Item.Brief;
 const RadioItem = Radio.RadioItem;
@@ -202,7 +204,7 @@ class Edit extends React.Component {
 				<NavBarPage iconType="back" isFly='false' title="编辑个人信息" isFixed="true" />
 				<div className={styles.head}>
 					<div className={styles.img}>
-						<img src={this.state.img_url == null ? (_user.avatar || Util.defaultImg) : this.state.img_url} onClick={this.onUpdateImg} />
+						<img src={this.state.img_url == null ? (_user.avatar || defaultAvatar) : this.state.img_url} onClick={this.onUpdateImg} />
 					</div>
 					<InputItem type="file" id="fileId" onChange={this.fileChange.bind(this)} />
 				</div>
