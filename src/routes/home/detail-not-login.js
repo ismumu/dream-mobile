@@ -17,6 +17,7 @@ import Util from "../../utils/util";
 import NavBarPage from "../../components/NavBar"
 import Storage from '../../utils/storage';
 
+import defaultAvatar from '../../assets/images/avatar.png';
 
 const UID = Storage.get('uid');
 
@@ -66,7 +67,7 @@ class Detail extends React.Component {
 										<Link to={{ pathname: this.props.detail.info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + this.props.detail.info.uid }}>
 											<img src={this.props.detail.info.avatar
 												? this.props.detail.info.avatar
-												: Util.defaultImg} alt={this.props.detail.info.uname} />
+												: defaultAvatar} alt={this.props.detail.info.uname} />
 										</Link>
 									</div>
 									<span className={styles.name}>
@@ -106,7 +107,7 @@ class Detail extends React.Component {
 												<div className={styles.head}>
 													<div className={styles.img}>
 														<Link to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>
-															<img src={item.avatar ? item.avatar : Util.defaultImg} alt={item.uname} />
+															<img src={item.avatar ? item.avatar : defaultAvatar} alt={item.uname} />
 														</Link>
 													</div>
 												</div>

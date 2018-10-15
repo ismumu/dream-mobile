@@ -24,6 +24,8 @@ import DetailNotLogin from "./detail-not-login"
 
 import { initList } from "../../utils/topic";
 
+import defaultAvatar from '../../assets/images/avatar.png';
+
 
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
@@ -336,7 +338,7 @@ class Detail extends React.Component {
 													<Link to={{ pathname: _info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + _info.uid }}>
 														<img src={_info.avatar
 															? _info.avatar
-															: Util.defaultImg} alt={_info.uname} />
+															: defaultAvatar} alt={_info.uname} />
 													</Link>
 												</div>
 												<span className={styles.name}>
@@ -393,7 +395,7 @@ class Detail extends React.Component {
 															<div className={styles.head}>
 																<div className={styles.img}>
 																	<Link to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>
-																		<img src={item.avatar ? item.avatar : Util.defaultImg} alt={item.uname} />
+																		<img src={item.avatar ? item.avatar : defaultAvatar} alt={item.uname} />
 																	</Link>
 																</div>
 															</div>
@@ -426,7 +428,7 @@ class Detail extends React.Component {
 																			item.reply.map((item2, index2) => (
 																				<div className={styles.reviewItem2} key={index + "_" + index2}>
 																					<div className={styles.itemContent}>
-																						<img className={styles.reviewFace} src={item2.avatar || Util.defaultImg } />
+																						<img className={styles.reviewFace} src={item2.avatar || defaultAvatar } />
 																						<div className={styles.des} onClick={this.showModal(item2.uname, item2.review_id)}>
 																							{item2.uname}
 																							{

@@ -9,6 +9,9 @@ import styles from './blacklist.less'
 import {Button,Grid,SearchBar,List} from 'antd-mobile'
 import Util from "../../../utils/util";
 
+
+import defaultAvatar from '../../../assets/images/avatar.png';
+
 const Item = List.Item;
 
 class BlackList extends React.Component{
@@ -45,7 +48,7 @@ class BlackList extends React.Component{
               renderItem={dataItem => (
                 <div className={styles.userItem}>
                   <div style={{height:'50%'}}>
-                    <span className={styles.imgbox}><img src={dataItem.avatar !== "" ? dataItem.avatar : Util.defaultImg} alt="" /></span>
+                    <span className={styles.imgbox}><img src={dataItem.avatar !== "" ? dataItem.avatar : defaultAvatar} alt="" /></span>
                     <div className={styles.uname}>
                       <span>{dataItem.uname}</span>
                     </div>

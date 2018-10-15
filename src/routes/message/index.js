@@ -9,6 +9,7 @@ import styles from "./index.less";
 import Util from "../../utils/util";
 
 import logoFace from '../../assets/images/logo_face.png';
+import defaultAvatar from '../../assets/images/avatar.png';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -105,7 +106,7 @@ class Index extends React.Component {
 			return (
 				<div className={styles.message}>
 					{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
-					<Link to={{ pathname: "/my/other", 'state': + rowData.fromUser.uid }}><img className={styles.avatar} src={rowData.fromUser.avatar || Util.defaultImg} /></Link>
+					<Link to={{ pathname: "/my/other", 'state': + rowData.fromUser.uid }}><img className={styles.avatar} src={rowData.fromUser.avatar || defaultAvatar} /></Link>
 					<Link to={{ pathname: "/home/detail", query: { id: rowData.feed.feed_id } }}>
 						<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
 							<p className={rowData.fromUser.reviewContent ? styles.head : styles.head + ' ' + styles.noReviewContent }><span className={styles.time}>{rowData.fromUser.add_time}</span>{rowData.fromUser.uname} | {rowData.type}你梦境</p>

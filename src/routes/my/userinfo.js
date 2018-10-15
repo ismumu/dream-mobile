@@ -17,6 +17,8 @@ import ImageView from 'react-mobile-imgview';
 import 'react-mobile-imgview/dist/react-mobile-imgview.css';
 
 
+import defaultAvatar from '../../assets/images/avatar.png';
+
 class Userinfo extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -281,7 +283,7 @@ class Userinfo extends React.Component {
 				<div className={styles.userinfo}>
 					<div className={styles.title}>
 						<div className={styles.img}>
-							<img src={_user.avatar || Util.defaultImg} alt={_user.uname} />
+							<img src={_user.avatar || defaultAvatar} alt={_user.uname} />
 						</div>
 						<div>
 							<b>{_user.uname}</b>

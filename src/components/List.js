@@ -13,6 +13,9 @@ import Storage from '../utils/storage';
 import { initList } from "../utils/topic";
 
 
+import defaultAvatar from '../assets/images/avatar.png'
+
+
 const UID = Storage.get('uid');
 
 class List extends React.Component {
@@ -246,10 +249,10 @@ class List extends React.Component {
 								{
 									isNotLogin
 									?
-									<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
+									<img src={obj.avatar ? obj.avatar : defaultAvatar} alt={obj.uname} />
 									:
 									<Link to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>
-										<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
+										<img src={obj.avatar ? obj.avatar : defaultAvatar} alt={obj.uname} />
 									</Link>
 								}
 

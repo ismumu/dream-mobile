@@ -9,6 +9,8 @@ import styles from "./userinfo.less";
 import Util from "../../utils/util";
 import NavBarPage from "../../components/NavBar"
 
+import defaultAvatar from '../../assets/images/avatar.png'
+
 // 登录id
 const UID = Storage.get('uid');
 
@@ -111,7 +113,7 @@ class Userinfo extends React.Component {
 			<div className={styles.item}>
 				<div className={styles.head}>
 					<div className={styles.img}>
-						<img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
+						<img src={obj.avatar ? obj.avatar : defaultAvatar} alt={obj.uname} />
 					</div>
 					<span className={styles.name}>{obj.uname}</span>
 					<span className={styles.time}>{obj.publish_time}</span>
@@ -226,7 +228,7 @@ class Userinfo extends React.Component {
 						<div className={styles.userinfo}>
 							<div className={styles.title}>
 								<div className={styles.img}>
-									<img src={this.props.otherInfo.avatar ? this.props.otherInfo.avatar : Util.defaultImg} alt={this.props.otherInfo.uname} />
+									<img src={this.props.otherInfo.avatar ? this.props.otherInfo.avatar : defaultAvatar} alt={this.props.otherInfo.uname} />
 								</div>
 								<div>
 									<b>{this.props.otherInfo.uname}</b>

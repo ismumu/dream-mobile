@@ -8,6 +8,8 @@ import styles from "./List.less";
 import Util from "../utils/util";
 import Storage from '../utils/storage';
 
+import defaultAvatar from '../assets/images/avatar.png';
+
 // 登录id
 const UID = Storage.get('uid');
 
@@ -33,7 +35,7 @@ class List extends React.Component {
             <Link to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>
               <div className={styles.head}>
                 <div className={styles.img}>
-                  <img src={obj.avatar ? obj.avatar : Util.defaultImg} alt={obj.uname} />
+                  <img src={obj.avatar ? obj.avatar : defaultAvatar} alt={obj.uname} />
                 </div>
                 <span className={styles.name}><Link className={styles.bold} to={{ pathname: obj.uid == UID ? "/my/userinfo" : "/my/other", 'state': + obj.uid }}>{obj.uname}</Link></span>
                 <span className={styles.time}>{obj.sex_name}</span>
