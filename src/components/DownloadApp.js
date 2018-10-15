@@ -22,6 +22,12 @@ export default class DownloadApp extends React.Component {
 	render() {
 
 		let { domClass } = this.props;
+		let { href } = window.location;
+
+		// app内打开不展示 下载app
+		if ( href.includes('mode=webview') ) {
+			return <span></span>;
+		}
 
 		return (
 			<div>
@@ -41,7 +47,7 @@ export default class DownloadApp extends React.Component {
 						<p>现已支持Android</p>
 						<p>安卓手机软件下载</p>
 						<p className={styles.downloadTip}>点击下载然后安装</p>
-						<a target="_blank" href="/食梦者iDream.apk" className={styles.downloadBtn}>下载</a>
+						<a target="_blank" href="/iDream.apk" className={styles.downloadBtn}>下载</a>
 						<p className={styles.downloadIosTip}>iOS现已开发当中<br/>诚邀你加入</p>
 					</div>
 				</Modal>
