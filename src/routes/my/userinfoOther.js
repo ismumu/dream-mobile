@@ -224,9 +224,9 @@ class Userinfo extends React.Component {
 										<div className={styles.img}>
 											<img src={_otherInfo.avatar || defaultAvatar} alt={_otherInfo.uname} />
 										</div>
-										<div>
+										{/* <div>
 											<b>{_otherInfo.uname}</b>
-										</div>
+										</div> */}
 									</div>
 									<div className={styles.opinion}>{_otherInfo.intro}</div>
 									<ul>

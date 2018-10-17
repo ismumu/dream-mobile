@@ -161,7 +161,6 @@ class TagModel extends React.Component {
 									this.setState({
 										modal1: false,
 										tagVal: '',
-
 										isShowErrorTip: false,
 										errorTipText: '',
 									})
@@ -170,7 +169,7 @@ class TagModel extends React.Component {
 							{
 								text: '确定',
 								onPress: this.onAddTags
-							}
+							},
 						]
 					}
 					wrapProps={{ onTouchStart: this.onWrapTouchStart }}

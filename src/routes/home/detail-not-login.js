@@ -64,14 +64,10 @@ class Detail extends React.Component {
 							<div className={styles.item}>
 								<div className={styles.head}>
 									<div className={styles.img}>
-										<Link to={{ pathname: this.props.detail.info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + this.props.detail.info.uid }}>
-											<img src={this.props.detail.info.avatar
-												? this.props.detail.info.avatar
-												: defaultAvatar} alt={this.props.detail.info.uname} />
-										</Link>
+										<img src={this.props.detail.info.avatar || defaultAvatar} alt={this.props.detail.info.uname} />
 									</div>
 									<span className={styles.name}>
-										<Link to={{ pathname: this.props.detail.info.uid == UID ? "/my/userinfo" : "/my/other", 'state': + this.props.detail.info.uid }}>{this.props.detail.info.uname}</Link>
+										{this.props.detail.info.uname}
 									</span>
 									<span className={styles.time}>{this.props.detail.info.publish_time}</span>
 								</div>
@@ -83,11 +79,7 @@ class Detail extends React.Component {
 								</div>
 								<div className={styles.icons}>
 									<span className={styles.praise} onClick={this.handleUpdatedigg}>
-										{
-											this.props.detail.info.hasDigg == 1 ?
-												<i className='icon-cog icon-idream-small' style={{ color: '#1F4BA5' }}></i>
-												: <i className='icon-cog icon-idream-small'></i>
-										}
+										<i className='icon-heart icon-idream-small'></i>
 										<label>{this.props.detail.info.digg_count > 0 ? this.props.detail.info.digg_count : null}</label>
 									</span>
 									<span className={styles.review} onClick={this.showModal("modal1")} >
@@ -95,7 +87,7 @@ class Detail extends React.Component {
 										<label>{this.props.detail.info.comment_all_count > 0 ? this.props.detail.info.comment_all_count : null}</label>
 									</span>
 									<span onClick={this.handleUpdatedigg}>
-										<i className='icon-search icon-idream-small'></i>
+										<i className='icon-forward icon-idream-small'></i>
 									</span>
 
 								</div>
@@ -106,14 +98,12 @@ class Detail extends React.Component {
 											<div className={styles.reviewItem} key={index}>
 												<div className={styles.head}>
 													<div className={styles.img}>
-														<Link to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>
-															<img src={item.avatar ? item.avatar : defaultAvatar} alt={item.uname} />
-														</Link>
+														<img src={item.avatar ? item.avatar : defaultAvatar} alt={item.uname} />
 													</div>
 												</div>
 												<div className={styles.itemContent}>
 													<div className={styles.cnWrap} onClick={this.showModal("modal1", item.uname, item.review_id)}>
-														<span className={styles.name}><Link to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item.uid }}>{item.uname}</Link></span>
+														<span className={styles.name}>{item.uname}</span>
 														<div className={styles.des} dangerouslySetInnerHTML={{
 															__html: item.content
 														}}></div>
@@ -135,15 +125,10 @@ class Detail extends React.Component {
 																		>
 																			<div className={`${styles.des}`}>
 																				<div>
-																					<Link className={styles.uname} to={{ pathname: item2.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item2.uid }}>{item2.uname}</Link>
+																					{item2.uname}
 																					{
 																						item2.to_uname == item2.uname || item2.to_uname == item.uname ? null :
-																							<span>
-																								：
-																									回复
-                                            <Link className={styles.uname} to={{ pathname: item2.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item2.to_uid }}>@{item2.to_uname}</Link>
-																								：
-                                            </span>
+																						<span>：回复@{item2.to_uname}：</span>
 																					}
 																				</div>
 																				<div dangerouslySetInnerHTML={{
