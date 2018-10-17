@@ -264,7 +264,6 @@ class Userinfo extends React.Component {
 	render() {
 
 		const { tags } = this.props;
-
 		let _user = {
 			...this.state.userinfo,
 		}

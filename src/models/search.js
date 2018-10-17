@@ -45,15 +45,34 @@ export default modelExtend(model, {
 
 		// 搜索我自己
 		*searchMy({ payload }, { call, put }) {
-			yield put({ type: 'updateState', payload: { 'searchMyLoading': false, 'searchMyList': null } });
+			yield put({
+				type: 'updateState',
+				payload: {
+					searchMyLoading: false,
+					searchMyList: null
+				}
+			});
 			const { data, code, msg } = yield call(search, payload);
 
 			if (code == 200) {
+
 				if (data.data.length == 0) {
-					//Toast.info("木有更多了", 1);
+					// Toast.info("木有更多了", 1);
 				}
-				yield put({ type: 'updateState', payload: { 'searchMyList': data.data } });
-				yield put({ type: 'updateState', payload: { 'searchMyLoading': true } });
+
+				yield put({
+					type: 'updateState',
+					payload: {
+						searchMyList: data.data,
+						searchMyLoading: true,
+					}
+				});
+				// yield put({
+				// 	type: 'updateState',
+				// 	payload: {
+				// 		searchMyLoading: true
+				// 	}
+				// });
 
 				const keyword = payload.keyword;
 				if (keyword) {
@@ -62,7 +81,6 @@ export default modelExtend(model, {
 			}
 		},
 
-		// 搜索我自己
 		*searchUsers({ payload }, { call, put }) {
 			yield put({ type: 'updateState', payload: { 'userLoading': false, 'userList': null } });
 			const { data, code, msg } = yield call(searchUser, payload);

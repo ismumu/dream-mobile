@@ -108,6 +108,14 @@ class MyDreamList extends React.Component {
 
 	render() {
 
+		let { list } = this.state;
+
+		if ( list.length <= 0 ) {
+			return (
+				<p className={styles.noContentTip}>没有此内容</p>
+			)
+		}
+
 		return (
 			<div>
 				<List

@@ -252,15 +252,15 @@ class Detail extends React.Component {
 		this.setState({ shareModal: true })
 
 		setTimeout(() => {
+			let shareUrl = window.location.href;
 			// 分享配置
 			window.socialShare('#socialShare', {
 				// 这里配置各种参数
 				sites: ['weibo', 'wechat', 'douban', 'qq'],
 				mode: 'prepend',
 				description: 'iDream',
-				url: window.location.href,
-				// title: `【${_info.title}】${_info.content.substr(0, 10)}... ${window.location.href}（食梦者iDream）`,
-				title: `【${this.props.detail.info.title}】${window.location.href}（食梦者iDream）`,
+				url: shareUrl,
+				title: `【${this.props.detail.info.title}】${shareUrl}（食梦者iDream）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
 			});
@@ -428,7 +428,10 @@ class Detail extends React.Component {
 																			item.reply.map((item2, index2) => (
 																				<div className={styles.reviewItem2} key={index + "_" + index2}>
 																					<div className={styles.itemContent}>
+																					<Link to={{ pathname: item.uid == UID ? "/my/userinfo" : "/my/other", 'state': + item2.uid }}>
 																						<img className={styles.reviewFace} src={item2.avatar || defaultAvatar } />
+																					</Link>
+
 																						<div className={styles.des} onClick={this.showModal(item2.uname, item2.review_id)}>
 																							{item2.uname}
 																							{

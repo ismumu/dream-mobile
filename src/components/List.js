@@ -123,14 +123,14 @@ class List extends React.Component {
 		});
 
 		setTimeout(() => {
+			let shareUrl = 'http://' + location.host + `/home/detail?id=${feed_id}`;
 			// 分享配置
 			window.socialShare('#socialShare', {
 				sites: ['weibo', 'wechat', 'douban', 'qq'],
 				mode: 'prepend',
-				url: `m.idream.site/home/detail?id=${feed_id}`,
+				url: shareUrl,
 				description: 'iDream',
-				// title: `【${title}】${content.substr(0, 10)}... http://${window.location.host}/home/detail?id=${feed_id}（食梦者iDream）`,
-				title: `【${title}】http://${window.location.host}/home/detail?id=${feed_id}（食梦者iDream）`,
+				title: `【${title}】${shareUrl}（食梦者iDream）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
 			});
@@ -331,7 +331,7 @@ class List extends React.Component {
 								{
 									isNotLogin
 									?
-									<div to={{ pathname: "/home/detail", query: { id: obj.feed_id } }}>
+									<div>
 										<i className='icon-comment icon-idream-small'></i>
 										<label>{obj.comment_all_count > 0 ? obj.comment_all_count : null}</label>
 									</div>

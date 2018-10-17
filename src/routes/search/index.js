@@ -33,6 +33,7 @@ class Index extends React.Component {
 			currentTab: 0,
 
 			isMe: this.props.location ? this.props.location.query.isMe : false,
+			// isMeHasClick: false,
 
 			// ImageView
 			showViewer: false,
@@ -244,6 +245,9 @@ class Index extends React.Component {
 			}
 		}
 
+
+		let { list } = this.state;
+
 		return (
 			<div>
 				{
@@ -262,14 +266,19 @@ class Index extends React.Component {
 									this.state.keyword !== "" ?
 										<Tabs tabs={tabs} initalPage={this.state.currentTab} onChange={handleChangeTab} swipeable={false}>
 											<div>
-												<List
-													dataSource={this.state.dataSource}
-													isLoading={this.state.isLoading}
-													// height={this.state.height}
-													height="calc(100vh - 88px)"
-													onEndReached={this.onEndReached}
-													imageView={this.imageViewClick}
-												/>
+												{
+													list.length <= 0 ?
+													<p className={styles.noContentTip}>没有此内容</p>
+													:
+													<List
+														dataSource={this.state.dataSource}
+														isLoading={this.state.isLoading}
+														// height={this.state.height}
+														height="calc(100vh - 88px)"
+														onEndReached={this.onEndReached}
+														imageView={this.imageViewClick}
+													/>
+												}
 											</div>
 											<div>
 												<MyDreamList keyword={this.state.keyword} />
@@ -292,7 +301,7 @@ class Index extends React.Component {
 								defaultValue={this.state.keyword}
 								onClear={this.onCancel}
 								autoFocus={true}
-								onSubmit={this.onSearch.bind(this)}
+								onSubmit={this.onSearch}
 							/>
 							<div className={styles.chatWrap}>
 								<MyDreamList keyword={this.state.keyword} />

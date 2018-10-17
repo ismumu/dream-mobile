@@ -15,85 +15,94 @@ import Util from "../../utils/util";
 
 
 class UserList extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+	constructor(props, context) {
+		super(props, context);
 
-    const dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2,
-      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
-    });
+		const dataSource = new ListView.DataSource({
+			rowHasChanged: (row1, row2) => row1 !== row2,
+			sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+		});
 
-    this.state = {
-      dataSource,
-      list: [],
-      isLoading: true,
-      height: document.body.clientHeight - 95,
-      currentPage: 1,
-    };
-  }
-
-
-  componentWillReceiveProps(nextProps) {
-
-    if (nextProps.userList == null) return;
-
-    let hei = document.body.clientHeight - 95;
-
-    if (this.state.list !== nextProps.userList) {
-      if (this.state.currentPage == 1) {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows([]),
-          list: [...nextProps.userList],
-          height: hei,
-        })
-      } else {
-        this.setState({
-          list: [...this.state.list, ...nextProps.userList],
-          height: hei
-        });
-        //this.autoFocusInst.focus();
-      }
-
-      setTimeout(() => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(this.state.list),
-          isLoading: false,
-          height: hei
-        });
-      }, 500)
-    }
-  }
+		this.state = {
+			dataSource,
+			list: [],
+			isLoading: true,
+			height: document.body.clientHeight - 95,
+			currentPage: 1,
+		};
+	}
 
 
+	componentWillReceiveProps(nextProps) {
 
-  // 拉倒底部，再次获取数据
-  onEndReached = (event) => {
-    if (this.state.isLoading && !this.state.hasMore) {
-      return;
-    }
-    this.setState({ isLoading: true });
-    this.state.currentPage = this.state.currentPage + 1;
+		if (nextProps.userList == null) return;
 
-    this.props.dispatch({ type: 'search/searchUsers', payload: {'uname': this.props.keyword, page: this.state.currentPage } });
-  }
+		let hei = document.body.clientHeight - 95;
+
+		if (this.state.list !== nextProps.userList) {
+			if (this.state.currentPage == 1) {
+				this.setState({
+					dataSource: this.state.dataSource.cloneWithRows([]),
+					list: [...nextProps.userList],
+					height: hei,
+				})
+			} else {
+				this.setState({
+					list: [...this.state.list, ...nextProps.userList],
+					height: hei
+				});
+				//this.autoFocusInst.focus();
+			}
+
+			setTimeout(() => {
+				this.setState({
+					dataSource: this.state.dataSource.cloneWithRows(this.state.list),
+					isLoading: false,
+					height: hei
+				});
+			}, 500)
+		}
+	}
 
 
-  render() {
 
-    return (
-      <List
-        dataSource={this.state.dataSource}
-        isLoading={this.state.isLoading}
-        height={this.state.height}
-        onEndReached={this.onEndReached} />
-    )
-  }
+	// 拉倒底部，再次获取数据
+	onEndReached = (event) => {
+		if (this.state.isLoading && !this.state.hasMore) {
+			return;
+		}
+		this.setState({ isLoading: true });
+		this.state.currentPage = this.state.currentPage + 1;
+
+		this.props.dispatch({ type: 'search/searchUsers', payload: { 'uname': this.props.keyword, page: this.state.currentPage } });
+	}
+
+
+	render() {
+
+		let { list } = this.state;
+
+		if (list.length <= 0) {
+			return (
+				<p className={styles.noContentTip}>没有此内容</p>
+			)
+		}
+
+
+		return (
+			<List
+				dataSource={this.state.dataSource}
+				isLoading={this.state.isLoading}
+				height={this.state.height}
+				onEndReached={this.onEndReached} />
+		)
+	}
 
 }
 
 function mapStateToProps(state) {
-  return {
-    ...state.search
-  };
+	return {
+		...state.search
+	};
 }
 export default connect(mapStateToProps)(UserList);
