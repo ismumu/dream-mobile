@@ -90,10 +90,16 @@ export default modelExtend(model, {
 
 
 		// 获取标签
-		*getTags({ payload }, { call, put }) {
+		*getTags({ payload, callback }, { call, put }) {
 			const { data, code, msg } = yield call(getTags, payload);
 			if (code === 200) {
-				yield put({ type: 'updateState', payload: { tags: data } });
+				yield put({
+					type: 'updateState',
+					payload: {
+						tags: data
+					}
+				});
+				callback && callback(data);
 			}
 		},
 
