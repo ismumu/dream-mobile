@@ -95,6 +95,16 @@ class My extends React.Component {
                         </Item>
 					</Link>
 				</List>
+				<List className={styles.listItem}>
+					<Link to="/my/dreamHints">
+						<Item
+							arrow="horizontal"
+							multipleLine
+						>
+							解梦提示
+                        </Item>
+					</Link>
+				</List>
 				<DownloadApp domClass={styles.downloadAppStyle} />
 			</div>
 		)

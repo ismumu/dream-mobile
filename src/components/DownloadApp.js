@@ -22,10 +22,9 @@ export default class DownloadApp extends React.Component {
 	render() {
 
 		let { domClass } = this.props;
-		let { href } = window.location;
 
 		// app内打开不展示 下载app
-		if ( href.includes('mode=webview') ) {
+		if ( window.location.href.includes('mode=webview') ) {
 			return <span></span>;
 		}
 

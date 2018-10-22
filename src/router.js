@@ -16,6 +16,7 @@ import SetupPage from './routes/my/setup/setup';
 import AboutPage from './routes/my/about';
 import SearchPage from './routes/search/index';
 import Topic from './routes/topic/topic';
+import DreamHints from './routes/my/dreamHints';
 
 function RouterConfig({ history }) {
   return (
@@ -34,6 +35,8 @@ function RouterConfig({ history }) {
         <Route path="/my/about" component={AboutPage} />
         <Route path="/search" component={SearchPage} />
 		<Route path="/topic" component={Topic} />
+		<Route path="/my/dreamHints" component={DreamHints} />
+
     </Router>
   );
 }

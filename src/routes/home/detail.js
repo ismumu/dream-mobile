@@ -256,7 +256,7 @@ class Detail extends React.Component {
 			// 分享配置
 			window.socialShare('#socialShare', {
 				// 这里配置各种参数
-				sites: ['weibo', 'wechat', 'douban', 'qq'],
+				sites: ['weibo', 'douban', 'qq'],
 				mode: 'prepend',
 				description: 'iDream',
 				url: shareUrl,

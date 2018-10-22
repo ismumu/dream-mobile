@@ -126,7 +126,7 @@ class List extends React.Component {
 			let shareUrl = 'http://' + location.host + `/home/detail?id=${feed_id}`;
 			// 分享配置
 			window.socialShare('#socialShare', {
-				sites: ['weibo', 'wechat', 'douban', 'qq'],
+				sites: ['weibo', 'douban', 'qq'],
 				mode: 'prepend',
 				url: shareUrl,
 				description: 'iDream',
