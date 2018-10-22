@@ -349,6 +349,12 @@ class Detail extends React.Component {
 															<Icon className={styles.fr} type="ellipsis" size="xxs" onClick={this.editDream} />
 															: <span></span>
 													}
+													{
+														// 是否隐私
+														_info.uid == UID && _info.show_type == '2' ?
+															<i className='icon-eye-off icon-idream-small'></i>
+															: <span></span>
+													}
 												</span>
 												<span className={styles.time}>{_info.publish_time}</span>
 											</div>

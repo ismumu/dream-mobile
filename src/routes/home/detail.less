@@ -36,10 +36,19 @@ body{
                 }
             }
             .name {
+				position: relative;
                 display: block;
                 line-height: 20px;
                 margin-left: 10px;
-                text-indent: 10px;
+				text-indent: 10px;
+
+				:global {
+					.icon-idream-small {
+						position: absolute;
+						top: 10px;
+						right: 13px;
+					}
+				}
             }
             .time {
                 display: block;

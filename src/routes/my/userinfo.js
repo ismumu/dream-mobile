@@ -72,8 +72,25 @@ class Userinfo extends React.Component {
 		});
 	}
 
+	getTags = (uid) => {
+		this.props.dispatch({
+			type: 'fly/getTags',
+			payload: {
+				uid,
+			},
+			callback: (data) => {
+				// console.log(data)
+				// this.setData(data);
+			}
+		});
+	}
+
+
+
+
 	componentDidMount() {
 		this.defaultGetData();
+		this.getTags(this.uid);
 	}
 
 
@@ -130,10 +147,6 @@ class Userinfo extends React.Component {
 				userinfo: data.data.user,
 			});
 		}
-
-
-
-
 	}
 
 	onEndReached = (event) => {
