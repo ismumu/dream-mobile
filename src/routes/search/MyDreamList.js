@@ -109,6 +109,13 @@ class MyDreamList extends React.Component {
 	render() {
 
 		let { list } = this.state;
+		let { keyword } = this.props;
+
+		if ( !keyword ) {
+			return (
+				<p className={styles.noContentTip}></p>
+			)
+		}
 
 		if ( list.length <= 0 ) {
 			return (
