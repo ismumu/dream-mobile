@@ -397,6 +397,8 @@ class Userinfo extends React.Component {
 
 		let { tags, tagIndex } = this.state;
 
+		// console.log(_otherInfo)
+
 		return (
 			<div>
 				{
@@ -413,9 +415,9 @@ class Userinfo extends React.Component {
 									<div className={styles.opinion}>{_otherInfo.intro}</div>
 									<ul>
 										<li><i className={styles.iconfont + ' icon-venus-mars'}></i><span>{this.sexsRender(_otherInfo.sex)}</span></li>
-										<li><i className={styles.iconfont + ' icon-location'}></i><span>{_otherInfo.location}</span></li>
-										<li><i className={styles.iconfont + ' icon-briefcase'}></i><span>{_otherInfo.job}</span></li>
-										<li><i className={styles.iconfont + ' icon-clock'}></i><span>{_otherInfo.age}</span></li>
+										{ _otherInfo.location && <li><i className={styles.iconfont + ' icon-location'}></i><span>{_otherInfo.location}</span></li> }
+										{ _otherInfo.job && <li><i className={styles.iconfont + ' icon-briefcase'}></i><span>{_otherInfo.job}</span></li> }
+										{ _otherInfo.age && _otherInfo.age !== '0' && <li><i className={styles.iconfont + ' icon-clock'}></i><span>{_otherInfo.age}</span></li> }
 									</ul>
 									<div className={styles.tagsBox}>
 										{tags.map((text, index) => {
