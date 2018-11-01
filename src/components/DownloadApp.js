@@ -47,7 +47,7 @@ export default class DownloadApp extends React.Component {
 						<p>安卓手机软件下载</p>
 						<p className={styles.downloadTip}>点击下载然后安装</p>
 						<a target="_blank" href="/iDream.apk" className={styles.downloadBtn}>下载</a>
-						<p className={styles.downloadIosTip}>iPhone手机版本开发当中<br/>诚邀你加入</p>
+						<p className={styles.downloadIosTip}>iPhone手机iOS版开发当中<br/>诚邀你加入</p>
 					</div>
 				</Modal>
 			</div>

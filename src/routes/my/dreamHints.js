@@ -15,7 +15,9 @@ export default class DreamHints extends React.Component {
 			<div>
 				<NavBarPage title="解梦提示" iconType="back" />
 				<div className={styles.dreamHints}>
-					提示文字
+				<p>我们正在筛选一些学科上的建议给大家揭开自己的一些迷雾</p>
+				<p>揭开自己的一些迷雾</p>
+				揭开自己的一些迷雾
 				</div>
 			</div>
 		)
