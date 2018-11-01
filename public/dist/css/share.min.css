@@ -40,7 +40,7 @@
 .social-share .icon-google:before{content:"\f04a"}
 .social-share .icon-twitter:before{content:"\f06a"}
 .social-share a{position:relative;text-decoration:none;margin:4px;display:inline-block;outline:none}
-.social-share .social-share-icon{position:relative;display:inline-block;width:32px;height:32px;font-size:20px;border-radius:50%;line-height:32px;border:1px solid #666;color:#666;text-align:center;vertical-align:middle;transition:background 0.6s ease-out 0s}
+.social-share .social-share-icon{position:relative;display:inline-block;width:32px;height:32px;font-size:20px;border-radius:50%;line-height:32px;border:0px solid #666;color:#666;text-align:center;vertical-align:middle;transition:background 0.6s ease-out 0s}
 /* .social-share .social-share-icon:hover{background:#666;color:#fff}
 .social-share .icon-weibo{color:#ff763b;border-color:#ff763b}
 .social-share .icon-weibo:hover{background:#ff763b}
