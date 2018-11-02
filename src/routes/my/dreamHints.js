@@ -25,10 +25,11 @@ export default class DreamHints extends React.Component {
 				<p>用来揭开自己的一些迷雾</p>
 				<br></br>
 				<br></br>
-
+				<br></br>
 				<p>【Dreamers need to stick together】</p>
-				<p>find the ones who haven't given up</p>
-				<p>they are the future</p>
+				<br></br>
+				<p>Find the ones who haven't given up</p>
+				<p>They are the future</p>
 
 				</div>
 			</div>
