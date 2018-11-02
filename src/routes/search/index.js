@@ -268,7 +268,7 @@ class Index extends React.Component {
 											<div>
 												{
 													list.length <= 0 ?
-													<p className={styles.noContentTip}>没有此内容</p>
+													<p className={styles.noContentTip}>没有相关内容</p>
 													:
 													<List
 														dataSource={this.state.dataSource}

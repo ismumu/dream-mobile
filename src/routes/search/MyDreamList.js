@@ -119,7 +119,7 @@ class MyDreamList extends React.Component {
 
 		if ( list.length <= 0 ) {
 			return (
-				<p className={styles.noContentTip}>没有此内容</p>
+				<p className={styles.noContentTip}>没有相关内容</p>
 			)
 		}
 
