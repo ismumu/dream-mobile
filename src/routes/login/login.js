@@ -56,7 +56,7 @@ class Login extends React.Component {
 		const password = document.getElementById("password").value;
 
 		if (username == "") {
-			Toast.info("输入用户名", 1);
+			Toast.info("输入邮箱", 1);
 		} else if (password == "") {
 			Toast.info("输入密码", 1);
 		} else {

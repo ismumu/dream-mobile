@@ -78,7 +78,7 @@ class Register extends React.Component {
     const reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
 
     if (username == "") {
-      Toast.info("输入用户名", 1);
+      Toast.info("输入邮箱", 1);
     }
     else if (email == "") {
       Toast.info("输入邮箱", 1);
