@@ -216,7 +216,7 @@ class Index extends React.Component {
 				title: <b className={styles.colorBlack}>我的</b>
 			},
 			{
-				title: <b className={styles.colorBlack}>用户</b>
+				title: <b className={styles.colorBlack}>梦者</b>
 			}
 		];
 
