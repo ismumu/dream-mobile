@@ -89,7 +89,7 @@ class NavBarPage extends React.Component {
 					icon={iconType == "back" ? < Icon type="left" onClick={() => history.go(-1)} /> : <i className='icon-idream-blue'></i>}
 					rightContent={ _rightContent }
 					className={isFixed ? styles.navBar : styles.navBar2}
-				>{title ? title : 'iDream'}</NavBar>
+				>{title ? title : 'iDream夢'}</NavBar>
 				<Modal
 					visible={this.state.showModal}
 					transparent

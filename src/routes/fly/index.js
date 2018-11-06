@@ -263,7 +263,7 @@ class Fly extends React.Component {
 						<i key="icon" className='icon-paper-plane icon-idream-small icon-idream-black' onClick={this.handlePublish} ></i>
 					]}
 					style={{ borderBottom: "0px solid #eee" }}
-				>iDream</NavBar>
+				>iDream夢</NavBar>
 
 				<InputItem
 					placeholder="题梦"
