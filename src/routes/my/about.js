@@ -98,17 +98,18 @@ class About extends React.Component {
 
     submit = () => {
         const title = document.getElementById("titleId").value;
-        const contact = document.getElementById("contactId").value;
+        // const contact = document.getElementById("contactId").value;
         const content = document.getElementById("contentId").value;
 
-        if(title =="" || contact == "" || content == ""){
+        // if(title =="" || contact == "" || content == ""){
+           if(title =="" || content == ""){ 
             Toast.info('请把消息填写完整', 1);
         }else{
 
             this.props.dispatch({ type:'my/addOpinion',payload:{
                 title:title,
                 content:content,
-                contact_info:contact
+                // contact_info:contact
             }});
         }
     }
