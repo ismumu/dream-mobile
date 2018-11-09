@@ -97,7 +97,7 @@ class Index extends React.Component {
 					{rowData.is_open == '0' && <i className={styles.msgOrange}></i>}
 					<img className={styles.avatar} src={logoFace} />
 					<div className={styles.msgContent} style={{width: 'calc(100% - 65px)'}}>
-						<p className={styles.head}><span className={styles.time}>{rowData.fromUser.add_time}</span>欢迎来到iDream夢</p>
+						<p className={styles.head}><span className={styles.time}>{rowData.fromUser.add_time}</span>欢迎来到iDream食夢</p>
 						<p className={styles.des} dangerouslySetInnerHTML={{__html: rowData.sys_content}}></p>
 					</div>
 				</div>

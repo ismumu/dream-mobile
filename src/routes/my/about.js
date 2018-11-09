@@ -37,7 +37,7 @@ class About extends React.Component {
                     onLeftClick={() => history.go(-1)}
                     style={{
                     borderBottom: "0px solid #ECECED"
-                }}>iDream夢</NavBar>
+                }}>iDream食夢</NavBar>
 
                 <div>
                     <h3>你的建议 </h3>
@@ -71,13 +71,12 @@ class About extends React.Component {
                     <p>梦伴随着我们人类从古至今·从生至死<br/>
                     我们生命1/4时间在睡眠中度过<br/>
                     其中1/4睡眠时间在做梦<br/>
-                    做梦占据我们生命的1/8时间<br/>
-                    为什么不去认识我们生命的1/8<br/>
+                    为嘛不认识组成我们生命的1/16<br/>
                     </p><br/>
                         
                     <h3>我们到哪里去</h3>
                     <p>集合连接全世界的梦<br/>
-                    从梦中愉悦、启发、甚至悲伤中感悟人生<br/>
+                    去享受梦中愉悦、启发、甚至悲伤中感悟人生<br/>
                     甚至量子纠缠让我们相信梦中情景存在真实联系<br/>
                     <br/>
                     
