@@ -83,6 +83,7 @@ class About extends React.Component {
                     梦也是私隐性极高的人生探秘<br/>
                     我们努力不懈为大家发现梦境的意义与价值<br/>
                     idreamin@outlook.com<br/>
+                    【连接全世界的梦】<br/>
                     </p>
 
 
