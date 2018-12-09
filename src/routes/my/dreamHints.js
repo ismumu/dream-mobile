@@ -13,7 +13,7 @@ export default class DreamHints extends React.Component {
 	render() {
 		return (
 			<div>
-				<NavBarPage title="解梦提示" iconType="back" />
+				<NavBarPage title="释梦" iconType="back" />
 				<div className={styles.dreamHints}>
 				<br></br>
 				<br></br>
