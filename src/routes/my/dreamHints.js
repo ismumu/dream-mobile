@@ -18,7 +18,7 @@ export default class DreamHints extends React.Component {
 				<br></br>
 				<br></br>
 				<br></br>
-				<p>我们正在筛选一些学科上的建议</p>
+				<p>我们正在收集一些学科上的见解</p>
 				<br></br>
 				<p>给大家借鉴</p>
 				<br></br>
