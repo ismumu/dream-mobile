@@ -101,7 +101,7 @@ class My extends React.Component {
 							arrow="horizontal"
 							multipleLine
 						>
-							释梦提示
+							释梦
                         </Item>
 					</Link>
 				</List>
