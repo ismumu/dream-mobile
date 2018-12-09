@@ -20,10 +20,7 @@ export default class DreamHints extends React.Component {
 				<br></br>
 				<p>我们正在收集一些学科上的见解</p>
 				<br></br>
-				<p>给大家借鉴</p>
-				<br></br>
-				<p>用来揭开自己的一些迷雾</p>
-				<br></br>
+				<p>给大家参考</p>
 				<br></br>
 				<br></br>
 				<p>【Dreamers need to stick together】</p>
