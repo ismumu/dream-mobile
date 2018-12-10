@@ -27,6 +27,12 @@ export default class DreamHints extends React.Component {
 				<br></br>
 				<p>Find the ones who haven't given up</p>
 				<p>They are the future</p>
+				<br></br><br></br>
+				<p>"梦对人类之重要</p>
+				<p>上百万年进化史</p>
+				<p>并没把梦从人类机体中清除</p>
+				<p>甚至没有弱化梦这个机能</p>
+				<p>肯定有积极作用"</p>
 
 				</div>
 			</div>
