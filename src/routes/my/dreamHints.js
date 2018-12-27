@@ -18,22 +18,16 @@ export default class DreamHints extends React.Component {
 				<br></br>
 				<br></br>
 				<br></br>
-				<p>我们正在收集一些学科上的见解</p>
+				<p>“我们说对于梦的阐述不应有先入为主、教条主义的偏见，这是重要的前提因素。一旦出现某种“单性的解释现象”就能知道该解释已经变成了教条，因而也就徒劳无功了。”</p>
 				<br></br>
-				<p>给大家参考</p>
+				<p>——荣格C G Jung</p>
 				<br></br>
 				<br></br>
-				<p>【Dreamers need to stick together】</p>
+				<p></p>
 				<br></br>
-				<p>Find the ones who haven't given up</p>
-				<p>They are the future</p>
+				<p>【释梦正在筹备中】</p>
+				<p></p>
 				<br></br><br></br>
-				<p>"梦对人类之重要</p>
-				<p>上百万年进化史</p>
-				<p>并没把梦从人类机体中清除</p>
-				<p>甚至没有弱化梦这个机能</p>
-				<p>肯定有积极作用"</p>
-
 				</div>
 			</div>
 		)
