@@ -34,7 +34,7 @@ export default class DownloadApp extends React.Component {
 					this.setState({
 						showModal: true,
 					})
-				}} className={domClass}>下载 App</p>
+				}} className={domClass}>App</p>
 				<Modal
 					visible={this.state.showModal}
 					transparent

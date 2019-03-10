@@ -130,7 +130,7 @@ class List extends React.Component {
 				mode: 'prepend',
 				url: shareUrl,
 				description: 'iDream',
-				title: `【${title}】${shareUrl}（iDream食夢）`,
+				title: `【${title}】${shareUrl}（iDream食梦）`,
 				wechatQrcodeTitle: "微信扫一扫分享",
 				wechatQrcodeHelper: '',//'<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
 			});
