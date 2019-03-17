@@ -62,11 +62,14 @@ class About extends React.Component {
 
                 <div className={styles.iNeedYou}>
                     <br/>
+                    <h3>我们在招募</h3>
+                    <p>合伙人<br/>
+                    技术iOS Android Web<br/>
+                    产品设计</p><br/>
                     <h3>我们是谁</h3>
                     <p>我们是着迷梦境的人类<br/>
                     因为我们相信梦中有着乐趣和启发<br/>
                     </p><br/>
-
                     <h3>我们从哪里来</h3>
                     <p>梦伴随着我们人类从古至今·从生至死<br/>
                     我们生命1/4时间在睡眠中度过<br/>
