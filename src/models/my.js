@@ -36,7 +36,7 @@ export default modelExtend(model, {
 			if (data.code == 200) {
 				callback && callback(data);
 			} else if (data.code == 400) {
-				Toast.info('用户已闭关静养~', 1);
+				Toast.info('用户已关起来', 1);
 				browserHistory.push(-1);
 			}
 		},
