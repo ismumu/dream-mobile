@@ -43,11 +43,11 @@ export default class DownloadApp extends React.Component {
 					onClose={this.closeModal}
 				>
 					<div className={styles.box}>
-						<p>现已支持Android</p>
-						<p>安卓手机软件下载</p>
-						<p className={styles.downloadTip}>点击下载然后安装</p>
+						<p>支持Android安卓和iOS苹果</p>
+						<p>iOS在AppStore搜iDream食梦</p>
+						<p className={styles.downloadTip}>Andriod安卓点击[下载]安装</p>
 						<a target="_blank" href="/iDream.apk" className={styles.downloadBtn}>下载</a>
-						<p className={styles.downloadIosTip}>iPhone手机iOS版开发当中<br/>诚邀你加入</p>
+						<p className={styles.downloadIosTip}><br/></p>
 					</div>
 				</Modal>
 			</div>
