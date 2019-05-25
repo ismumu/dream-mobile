@@ -25,7 +25,7 @@ export default class DreamHints extends React.Component {
 				<br></br>
 				<p></p>
 				<br></br>
-				<p>【释梦正在筹备中】</p>
+				<p>【释梦现支持iOS苹果App，网页版和Andriod安卓筹备当中】</p>
 				<p></p>
 				<br></br><br></br>
 				</div>
